@@ -33,14 +33,6 @@ TODO: Add long description of the pod here.
   
   s.source_files = 'SauceClip_iOS/Classes/**/*.{swift}'
   
-  s.resource_bundles = {
-      'assets' => ['SauceClip_iOS/Assets/*.xcassets']
-  }
-  
-  # s.resource_bundles = {
-  #   'SauceClip_iOS' => ['SauceClip_iOS/Assets/*.png']
-  # }
-
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
