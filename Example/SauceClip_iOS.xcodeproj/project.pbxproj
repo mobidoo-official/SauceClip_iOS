@@ -15,6 +15,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		A9B9C8219C51B583A77FB163 /* Pods_SauceClip_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E4E23E073A5FA7A27A0B99 /* Pods_SauceClip_iOS_Example.framework */; };
+		F97FD4AB2BA7D53500CF70DB /* SauceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD4AA2BA7D53500CF70DB /* SauceViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,11 +42,12 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		7CD32293F12E43C0E6B63D05 /* Pods-SauceClip_iOS_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SauceClip_iOS_Tests.debug.xcconfig"; path = "Target Support Files/Pods-SauceClip_iOS_Tests/Pods-SauceClip_iOS_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A4A01BF119C2AB597A6F6322 /* Pods_SauceClip_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SauceClip_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAEDBE2F8C1F6DBB62D7DBE7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		AE7E9C0E3ECABB55281F23BB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		BF1693C0F3ADA134FC81963F /* SauceClip_iOS.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = SauceClip_iOS.podspec; path = ../SauceClip_iOS.podspec; sourceTree = "<group>"; };
+		AAEDBE2F8C1F6DBB62D7DBE7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		AE7E9C0E3ECABB55281F23BB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		BF1693C0F3ADA134FC81963F /* SauceClip_iOS.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SauceClip_iOS.podspec; path = ../SauceClip_iOS.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EDB3C06125DC6E17B7D14FAF /* Pods-SauceClip_iOS_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SauceClip_iOS_Tests.release.xcconfig"; path = "Target Support Files/Pods-SauceClip_iOS_Tests/Pods-SauceClip_iOS_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F6A7A20959E979DB55BB57A6 /* Pods-SauceClip_iOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SauceClip_iOS_Example.release.xcconfig"; path = "Target Support Files/Pods-SauceClip_iOS_Example/Pods-SauceClip_iOS_Example.release.xcconfig"; sourceTree = "<group>"; };
+		F97FD4AA2BA7D53500CF70DB /* SauceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SauceViewController.swift; sourceTree = "<group>"; };
 		FBBD852A85B6D8ECBE98544B /* Pods-SauceClip_iOS_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SauceClip_iOS_Example.debug.xcconfig"; path = "Target Support Files/Pods-SauceClip_iOS_Example/Pods-SauceClip_iOS_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,7 +79,6 @@
 				7CD32293F12E43C0E6B63D05 /* Pods-SauceClip_iOS_Tests.debug.xcconfig */,
 				EDB3C06125DC6E17B7D14FAF /* Pods-SauceClip_iOS_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -107,6 +108,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				F97FD4AA2BA7D53500CF70DB /* SauceViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -213,10 +215,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = PQFD9V79PC;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = PQFD9V79PC;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -227,6 +231,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -333,6 +338,7 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				F97FD4AB2BA7D53500CF70DB /* SauceViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,7 +484,9 @@
 			baseConfigurationReference = FBBD852A85B6D8ECBE98544B /* Pods-SauceClip_iOS_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = PQFD9V79PC;
 				INFOPLIST_FILE = SauceClip_iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -493,7 +501,9 @@
 			baseConfigurationReference = F6A7A20959E979DB55BB57A6 /* Pods-SauceClip_iOS_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = PQFD9V79PC;
 				INFOPLIST_FILE = SauceClip_iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -507,6 +517,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7CD32293F12E43C0E6B63D05 /* Pods-SauceClip_iOS_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = PQFD9V79PC;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -516,6 +527,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -529,11 +541,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EDB3C06125DC6E17B7D14FAF /* Pods-SauceClip_iOS_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = PQFD9V79PC;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

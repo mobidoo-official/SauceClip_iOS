@@ -1,0 +1,6 @@
+framework module SauceClip_iOS {
+  umbrella header "SauceClip_iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

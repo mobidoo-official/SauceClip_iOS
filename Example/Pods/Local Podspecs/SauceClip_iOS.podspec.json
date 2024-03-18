@@ -1,0 +1,22 @@
+{
+  "name": "SauceClip_iOS",
+  "version": "0.1.0",
+  "summary": "A short description of SauceClip_iOS.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/banwith7/SauceClip_iOS",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "banwith7": "banwith7@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/banwith7/SauceClip_iOS.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "SauceClip_iOS/Classes/**/*"
+}

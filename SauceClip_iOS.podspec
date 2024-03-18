@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SauceClip_iOS'
-  s.version          = '0.1.0'
+  s.version          = '0.0.1'
   s.summary          = 'A short description of SauceClip_iOS.'
 
 # This description is used to generate tags and improve search results.
@@ -21,16 +21,21 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/banwith7/SauceClip_iOS'
+  s.homepage         = 'https://github.com/mobidoo-official/SauceClip_iOS.git'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'banwith7' => 'banwith7@gmail.com' }
-  s.source           = { :git => 'https://github.com/banwith7/SauceClip_iOS.git', :tag => s.version.to_s }
+  s.author           = { 'keaton' => 'keaton@mobidoo.co.kr' }
+  s.source           = { :git => 'https://github.com/mobidoo-official/SauceClip_iOS.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '10.0'
-
-  s.source_files = 'SauceClip_iOS/Classes/**/*'
+  s.ios.deployment_target = '12.0'
+  s.swift_versions = '5.0'
+  
+  s.source_files = 'SauceClip_iOS/Classes/**/*.{swift}'
+  
+  s.resource_bundles = {
+      'assets' => ['SauceClip_iOS/Assets/*.xcassets']
+  }
   
   # s.resource_bundles = {
   #   'SauceClip_iOS' => ['SauceClip_iOS/Assets/*.png']

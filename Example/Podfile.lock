@@ -1,0 +1,16 @@
+PODS:
+  - SauceClip_iOS (0.1.0)
+
+DEPENDENCIES:
+  - SauceClip_iOS (from `../`)
+
+EXTERNAL SOURCES:
+  SauceClip_iOS:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SauceClip_iOS: af5c6ff644f539eac4b56f59240206cc8007dd6a
+
+PODFILE CHECKSUM: e174199d48e5be4de09fa6dbf3d12a891550ddbb
+
+COCOAPODS: 1.13.0
