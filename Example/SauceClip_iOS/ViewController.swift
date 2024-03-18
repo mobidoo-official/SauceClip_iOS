@@ -52,7 +52,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // ScrollView 설정
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -136,10 +135,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @objc private func toggleCheckBox(_ sender: UIButton) {
         guard let title = sender.title(for: .normal),
               let selectedName = MessageHandlerName(rawValue: title) else { return }
-
+        
         let isEnabled = handlerStates[selectedName] ?? false
         handlerStates[selectedName] = !isEnabled
-
+        
         sender.layer.borderWidth = !isEnabled ? 2 : 0
         sender.layer.borderColor = !isEnabled ? UIColor.systemBlue.cgColor : nil
         sender.setTitleColor(!isEnabled ? .systemBlue : .black, for: .normal)

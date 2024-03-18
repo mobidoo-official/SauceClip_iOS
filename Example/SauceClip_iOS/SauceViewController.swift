@@ -7,16 +7,16 @@ class SauceViewController: SauceClipViewController {
     var handlerStates: [MessageHandlerName: Bool] = [:]
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let config = SauceViewControllerConfig(
-                    url: urlString,
-                    isEnterEnabled: handlerStates[.enter] ?? false,
-                    isExitEnabled: handlerStates[.exit] ?? false,
-                    isMoveProductEnabled: handlerStates[.moveProduct] ?? false,
-                    isMoveCartEnabled: handlerStates[.moveCart] ?? false,
-                    isOnShareEnabled: handlerStates[.onShare] ?? false,
-                    delegate: self
-                )
+            url: urlString,
+            isEnterEnabled: handlerStates[.enter] ?? false,
+            isExitEnabled: handlerStates[.exit] ?? false,
+            isMoveProductEnabled: handlerStates[.moveProduct] ?? false,
+            isMoveCartEnabled: handlerStates[.moveCart] ?? false,
+            isOnShareEnabled: handlerStates[.onShare] ?? false,
+            delegate: self
+        )
         configure(with: config)
     }
 }
@@ -35,7 +35,7 @@ extension SauceViewController: SauceClipDelegate {
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveLoginMessage message: WKScriptMessage) {
         print("login")
     }
-
+    
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage message: WKScriptMessage) {
         print("cart")
     }
