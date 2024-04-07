@@ -12,7 +12,6 @@ import SauceClip_iOS
 class ViewController: UIViewController, UITextFieldDelegate {
     private let scrollView = UIScrollView()
     private let contentView = UIView()
-    private let urlTextField = UITextField()
     private var checkBoxes = [UIButton]()
     private let openWebViewButton = UIButton()
     private var selectedMessageHandlers = [MessageHandlerName]()
@@ -69,18 +68,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
         
-        // URL Text Field 설정
-        contentView.addSubview(urlTextField)
-        urlTextField.borderStyle = .roundedRect
-        urlTextField.placeholder = "Enter URL here"
-        urlTextField.delegate = self
-        urlTextField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            urlTextField.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 20),
-            urlTextField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            urlTextField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
-        ])
-        
         // Open WebView Button 설정
         contentView.addSubview(openWebViewButton)
         openWebViewButton.setTitle("Open Web View", for: .normal)
@@ -107,7 +94,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: urlTextField.bottomAnchor, constant: 20),
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             stackView.bottomAnchor.constraint(lessThanOrEqualTo: openWebViewButton.topAnchor, constant: -20)
@@ -138,19 +125,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         let isEnabled = handlerStates[selectedName] ?? false
         handlerStates[selectedName] = !isEnabled
-        
         sender.layer.borderWidth = !isEnabled ? 2 : 0
         sender.layer.borderColor = !isEnabled ? UIColor.systemBlue.cgColor : nil
         sender.setTitleColor(!isEnabled ? .systemBlue : .black, for: .normal)
     }
     
     @objc private func openWebViewController() {
-        guard let urlString = urlTextField.text, urlString.count != 0 else {
-            return
-        }
-        
         let sauceViewController = SauceViewController()
-        sauceViewController.urlString = urlString
         sauceViewController.handlerStates = handlerStates
         sauceViewController.modalPresentationStyle = .fullScreen
         self.present(sauceViewController, animated: true)

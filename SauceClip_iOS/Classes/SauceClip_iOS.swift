@@ -27,7 +27,6 @@ protocol SauceClipManager: AnyObject {
 }
 
 public struct SauceViewControllerConfig {
-    public let url: String
     public let isEnterEnabled: Bool
     public let isExitEnabled: Bool
     public let isLoginEnabled: Bool
@@ -35,16 +34,13 @@ public struct SauceViewControllerConfig {
     public let isMoveCartEnabled: Bool
     public let isOnShareEnabled: Bool
     public weak var delegate: SauceClipDelegate? // Delegate 추가
-    public init(url: String,
-                isEnterEnabled: Bool? = false,
+    public init(isEnterEnabled: Bool? = false,
                 isExitEnabled: Bool? = false,
                 isLoginEnabled: Bool? = false,
                 isMoveProductEnabled: Bool? = false,
                 isMoveCartEnabled: Bool? = false,
                 isOnShareEnabled: Bool? = false,
                 delegate: SauceClipDelegate?) {
-        
-        self.url = url
         self.isEnterEnabled = isEnterEnabled ?? false
         self.isExitEnabled = isExitEnabled ?? false
         self.isLoginEnabled = isLoginEnabled ?? false
@@ -71,13 +67,8 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
     public func configure(with config: SauceViewControllerConfig) {
         configureWebView()
         setupWebViewLayout()
-        self.url = config.url
         self.delegate = config.delegate
-        // Additional configuration based on the provided config
         configureMessageHandlers(with: config)
-        if let url = self.url {
-            self.loadURL(url)
-        }
     }
     
     public func loadURL(_ urlString: String) {

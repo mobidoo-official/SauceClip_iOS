@@ -3,13 +3,11 @@ import WebKit
 import SauceClip_iOS
 
 class SauceViewController: SauceClipViewController {
-    var urlString = String()
     var handlerStates: [MessageHandlerName: Bool] = [:]
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let config = SauceViewControllerConfig(
-            url: urlString,
             isEnterEnabled: handlerStates[.enter] ?? false,
             isExitEnabled: handlerStates[.exit] ?? false,
             isMoveProductEnabled: handlerStates[.moveProduct] ?? false,
@@ -18,6 +16,12 @@ class SauceViewController: SauceClipViewController {
             delegate: self
         )
         configure(with: config)
+        
+        let sauceClipLib = SauceClipLib()
+        sauceClipLib.viewController = self
+        sauceClipLib.setInit(partnerID: "8", clipID: "2918")
+        sauceClipLib.setStageMode(on: true)
+        sauceClipLib.load()
     }
 }
 
