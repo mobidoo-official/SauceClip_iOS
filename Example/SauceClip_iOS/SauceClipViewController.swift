@@ -20,12 +20,12 @@ class SauceViewController: SauceClipViewController {
         let sauceClipLib = SauceClipLib()
         sauceClipLib.viewController = self
         sauceClipLib.setInit(partnerID: "8", clipID: "2918")
+        sauceClipLib.setProductVC(on: true)
         sauceClipLib.setStageMode(on: true)
         sauceClipLib.load()
     }
 }
 
-// SauceClipDelegate 프로토콜 채택 및 구현
 extension SauceViewController: SauceClipDelegate {
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveEnterMessage message: WKScriptMessage) {
         print("enter")
@@ -51,5 +51,5 @@ extension SauceViewController: SauceClipDelegate {
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveProductMessage productInfo: SauceProductInfo) {
         print(productInfo.clipIdx)
     }
-   
+    
 }

@@ -34,9 +34,6 @@ class SauceCuraionViewController: UIViewController {
 extension SauceCuraionViewController: SauceCurationDelegate {
     func sauceCurationManager(_ manager: SauceCurationLib, didReceiveBroadCastMessage broadCastInfo: SauceBroadcastInfo) {
         print(broadCastInfo.clipId)
-        print(broadCastInfo.curationId)
-        print(broadCastInfo.partnerId)
-        print(broadCastInfo.shortUrl)
     }
 }
 

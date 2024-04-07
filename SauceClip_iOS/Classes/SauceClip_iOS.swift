@@ -21,8 +21,6 @@ public enum MessageHandlerName: String {
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveOnShareMessage shareInfo: SauceShareInfo)
 }
 
-
-// SauceLiveManager 프로토콜 추가
 protocol SauceClipManager: AnyObject {
     func configure(with config: SauceClipConfig)
     func loadURL(_ urlString: String)
@@ -60,12 +58,12 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
     public weak var delegate: SauceClipDelegate?
     public var messageHandlerNames: [MessageHandlerName] = []
     public var url: String?
+    public var isProductViewShow: Bool?
     
     open override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    // 구성 객체를 사용하여 SauceLiveViewController 설정
     public func configure(with config: SauceClipConfig) {
         configureWebView()
         setupWebViewLayout()
@@ -80,6 +78,29 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
         
         let request = URLRequest(url: url)
         webView.load(request)
+    }
+    
+    func openURLInNewWebView(_ urlString: String) {
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL")
+            return
+        }
+        
+        let configuration = WKWebViewConfiguration()
+        let newWebView = WKWebView(frame: .zero, configuration: configuration)
+        newWebView.navigationDelegate = self // 현재 ViewController가 navigationDelegate가 되도록 설정합니다.
+        
+        self.view.addSubview(newWebView)
+        newWebView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            newWebView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            newWebView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            newWebView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            newWebView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
+        
+        let request = URLRequest(url: url)
+        newWebView.load(request)
     }
     
     private func configureMessageHandlers(with config: SauceClipConfig) {
@@ -134,20 +155,16 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
     
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let jsonString = message.body as? String else {
-                print("message.body is not a String")
-                return
-            }
-            
-            // 문자열을 Data 객체로 변환
-            guard let jsonData = jsonString.data(using: .utf8) else {
-                print("Failed to convert jsonString to Data")
-                return
-            }
+            print("message.body is not a String")
+            return
+        }
+        
+        guard let jsonData = jsonString.data(using: .utf8) else {
+            print("Failed to convert jsonString to Data")
+            return
+        }
         
         let decoder = JSONDecoder()
-        
-        print(message.name)
-        print(message.body)
         
         switch message.name {
         case MessageHandlerName.enter.rawValue:
@@ -158,7 +175,10 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
             delegate?.sauceClipManager?(self, didReceiveLoginMessage: message)
         case MessageHandlerName.moveProduct.rawValue:
             if let productInfo = try? decoder.decode(SauceProductInfo.self, from: jsonData) {
-                delegate?.sauceClipManager?(self, didReceiveMoveProductMessage: productInfo)
+                if self.isProductViewShow ?? true {
+                    openURLInNewWebView(productInfo.linkUrl)
+                    delegate?.sauceClipManager?(self, didReceiveMoveProductMessage: productInfo)
+                }
             }
         case MessageHandlerName.moveCart.rawValue:
             if let cartInfo = try? decoder.decode(SauceCartInfo.self, from: jsonData) {

@@ -5,6 +5,7 @@ public class SauceClipLib {
     var partnerId: String?
     var clipId: String?
     var target = ""
+    var isProductViewShow = true
     
     public weak var viewController: SauceClipViewController?
     
@@ -19,11 +20,18 @@ public class SauceClipLib {
         }
     }
     
+    public func setProductVC(on: Bool = true) {
+        isProductViewShow = on
+    }
+    
+    
+    
     public func load() {
         if let partnerId = partnerId, let clipId = clipId {
             let urlString = "https://\(target).player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
             DispatchQueue.main.async {
                 print(urlString)
+                self.viewController?.isProductViewShow = self.isProductViewShow
                 self.viewController?.loadURL(urlString)
             }
         } else {

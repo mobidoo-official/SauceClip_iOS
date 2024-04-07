@@ -112,7 +112,7 @@ class ViewController: UIViewController {
     }
     
     @objc private func openWebViewController(_ sender: UIButton) {
-       
+        
         if sender == clipOpenClipViewButton {
             let viewController = SauceViewController()
             viewController.modalPresentationStyle = .fullScreen
@@ -134,5 +134,5 @@ class ViewController: UIViewController {
         .moveCart: false,
         .moveBroadcast: false
     ]
-
+    
 }

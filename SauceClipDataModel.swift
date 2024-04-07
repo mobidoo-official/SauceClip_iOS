@@ -61,7 +61,7 @@
 ///   - shortUrl: 짧은 URL입니다. 이 값은 null일 수 있습니다.
 
 @objcMembers public class SauceBroadcastInfo: NSObject, Codable {
-   public let clipId: Int
+    public let clipId: Int
     public let curationId: Int
     public let partnerId: String
     public let shortUrl: String?
