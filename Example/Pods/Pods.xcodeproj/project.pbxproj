@@ -42,12 +42,12 @@
 		0F413A9CF304D498B906344E1040FA8F /* Pods-SauceClip_iOS_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SauceClip_iOS_Tests-umbrella.h"; sourceTree = "<group>"; };
 		1781EF34DD73F104E5A534F767034A29 /* SauceClip_iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SauceClip_iOS-dummy.m"; sourceTree = "<group>"; };
 		18F4B6E8C5F2CB2E7BEBCB56D4476872 /* Pods-SauceClip_iOS_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SauceClip_iOS_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		19DC4CCAD291457B770A1667AEFBEE1E /* SauceClip_iOS.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = SauceClip_iOS.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		19DC4CCAD291457B770A1667AEFBEE1E /* SauceClip_iOS.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = SauceClip_iOS.podspec; sourceTree = "<group>"; tabWidth = 2; };
 		2A5858060550DCC0DC3DB66ED06FE6D1 /* Pods-SauceClip_iOS_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SauceClip_iOS_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		2ACFCBAF7107A1FCD6F5D117C852399E /* SauceClip_iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SauceClip_iOS-umbrella.h"; sourceTree = "<group>"; };
 		376F22911BF0F66AD41E2ED12C0FB77E /* Pods-SauceClip_iOS_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SauceClip_iOS_Example-umbrella.h"; sourceTree = "<group>"; };
 		3968FE227321D0F8C9E98E7E81C266E0 /* SauceClip_iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SauceClip_iOS-prefix.pch"; sourceTree = "<group>"; };
-		4836B4F42BC2D524006A1FB5 /* SauceClipDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SauceClipDataModel.swift; sourceTree = "<group>"; };
+		4836B4F42BC2D524006A1FB5 /* SauceClipDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SauceClipDataModel.swift; path = SauceClip_iOS/Classes/SauceClipDataModel.swift; sourceTree = "<group>"; };
 		4A4EAA61E08B79FE6CB9FA25B9604C9E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		4D8FC375945B2FE2F8E66A7C3291D914 /* Pods-SauceClip_iOS_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SauceClip_iOS_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		4E84021FDB4B7DA70AFF7550328D1E2E /* SauceClip_iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SauceClip_iOS.modulemap; sourceTree = "<group>"; };
@@ -61,7 +61,7 @@
 		94E044DE960B3D4A16F69869EF2656ED /* Pods_SauceClip_iOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SauceClip_iOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99D94313819AE4A507036D75788B3D10 /* Pods-SauceClip_iOS_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SauceClip_iOS_Example-Info.plist"; sourceTree = "<group>"; };
 		9C5B4453EB576183C585C6CDB1D60AEF /* Pods-SauceClip_iOS_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SauceClip_iOS_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; };
 		A26B384AE0D6DC5FCEE31C4B313EFE71 /* Pods-SauceClip_iOS_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SauceClip_iOS_Example.modulemap"; sourceTree = "<group>"; };
 		A545CD04770CA0E2195B187B021BE913 /* Pods-SauceClip_iOS_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SauceClip_iOS_Tests-Info.plist"; sourceTree = "<group>"; };
 		A8F2D6A065B08FF7F0F8536DC89DD049 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 		E1CA01BF1BEFAE3B6000B406D408F2A8 /* Pods-SauceClip_iOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SauceClip_iOS_Example.release.xcconfig"; sourceTree = "<group>"; };
 		EA60B7AA033908DB8FEC822C0285C063 /* Pods-SauceClip_iOS_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SauceClip_iOS_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F4D8BCE4926EB145092AFFEB4CB01F2E /* SauceClip_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SauceClip_iOS.debug.xcconfig; sourceTree = "<group>"; };
-		F9C7DA502BBE375E0067771D /* SauceClipLibManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SauceClipLibManager.swift; sourceTree = "<group>"; };
+		F9C7DA502BBE375E0067771D /* SauceClipLibManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SauceClipLibManager.swift; path = SauceClip_iOS/Classes/SauceClipLibManager.swift; sourceTree = "<group>"; };
 		FED527C9BFE9532DD616C62F16DEA194 /* Pods_SauceClip_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SauceClip_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 

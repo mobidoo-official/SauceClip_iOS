@@ -170,7 +170,6 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
                 openURLInNewWebView(productInfo.linkUrl)
                 delegate?.sauceClipManager?(self, didReceiveMoveProductMessage: productInfo)
             } else {
-                // `message.body`가 비어 있거나 디코딩에 실패한 경우, nil을 전달합니다.
                 delegate?.sauceClipManager?(self, didReceiveMoveProductMessage: nil)
             }
             
@@ -180,7 +179,6 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
                let cartInfo = try? decoder.decode(SauceCartInfo.self, from: jsonData) {
                 delegate?.sauceClipManager?(self, didReceiveMoveCartMessage: cartInfo)
             } else {
-                // `message.body`가 비어 있거나 디코딩에 실패한 경우, nil을 전달합니다.
                 delegate?.sauceClipManager?(self, didReceiveMoveCartMessage: nil)
             }
             
@@ -190,7 +188,6 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
                let shareInfo = try? decoder.decode(SauceShareInfo.self, from: jsonData) {
                 delegate?.sauceClipManager?(self, didReceiveOnShareMessage: shareInfo)
             } else {
-                // `message.body`가 비어 있거나 디코딩에 실패한 경우, nil을 전달합니다.
                 delegate?.sauceClipManager?(self, didReceiveOnShareMessage: nil)
             }
         default:

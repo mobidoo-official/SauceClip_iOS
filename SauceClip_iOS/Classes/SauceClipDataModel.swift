@@ -1,3 +1,5 @@
+import Foundation
+
 /// SauceClip 애플리케이션의 장바구니 정보를 나타내는 데이터 구조체입니다.
 ///
 /// - Parameters:
