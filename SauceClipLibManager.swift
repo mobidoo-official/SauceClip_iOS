@@ -173,13 +173,14 @@ public class SauceCurationLib: WKWebView {
     }
 }
 @objc public protocol SauceCurationDelegate: AnyObject {
-    @objc optional func sauceCurationManager(_ manager: SauceCurationLib, didReceiveBroadCastMessage broadCastInfo: SauceBroadcastInfo)
+    @objc optional func sauceCurationManager(_ manager: SauceCurationLib, didReceiveBroadCastMessage broadCastInfo: SauceBroadcastInfo?)
 }
 
 extension SauceCurationLib: WKScriptMessageHandler {
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let jsonString = message.body as? String else {
             print("message.body is not a String")
+            delegate?.sauceCurationManager?(self, didReceiveBroadCastMessage: nil)
             return
         }
         guard let jsonData = jsonString.data(using: .utf8) else {

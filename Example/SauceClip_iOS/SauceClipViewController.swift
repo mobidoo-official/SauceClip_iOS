@@ -40,16 +40,16 @@ extension SauceViewController: SauceClipDelegate {
         print("login")
     }
     
-    func sauceClipManager(_ manager: SauceClipViewController, didReceiveOnShareMessage shareInfo: SauceShareInfo) {
-        print(shareInfo.clipId)
+    func sauceClipManager(_ manager: SauceClipViewController, didReceiveOnShareMessage shareInfo: SauceShareInfo?) {
+        print(shareInfo?.clipId)
     }
     
-    func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage cartInfo: SauceCartInfo) {
-        print(cartInfo.clipIdx)
+    func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage cartInfo: SauceCartInfo?) {
+        print(cartInfo?.clipIdx)
     }
     
-    func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveProductMessage productInfo: SauceProductInfo) {
-        print(productInfo.clipIdx)
+    func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveProductMessage productInfo: SauceProductInfo?) {
+        print(productInfo?.clipIdx)
     }
     
 }

@@ -16,9 +16,9 @@ public enum MessageHandlerName: String {
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveEnterMessage message: WKScriptMessage)
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveExitMessage message: WKScriptMessage)
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveLoginMessage message: WKScriptMessage)
-    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveProductMessage productInfo: SauceProductInfo)
-    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage cartInfo: SauceCartInfo)
-    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveOnShareMessage shareInfo: SauceShareInfo)
+    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveProductMessage productInfo: SauceProductInfo?)
+    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage cartInfo: SauceCartInfo?)
+    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveOnShareMessage shareInfo: SauceShareInfo?)
 }
 
 protocol SauceClipManager: AnyObject {
@@ -154,16 +154,6 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
     }
     
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        guard let jsonString = message.body as? String else {
-            print("message.body is not a String")
-            return
-        }
-        
-        guard let jsonData = jsonString.data(using: .utf8) else {
-            print("Failed to convert jsonString to Data")
-            return
-        }
-        
         let decoder = JSONDecoder()
         
         switch message.name {
@@ -174,19 +164,34 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
         case MessageHandlerName.login.rawValue:
             delegate?.sauceClipManager?(self, didReceiveLoginMessage: message)
         case MessageHandlerName.moveProduct.rawValue:
-            if let productInfo = try? decoder.decode(SauceProductInfo.self, from: jsonData) {
-                if self.isProductViewShow ?? true {
-                    openURLInNewWebView(productInfo.linkUrl)
-                    delegate?.sauceClipManager?(self, didReceiveMoveProductMessage: productInfo)
-                }
+            if let jsonString = message.body as? String, !jsonString.isEmpty,
+               let jsonData = jsonString.data(using: .utf8),
+               let productInfo = try? decoder.decode(SauceProductInfo.self, from: jsonData) {
+                openURLInNewWebView(productInfo.linkUrl)
+                delegate?.sauceClipManager?(self, didReceiveMoveProductMessage: productInfo)
+            } else {
+                // `message.body`가 비어 있거나 디코딩에 실패한 경우, nil을 전달합니다.
+                delegate?.sauceClipManager?(self, didReceiveMoveProductMessage: nil)
             }
+            
         case MessageHandlerName.moveCart.rawValue:
-            if let cartInfo = try? decoder.decode(SauceCartInfo.self, from: jsonData) {
+            if let jsonString = message.body as? String, !jsonString.isEmpty,
+               let jsonData = jsonString.data(using: .utf8),
+               let cartInfo = try? decoder.decode(SauceCartInfo.self, from: jsonData) {
                 delegate?.sauceClipManager?(self, didReceiveMoveCartMessage: cartInfo)
+            } else {
+                // `message.body`가 비어 있거나 디코딩에 실패한 경우, nil을 전달합니다.
+                delegate?.sauceClipManager?(self, didReceiveMoveCartMessage: nil)
             }
+            
         case MessageHandlerName.onShare.rawValue:
-            if let shareInfo = try? decoder.decode(SauceShareInfo.self, from: jsonData) {
+            if let jsonString = message.body as? String, !jsonString.isEmpty,
+               let jsonData = jsonString.data(using: .utf8),
+               let shareInfo = try? decoder.decode(SauceShareInfo.self, from: jsonData) {
                 delegate?.sauceClipManager?(self, didReceiveOnShareMessage: shareInfo)
+            } else {
+                // `message.body`가 비어 있거나 디코딩에 실패한 경우, nil을 전달합니다.
+                delegate?.sauceClipManager?(self, didReceiveOnShareMessage: nil)
             }
         default:
             break
