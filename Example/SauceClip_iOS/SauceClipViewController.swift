@@ -7,7 +7,7 @@ class SauceViewController: SauceClipViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let config = SauceViewControllerConfig(
+        let config = SauceClipConfig(
             isEnterEnabled: handlerStates[.enter] ?? false,
             isExitEnabled: handlerStates[.exit] ?? false,
             isMoveProductEnabled: handlerStates[.moveProduct] ?? false,
@@ -40,15 +40,16 @@ extension SauceViewController: SauceClipDelegate {
         print("login")
     }
     
-    func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage message: WKScriptMessage) {
-        print("cart")
+    func sauceClipManager(_ manager: SauceClipViewController, didReceiveOnShareMessage shareInfo: SauceShareInfo) {
+        print(shareInfo.clipId)
     }
     
-    func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveProductMessage message: WKScriptMessage) {
-        print("product")
+    func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage cartInfo: SauceCartInfo) {
+        print(cartInfo.clipIdx)
     }
     
-    func sauceClipManager(_ manager: SauceClipViewController, didReceiveOnShareMessage message: WKScriptMessage) {
-        print("share")
+    func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveProductMessage productInfo: SauceProductInfo) {
+        print(productInfo.clipIdx)
     }
+   
 }

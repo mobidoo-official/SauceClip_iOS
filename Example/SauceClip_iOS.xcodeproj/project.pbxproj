@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48632C502BC2595B005E8294 /* SauceCuraionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48632C4F2BC2595B005E8294 /* SauceCuraionViewController.swift */; };
 		4EC7315CB5466BA98881625D /* Pods_SauceClip_iOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4A01BF119C2AB597A6F6322 /* Pods_SauceClip_iOS_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -15,7 +16,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		A9B9C8219C51B583A77FB163 /* Pods_SauceClip_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E4E23E073A5FA7A27A0B99 /* Pods_SauceClip_iOS_Example.framework */; };
-		F97FD4AB2BA7D53500CF70DB /* SauceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD4AA2BA7D53500CF70DB /* SauceViewController.swift */; };
+		F97FD4AB2BA7D53500CF70DB /* SauceClipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD4AA2BA7D53500CF70DB /* SauceClipViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		33E4E23E073A5FA7A27A0B99 /* Pods_SauceClip_iOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SauceClip_iOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		48632C4F2BC2595B005E8294 /* SauceCuraionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SauceCuraionViewController.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* SauceClip_iOS_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SauceClip_iOS_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,7 +49,7 @@
 		BF1693C0F3ADA134FC81963F /* SauceClip_iOS.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SauceClip_iOS.podspec; path = ../SauceClip_iOS.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EDB3C06125DC6E17B7D14FAF /* Pods-SauceClip_iOS_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SauceClip_iOS_Tests.release.xcconfig"; path = "Target Support Files/Pods-SauceClip_iOS_Tests/Pods-SauceClip_iOS_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F6A7A20959E979DB55BB57A6 /* Pods-SauceClip_iOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SauceClip_iOS_Example.release.xcconfig"; path = "Target Support Files/Pods-SauceClip_iOS_Example/Pods-SauceClip_iOS_Example.release.xcconfig"; sourceTree = "<group>"; };
-		F97FD4AA2BA7D53500CF70DB /* SauceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SauceViewController.swift; sourceTree = "<group>"; };
+		F97FD4AA2BA7D53500CF70DB /* SauceClipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SauceClipViewController.swift; sourceTree = "<group>"; };
 		FBBD852A85B6D8ECBE98544B /* Pods-SauceClip_iOS_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SauceClip_iOS_Example.debug.xcconfig"; path = "Target Support Files/Pods-SauceClip_iOS_Example/Pods-SauceClip_iOS_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,7 +110,8 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				F97FD4AA2BA7D53500CF70DB /* SauceViewController.swift */,
+				F97FD4AA2BA7D53500CF70DB /* SauceClipViewController.swift */,
+				48632C4F2BC2595B005E8294 /* SauceCuraionViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -336,9 +339,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48632C502BC2595B005E8294 /* SauceCuraionViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
-				F97FD4AB2BA7D53500CF70DB /* SauceViewController.swift in Sources */,
+				F97FD4AB2BA7D53500CF70DB /* SauceClipViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,105 +1,95 @@
-//
-//  ViewController.swift
-//  SauceClip_iOS
-//
-//  Created by banwith7 on 03/18/2024.
-//  Copyright (c) 2024 banwith7. All rights reserved.
-//
-
 import UIKit
 import SauceClip_iOS
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController {
     private let scrollView = UIScrollView()
-    private let contentView = UIView()
-    private var checkBoxes = [UIButton]()
-    private let openWebViewButton = UIButton()
-    private var selectedMessageHandlers = [MessageHandlerName]()
+    private let clipContainer = UIView()
+    private let curationContainer = UIView()
+    private var clipCheckBoxes = [UIButton]()
+    private var curationCheckBoxes = [UIButton]()
+    private let clipOpenClipViewButton = UIButton()
+    private let curationOpenCurationViewButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupScrollView()
         setupUI()
-        setupCheckBoxes()
-        setupGestureToHideKeyboard()
-    }
-    
-    private func setupScrollView() {
-        view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
-        ])
+        setupContainers()
     }
     
     private func setupUI() {
         view.backgroundColor = .white
         
-        // ScrollView 설정
+        // ScrollView 설정, 세이프 영역 내부로 조정
         view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
         
-        // ScrollView 제약 조건 설정
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
-        ])
-        
-        // Open WebView Button 설정
-        contentView.addSubview(openWebViewButton)
-        openWebViewButton.setTitle("Open Web View", for: .normal)
-        openWebViewButton.backgroundColor = .systemBlue
-        openWebViewButton.addTarget(self, action: #selector(openWebViewController), for: .touchUpInside)
-        openWebViewButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            openWebViewButton.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -100), // 위치 조정
-            openWebViewButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            openWebViewButton.heightAnchor.constraint(equalToConstant: 50),
-            openWebViewButton.widthAnchor.constraint(equalToConstant: 200)
         ])
     }
     
+    private func setupContainers() {
+        setupContainer(clipContainer, withButton: clipOpenClipViewButton, buttonTitle: "Open ClipView", checkBoxes: &clipCheckBoxes, isTopContainer: true, messageHandlerNames: [.enter, .exit, .moveProduct, .moveCart, .onShare])
+        setupContainer(curationContainer, withButton: curationOpenCurationViewButton, buttonTitle: "Open CurationView", checkBoxes: &curationCheckBoxes, isTopContainer: false, messageHandlerNames: [.moveBroadcast])
+    }
     
-    private func setupCheckBoxes() {
-        let messageHandlerNames: [MessageHandlerName] = [.enter, .exit, .moveCart, .moveProduct, .onShare]
+    private func setupContainer(_ container: UIView, withButton button: UIButton, buttonTitle: String, checkBoxes: inout [UIButton], isTopContainer: Bool, messageHandlerNames: [MessageHandlerName]) {
+        scrollView.addSubview(container)
+        container.translatesAutoresizingMaskIntoConstraints = false
+        container.backgroundColor = .white
+        container.layer.borderWidth = 1
+        container.layer.borderColor = UIColor.black.cgColor
+        
+        button.setTitle(buttonTitle, for: .normal)
+        button.backgroundColor = .systemBlue
+        button.addTarget(self, action: #selector(openWebViewController(_:)), for: .touchUpInside)
+        container.addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
         
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 10
-        view.addSubview(stackView)
+        container.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            stackView.bottomAnchor.constraint(lessThanOrEqualTo: openWebViewButton.topAnchor, constant: -20)
+            stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: 20),
+            stackView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -20),
+            stackView.bottomAnchor.constraint(lessThanOrEqualTo: button.topAnchor, constant: -20),
+            
+            button.heightAnchor.constraint(equalToConstant: 50),
+            button.centerXAnchor.constraint(equalTo: container.centerXAnchor),
+            button.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -20),
+            button.widthAnchor.constraint(equalToConstant: 200),
         ])
         
+        if isTopContainer {
+            NSLayoutConstraint.activate([
+                container.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+                container.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+                container.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
+                // 상단 컨테이너에 대한 추가 제약 조건이 필요하다면 여기에 추가합니다.
+                container.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                container.topAnchor.constraint(equalTo: clipContainer.bottomAnchor, constant: 20),
+                container.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+                container.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
+                container.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20),
+                container.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40)
+            ])
+        }
+        
+        setupCheckBoxes(inStackView: stackView, checkBoxes: &checkBoxes, messageHandlerNames: messageHandlerNames)
+    }
+    
+    private func setupCheckBoxes(inStackView stackView: UIStackView, checkBoxes: inout [UIButton], messageHandlerNames: [MessageHandlerName]) {
         messageHandlerNames.enumerated().forEach { (index, name) in
             let button = UIButton(type: .system)
             button.setTitle(name.rawValue, for: .normal)
@@ -111,18 +101,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    private var handlerStates: [MessageHandlerName: Bool] = [
-        .enter: false,
-        .exit: false,
-        .moveProduct: false,
-        .onShare: false,
-        .moveCart: false
-    ]
-    
     @objc private func toggleCheckBox(_ sender: UIButton) {
         guard let title = sender.title(for: .normal),
               let selectedName = MessageHandlerName(rawValue: title) else { return }
-        
         let isEnabled = handlerStates[selectedName] ?? false
         handlerStates[selectedName] = !isEnabled
         sender.layer.borderWidth = !isEnabled ? 2 : 0
@@ -130,25 +111,28 @@ class ViewController: UIViewController, UITextFieldDelegate {
         sender.setTitleColor(!isEnabled ? .systemBlue : .black, for: .normal)
     }
     
-    @objc private func openWebViewController() {
-        let sauceViewController = SauceViewController()
-        sauceViewController.handlerStates = handlerStates
-        sauceViewController.modalPresentationStyle = .fullScreen
-        self.present(sauceViewController, animated: true)
+    @objc private func openWebViewController(_ sender: UIButton) {
+       
+        if sender == clipOpenClipViewButton {
+            let viewController = SauceViewController()
+            viewController.modalPresentationStyle = .fullScreen
+            viewController.handlerStates = handlerStates
+            present(viewController, animated: true)// ClipViewController는 예시입니다. 실제 클래스에 맞게 수정해주세요.
+        } else {
+            let viewController = SauceCuraionViewController()
+            viewController.modalPresentationStyle = .fullScreen
+            viewController.handlerStates = handlerStates
+            present(viewController, animated: true)// CurationViewController는 예시입니다. 실제 클래스에 맞게 수정해주세요.
+        }
     }
     
-    private func setupGestureToHideKeyboard() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc private func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-}
+    private var handlerStates: [MessageHandlerName: Bool] = [
+        .enter: false,
+        .exit: false,
+        .moveProduct: false,
+        .onShare: false,
+        .moveCart: false,
+        .moveBroadcast: false
+    ]
 
+}

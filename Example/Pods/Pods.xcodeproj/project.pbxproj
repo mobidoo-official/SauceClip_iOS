@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1387ABF86BE09173AFAE677B1D65A396 /* Pods-SauceClip_iOS_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 376F22911BF0F66AD41E2ED12C0FB77E /* Pods-SauceClip_iOS_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14C0A4B650BCC8A7523DBEDD7131CE79 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		4836B4F52BC2D524006A1FB5 /* SauceClipDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4836B4F42BC2D524006A1FB5 /* SauceClipDataModel.swift */; };
 		756DDA7F8DE8E9E82447CB3C663C23B3 /* SauceClip_iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781EF34DD73F104E5A534F767034A29 /* SauceClip_iOS-dummy.m */; };
 		85D012753FDE5BF7A1D484C9DDD3C85D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		B65F9ADDFD5D32DE01532D7199326381 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
@@ -17,8 +18,7 @@
 		C9931B23C831EB0703014551D228FC4F /* SauceClip_iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2ACFCBAF7107A1FCD6F5D117C852399E /* SauceClip_iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E2EA10AB4BE3B80D872F36B00CC0C30E /* SauceClip_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605FA6941C03B0C23BDB0B1B38F4A87A /* SauceClip_iOS.swift */; };
 		E955E28ABCED81825B6A0EA64F334B0A /* Pods-SauceClip_iOS_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D485E1195FB6A654E8984CF1ECEEC216 /* Pods-SauceClip_iOS_Example-dummy.m */; };
-		F9C7DA512BBE375E0067771D /* SauceClipLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C7DA502BBE375E0067771D /* SauceClipLib.swift */; };
-		F9C7DA532BBE870D0067771D /* SauceCurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C7DA522BBE870D0067771D /* SauceCurationView.swift */; };
+		F9C7DA512BBE375E0067771D /* SauceClipLibManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C7DA502BBE375E0067771D /* SauceClipLibManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +47,7 @@
 		2ACFCBAF7107A1FCD6F5D117C852399E /* SauceClip_iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SauceClip_iOS-umbrella.h"; sourceTree = "<group>"; };
 		376F22911BF0F66AD41E2ED12C0FB77E /* Pods-SauceClip_iOS_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SauceClip_iOS_Example-umbrella.h"; sourceTree = "<group>"; };
 		3968FE227321D0F8C9E98E7E81C266E0 /* SauceClip_iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SauceClip_iOS-prefix.pch"; sourceTree = "<group>"; };
+		4836B4F42BC2D524006A1FB5 /* SauceClipDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SauceClipDataModel.swift; sourceTree = "<group>"; };
 		4A4EAA61E08B79FE6CB9FA25B9604C9E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		4D8FC375945B2FE2F8E66A7C3291D914 /* Pods-SauceClip_iOS_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SauceClip_iOS_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		4E84021FDB4B7DA70AFF7550328D1E2E /* SauceClip_iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SauceClip_iOS.modulemap; sourceTree = "<group>"; };
@@ -71,8 +72,7 @@
 		E1CA01BF1BEFAE3B6000B406D408F2A8 /* Pods-SauceClip_iOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SauceClip_iOS_Example.release.xcconfig"; sourceTree = "<group>"; };
 		EA60B7AA033908DB8FEC822C0285C063 /* Pods-SauceClip_iOS_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SauceClip_iOS_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F4D8BCE4926EB145092AFFEB4CB01F2E /* SauceClip_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SauceClip_iOS.debug.xcconfig; sourceTree = "<group>"; };
-		F9C7DA502BBE375E0067771D /* SauceClipLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SauceClipLib.swift; sourceTree = "<group>"; };
-		F9C7DA522BBE870D0067771D /* SauceCurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SauceCurationView.swift; sourceTree = "<group>"; };
+		F9C7DA502BBE375E0067771D /* SauceClipLibManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SauceClipLibManager.swift; sourceTree = "<group>"; };
 		FED527C9BFE9532DD616C62F16DEA194 /* Pods_SauceClip_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SauceClip_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -172,9 +172,9 @@
 		7CBA02D3B5785256D2DCB2C2B90F7602 /* SauceClip_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				F9C7DA502BBE375E0067771D /* SauceClipLib.swift */,
+				4836B4F42BC2D524006A1FB5 /* SauceClipDataModel.swift */,
+				F9C7DA502BBE375E0067771D /* SauceClipLibManager.swift */,
 				605FA6941C03B0C23BDB0B1B38F4A87A /* SauceClip_iOS.swift */,
-				F9C7DA522BBE870D0067771D /* SauceCurationView.swift */,
 				8001F3C851B7610B59CD77A35272D6C6 /* Pod */,
 				78CE032B07A44F21D2704BBE13526AE8 /* Support Files */,
 			);
@@ -391,8 +391,8 @@
 			files = (
 				E2EA10AB4BE3B80D872F36B00CC0C30E /* SauceClip_iOS.swift in Sources */,
 				756DDA7F8DE8E9E82447CB3C663C23B3 /* SauceClip_iOS-dummy.m in Sources */,
-				F9C7DA512BBE375E0067771D /* SauceClipLib.swift in Sources */,
-				F9C7DA532BBE870D0067771D /* SauceCurationView.swift in Sources */,
+				F9C7DA512BBE375E0067771D /* SauceClipLibManager.swift in Sources */,
+				4836B4F52BC2D524006A1FB5 /* SauceClipDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

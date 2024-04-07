@@ -9,24 +9,26 @@ public enum MessageHandlerName: String {
     case moveProduct = "sauceclipMoveProduct"
     case moveCart = "sauceclipMoveCart"
     case onShare = "sauceclipOnShare"
+    case moveBroadcast = "sauceclipMoveBroadcast"
 }
 
 @objc public protocol SauceClipDelegate: AnyObject {
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveEnterMessage message: WKScriptMessage)
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveExitMessage message: WKScriptMessage)
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveLoginMessage message: WKScriptMessage)
-    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage message: WKScriptMessage)
-    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveProductMessage message: WKScriptMessage)
-    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveOnShareMessage message: WKScriptMessage)
+    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveProductMessage productInfo: SauceProductInfo)
+    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage cartInfo: SauceCartInfo)
+    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveOnShareMessage shareInfo: SauceShareInfo)
 }
+
 
 // SauceLiveManager 프로토콜 추가
 protocol SauceClipManager: AnyObject {
-    func configure(with config: SauceViewControllerConfig)
+    func configure(with config: SauceClipConfig)
     func loadURL(_ urlString: String)
 }
 
-public struct SauceViewControllerConfig {
+public struct SauceClipConfig {
     public let isEnterEnabled: Bool
     public let isExitEnabled: Bool
     public let isLoginEnabled: Bool
@@ -52,7 +54,7 @@ public struct SauceViewControllerConfig {
 }
 
 open class SauceClipViewController: UIViewController, WKScriptMessageHandler, SauceClipManager {
-  
+    
     public var webView: WKWebView!
     private var contentController = WKUserContentController()
     public weak var delegate: SauceClipDelegate?
@@ -64,7 +66,7 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
     }
     
     // 구성 객체를 사용하여 SauceLiveViewController 설정
-    public func configure(with config: SauceViewControllerConfig) {
+    public func configure(with config: SauceClipConfig) {
         configureWebView()
         setupWebViewLayout()
         self.delegate = config.delegate
@@ -80,7 +82,7 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
         webView.load(request)
     }
     
-    private func configureMessageHandlers(with config: SauceViewControllerConfig) {
+    private func configureMessageHandlers(with config: SauceClipConfig) {
         var handlers = [MessageHandlerName]()
         if config.isEnterEnabled { handlers.append(.enter) }
         if config.isExitEnabled { handlers.append(.exit) }
@@ -131,6 +133,22 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
     }
     
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        guard let jsonString = message.body as? String else {
+                print("message.body is not a String")
+                return
+            }
+            
+            // 문자열을 Data 객체로 변환
+            guard let jsonData = jsonString.data(using: .utf8) else {
+                print("Failed to convert jsonString to Data")
+                return
+            }
+        
+        let decoder = JSONDecoder()
+        
+        print(message.name)
+        print(message.body)
+        
         switch message.name {
         case MessageHandlerName.enter.rawValue:
             delegate?.sauceClipManager?(self, didReceiveEnterMessage: message)
@@ -139,11 +157,17 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
         case MessageHandlerName.login.rawValue:
             delegate?.sauceClipManager?(self, didReceiveLoginMessage: message)
         case MessageHandlerName.moveProduct.rawValue:
-            delegate?.sauceClipManager?(self, didReceiveMoveProductMessage: message)
+            if let productInfo = try? decoder.decode(SauceProductInfo.self, from: jsonData) {
+                delegate?.sauceClipManager?(self, didReceiveMoveProductMessage: productInfo)
+            }
         case MessageHandlerName.moveCart.rawValue:
-            delegate?.sauceClipManager?(self, didReceiveMoveCartMessage: message)
+            if let cartInfo = try? decoder.decode(SauceCartInfo.self, from: jsonData) {
+                delegate?.sauceClipManager?(self, didReceiveMoveCartMessage: cartInfo)
+            }
         case MessageHandlerName.onShare.rawValue:
-            delegate?.sauceClipManager?(self, didReceiveOnShareMessage: message)
+            if let shareInfo = try? decoder.decode(SauceShareInfo.self, from: jsonData) {
+                delegate?.sauceClipManager?(self, didReceiveOnShareMessage: shareInfo)
+            }
         default:
             break
         }
