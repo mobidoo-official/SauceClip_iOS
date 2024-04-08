@@ -15,7 +15,7 @@ class SauceCuraionViewController: UIViewController {
         )
         sauceCurationView.configure(with: config)
         
-        sauceCurationView.setInit(partnerID: "8", curationID: "99")
+        sauceCurationView.setInit(partnerID: "partnerID", curationID: "curationID")
         sauceCurationView.setStageMode(on: true)
         
         self.view.addSubview(sauceCurationView)

@@ -19,7 +19,7 @@ class SauceViewController: SauceClipViewController {
         
         let sauceClipLib = SauceClipLib()
         sauceClipLib.viewController = self
-        sauceClipLib.setInit(partnerID: "8", clipID: "2918")
+        sauceClipLib.setInit(partnerID: "partnerID", clipID: "clipID")
         sauceClipLib.setProductVC(on: true)
         sauceClipLib.setStageMode(on: true)
         sauceClipLib.load()

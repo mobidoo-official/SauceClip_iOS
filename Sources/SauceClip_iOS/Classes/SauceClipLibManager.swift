@@ -121,9 +121,9 @@ public class SauceCurationLib: WKWebView {
                           <div id="sauce_clip_curation"></div>
                           <script>
                             window.addEventListener('load', () => {
-                              const partnerId = '8'
+                              const partnerId = '\(partnerId)'
                               window.SauceClipCollectionLib.setInit({ partnerId })
-                              window.SauceClipCollectionLib.loadCuration({ curationId: '99', elementId: 'sauce_clip_curation' })
+                              window.SauceClipCollectionLib.loadCuration({ curationId: '\(curationId)', elementId: 'sauce_clip_curation' })
                             })
                           </script>
                         </body>
