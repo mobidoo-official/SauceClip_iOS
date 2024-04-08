@@ -85,18 +85,30 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
             print("Invalid URL")
             return
         }
-        
+        let contentController = WKUserContentController()
         let configuration = WKWebViewConfiguration()
-        let newWebView = WKWebView(frame: .zero, configuration: configuration)
-        newWebView.navigationDelegate = self // 현재 ViewController가 navigationDelegate가 되도록 설정합니다.
+        configuration.websiteDataStore = WKWebsiteDataStore.default()
+        configuration.allowsInlineMediaPlayback = true
         
+        if #available(iOS 10.0, *) {
+            configuration.mediaTypesRequiringUserActionForPlayback = []
+        }
+        configuration.userContentController = contentController
+        configuration.allowsPictureInPictureMediaPlayback = true
+        if #available(iOS 14.0, *) {
+            configuration.defaultWebpagePreferences.allowsContentJavaScript = true
+        } else {
+            configuration.preferences.javaScriptEnabled = true
+        }
+        let newWebView = WKWebView(frame: .zero, configuration: configuration)
+        newWebView.navigationDelegate = self
         self.view.addSubview(newWebView)
         newWebView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            newWebView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            newWebView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             newWebView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             newWebView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            newWebView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            newWebView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
         let request = URLRequest(url: url)
@@ -168,6 +180,8 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
                let jsonData = jsonString.data(using: .utf8),
                let productInfo = try? decoder.decode(SauceProductInfo.self, from: jsonData) {
                 openURLInNewWebView(productInfo.linkUrl)
+                print("keaont0000")
+                print(productInfo.linkUrl)
                 delegate?.sauceClipManager?(self, didReceiveMoveProductMessage: productInfo)
             } else {
                 delegate?.sauceClipManager?(self, didReceiveMoveProductMessage: nil)

@@ -172,6 +172,7 @@ public class SauceCurationLib: WKWebView {
         }
     }
 }
+
 @objc public protocol SauceCurationDelegate: AnyObject {
     @objc optional func sauceCurationManager(_ manager: SauceCurationLib, didReceiveBroadCastMessage broadCastInfo: SauceBroadcastInfo?)
 }
