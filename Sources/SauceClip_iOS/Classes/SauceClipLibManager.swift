@@ -131,7 +131,8 @@ public class SauceCurationLib: WKWebView {
                           html, body {
                             padding: 0;
                             margin: 0;
-                            overflow: hidden;
+                            height: fit-content;
+                            overflow-x: hidden;
                           }
                         </style>
                         </html>
@@ -172,7 +173,6 @@ public class SauceCurationLib: WKWebView {
         }
     }
 }
-
 @objc public protocol SauceCurationDelegate: AnyObject {
     @objc optional func sauceCurationManager(_ manager: SauceCurationLib, didReceiveBroadCastMessage broadCastInfo: SauceBroadcastInfo?)
 }

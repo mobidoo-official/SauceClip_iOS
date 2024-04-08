@@ -131,7 +131,8 @@ public class SauceCurationLib: WKWebView {
                           html, body {
                             padding: 0;
                             margin: 0;
-                            overflow: hidden;
+                            height: fit-content;
+                            overflow-x: hidden;
                           }
                         </style>
                         </html>
