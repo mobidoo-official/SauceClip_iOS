@@ -171,7 +171,6 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
     
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         let decoder = JSONDecoder()
-        
         switch message.name {
         case MessageHandlerName.enter.rawValue:
             delegate?.sauceClipManager?(self, didReceiveEnterMessage: message)

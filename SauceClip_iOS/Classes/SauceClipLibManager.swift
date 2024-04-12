@@ -28,13 +28,12 @@ public class SauceClipLib {
     
     public func load() {
         guard let partnerId = partnerId, let clipId = clipId else {
-            print("clipId and partnerId are required")
             return
         }
         
         // Start constructing the base URL string without curationId.
         var urlString = "https://\(target).player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
-        
+    
         // Add curationId to the URL string only if it's not nil.
         if let curationid = curationId {
             urlString += "&curationId=\(curationid)"
@@ -196,10 +195,9 @@ public class SauceCurationLib: WKWebView {
                 </html>
                 """
             }
-            print(htmlString)
             self.loadHTMLString(htmlString, baseURL: nil)
         } else {
-            print("clipId, partnerId is required")
+            //print("clipId, partnerId is required")
         }
     }
 }
@@ -210,12 +208,10 @@ public class SauceCurationLib: WKWebView {
 extension SauceCurationLib: WKScriptMessageHandler {
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let jsonString = message.body as? String else {
-            print("message.body is not a String")
             delegate?.sauceCurationManager?(self, didReceiveBroadCastMessage: nil)
             return
         }
         guard let jsonData = jsonString.data(using: .utf8) else {
-            print("Failed to convert jsonString to Data")
             return
         }
         
