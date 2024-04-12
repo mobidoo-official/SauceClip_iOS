@@ -4,14 +4,16 @@ public class SauceClipLib {
     
     var partnerId: String?
     var clipId: String?
+    var curationId: String?
     var target = ""
     var isProductViewShow = true
     
     public weak var viewController: SauceClipViewController?
     
-    public func setInit(partnerID: String, clipID: String) {
+    public func setInit(partnerID: String, clipID: String, curationID: String? =  nil) {
         self.partnerId = partnerID
         self.clipId = clipID
+        self.curationId = curationID
     }
     
     public func setStageMode(on: Bool = false) {
@@ -24,18 +26,22 @@ public class SauceClipLib {
         isProductViewShow = on
     }
     
-    
-    
     public func load() {
-        if let partnerId = partnerId, let clipId = clipId {
-            let urlString = "https://\(target).player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
-            DispatchQueue.main.async {
-                print(urlString)
-                self.viewController?.isProductViewShow = self.isProductViewShow
-                self.viewController?.loadURL(urlString)
-            }
-        } else {
-            print("clipId, partnerId is required")
+        guard let partnerId = partnerId, let clipId = clipId else {
+            return
+        }
+        
+        // Start constructing the base URL string without curationId.
+        var urlString = "https://\(target).player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
+    
+        // Add curationId to the URL string only if it's not nil.
+        if let curationid = curationId {
+            urlString += "&curationId=\(curationid)"
+        }
+        
+        DispatchQueue.main.async {
+            self.viewController?.isProductViewShow = self.isProductViewShow
+            self.viewController?.loadURL(urlString)
         }
     }
 }
@@ -52,9 +58,13 @@ public class SauceCurationLib: WKWebView {
         configureWebView()
     }
     
-    var partnerId: String?
-    var curationId: String?
-    var target = ""
+    private var partnerId: String?
+    private var curationId: String?
+    private var target = ""
+    
+    private var paddingSize = 0
+    private var isHidden_PV = true
+    private var pvOption = ""
     
     public var messageHandlerNames: [MessageHandlerName] = []
     
@@ -100,21 +110,36 @@ public class SauceCurationLib: WKWebView {
         self.curationId = curationID
     }
     
-    public func setStageMode(on: Bool = false) {
-        if on {
-            target = "stage"
+    public func setPvVisibility(_ hidden: Bool) {
+        if !hidden {
+            pvOption = "window.SauceClipCollectionLib.setCurationClipPvStyle('{\"display\": \"none\"}')"
         }
     }
+    
+    public func setHorizontalPadding(_ size: Int) {
+        paddingSize = size
+    }
+    
+    public func setStageMode(on: Bool) {
+        if on {
+            target = "stage"
+        } else {
+            target = ""
+        }
+    }
+    
+    
     
     public func load() {
         if let partnerId = partnerId, let curationId = curationId {
             var htmlString = String()
+            
             if target == "stage" {
                 htmlString = """
                         <!DOCTYPE html>
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                         <html lang="en">
                         <head>
+                          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                           <script src="https://stage.showcase.sauceclip.com/static/js/SauceClipCollectionLib.js"></script>
                         </head>
                         <body>
@@ -123,7 +148,9 @@ public class SauceCurationLib: WKWebView {
                             window.addEventListener('load', () => {
                               const partnerId = '\(partnerId)'
                               window.SauceClipCollectionLib.setInit({ partnerId })
+                              \(pvOption)
                               window.SauceClipCollectionLib.loadCuration({ curationId: '\(curationId)', elementId: 'sauce_clip_curation' })
+                              window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left": "\(paddingSize)px", "padding-right": "\(paddingSize)px"}')
                             })
                           </script>
                         </body>
@@ -140,9 +167,9 @@ public class SauceCurationLib: WKWebView {
             } else {
                 htmlString = """
                 <!DOCTYPE html>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                 <html lang="en">
                 <head>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                   <script src="https://showcase.sauceclip.com/static/js/SauceClipCollectionLib.js"></script>
                 </head>
                 <body>
@@ -151,7 +178,9 @@ public class SauceCurationLib: WKWebView {
                     window.addEventListener('load', () => {
                       const partnerId = '\(partnerId)'
                       window.SauceClipCollectionLib.setInit({ partnerId })
+                      \(pvOption)
                       window.SauceClipCollectionLib.loadCuration({ curationId: '\(curationId)', elementId: 'sauce_clip_curation' })
+                      window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left": "\(paddingSize)px", "padding-right": "\(paddingSize)px"}')
                     })
                   </script>
                 </body>
@@ -166,10 +195,9 @@ public class SauceCurationLib: WKWebView {
                 </html>
                 """
             }
-            
             self.loadHTMLString(htmlString, baseURL: nil)
         } else {
-            print("clipId, partnerId is required")
+            //print("clipId, partnerId is required")
         }
     }
 }
@@ -180,12 +208,10 @@ public class SauceCurationLib: WKWebView {
 extension SauceCurationLib: WKScriptMessageHandler {
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let jsonString = message.body as? String else {
-            print("message.body is not a String")
             delegate?.sauceCurationManager?(self, didReceiveBroadCastMessage: nil)
             return
         }
         guard let jsonData = jsonString.data(using: .utf8) else {
-            print("Failed to convert jsonString to Data")
             return
         }
         
