@@ -14,16 +14,18 @@ class SauceCuraionViewController: UIViewController {
             delegate: self
         )
         sauceCurationView.configure(with: config)
-        sauceCurationView.setInit(partnerID: "8", curationID: "99")
+        sauceCurationView.setInit(partnerID: "파트너 아이디", curationID: "큐레이션 아이디")
         sauceCurationView.setStageMode(on: true)
+        sauceCurationView.setPvVisibility(false)
+        sauceCurationView.setHorizontalPadding(10)
         
         self.view.addSubview(sauceCurationView)
         sauceCurationView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             sauceCurationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            sauceCurationView.heightAnchor.constraint(equalToConstant: 300), // 높이를 350으로 설정
+            sauceCurationView.heightAnchor.constraint(equalToConstant: 350),
             sauceCurationView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            sauceCurationView.widthAnchor.constraint(equalToConstant: 300) // 너비를 300으로 설정
+            sauceCurationView.widthAnchor.constraint(equalToConstant: 300)
         ])
         
         sauceCurationView.load()

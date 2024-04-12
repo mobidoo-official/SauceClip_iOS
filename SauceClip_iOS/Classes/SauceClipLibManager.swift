@@ -41,7 +41,6 @@ public class SauceClipLib {
         }
         
         DispatchQueue.main.async {
-            print(urlString)
             self.viewController?.isProductViewShow = self.isProductViewShow
             self.viewController?.loadURL(urlString)
         }
@@ -60,9 +59,13 @@ public class SauceCurationLib: WKWebView {
         configureWebView()
     }
     
-    var partnerId: String?
-    var curationId: String?
-    var target = ""
+    private var partnerId: String?
+    private var curationId: String?
+    private var target = ""
+    
+    private var paddingSize = 0
+    private var isHidden_PV = true
+    private var pvOption = ""
     
     public var messageHandlerNames: [MessageHandlerName] = []
     
@@ -108,21 +111,36 @@ public class SauceCurationLib: WKWebView {
         self.curationId = curationID
     }
     
-    public func setStageMode(on: Bool = false) {
-        if on {
-            target = "stage"
+    public func setPvVisibility(_ hidden: Bool) {
+        if !hidden {
+            pvOption = "window.SauceClipCollectionLib.setCurationClipPvStyle('{\"display\": \"none\"}')"
         }
     }
+    
+    public func setHorizontalPadding(_ size: Int) {
+        paddingSize = size
+    }
+    
+    public func setStageMode(on: Bool) {
+        if on {
+            target = "stage"
+        } else {
+            target = ""
+        }
+    }
+    
+    
     
     public func load() {
         if let partnerId = partnerId, let curationId = curationId {
             var htmlString = String()
+            
             if target == "stage" {
                 htmlString = """
                         <!DOCTYPE html>
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                         <html lang="en">
                         <head>
+                          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                           <script src="https://stage.showcase.sauceclip.com/static/js/SauceClipCollectionLib.js"></script>
                         </head>
                         <body>
@@ -131,7 +149,9 @@ public class SauceCurationLib: WKWebView {
                             window.addEventListener('load', () => {
                               const partnerId = '\(partnerId)'
                               window.SauceClipCollectionLib.setInit({ partnerId })
+                              \(pvOption)
                               window.SauceClipCollectionLib.loadCuration({ curationId: '\(curationId)', elementId: 'sauce_clip_curation' })
+                              window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left": "\(paddingSize)px", "padding-right": "\(paddingSize)px"}')
                             })
                           </script>
                         </body>
@@ -148,9 +168,9 @@ public class SauceCurationLib: WKWebView {
             } else {
                 htmlString = """
                 <!DOCTYPE html>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                 <html lang="en">
                 <head>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                   <script src="https://showcase.sauceclip.com/static/js/SauceClipCollectionLib.js"></script>
                 </head>
                 <body>
@@ -159,7 +179,9 @@ public class SauceCurationLib: WKWebView {
                     window.addEventListener('load', () => {
                       const partnerId = '\(partnerId)'
                       window.SauceClipCollectionLib.setInit({ partnerId })
+                      \(pvOption)
                       window.SauceClipCollectionLib.loadCuration({ curationId: '\(curationId)', elementId: 'sauce_clip_curation' })
+                      window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left": "\(paddingSize)px", "padding-right": "\(paddingSize)px"}')
                     })
                   </script>
                 </body>
@@ -174,7 +196,7 @@ public class SauceCurationLib: WKWebView {
                 </html>
                 """
             }
-            
+            print(htmlString)
             self.loadHTMLString(htmlString, baseURL: nil)
         } else {
             print("clipId, partnerId is required")

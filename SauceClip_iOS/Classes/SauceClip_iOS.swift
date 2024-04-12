@@ -9,7 +9,11 @@ public enum MessageHandlerName: String {
     case moveProduct = "sauceclipMoveProduct"
     case moveCart = "sauceclipMoveCart"
     case onShare = "sauceclipOnShare"
+    
     case moveBroadcast = "sauceclipMoveBroadcast"
+    
+    case onError = "sauceclipError"
+    
 }
 
 @objc public protocol SauceClipDelegate: AnyObject {
@@ -19,6 +23,7 @@ public enum MessageHandlerName: String {
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveProductMessage productInfo: SauceProductInfo?)
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage cartInfo: SauceCartInfo?)
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveOnShareMessage shareInfo: SauceShareInfo?)
+    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveErrorMessage errorType: String, errorDetails: String)
 }
 
 protocol SauceClipManager: AnyObject {
@@ -82,7 +87,7 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
     
     func openURLInNewWebView(_ urlString: String) {
         guard let url = URL(string: urlString) else {
-            print("Invalid URL")
+            //  print("Invalid URL")
             return
         }
         let contentController = WKUserContentController()
@@ -139,6 +144,8 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
         if #available(iOS 10.0, *) {
             configuration.mediaTypesRequiringUserActionForPlayback = []
         }
+        contentController.add(self, name: "sauceclipError")
+        
         configuration.userContentController = contentController
         configuration.allowsPictureInPictureMediaPlayback = true
         if #available(iOS 14.0, *) {
@@ -198,6 +205,20 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
                 delegate?.sauceClipManager?(self, didReceiveOnShareMessage: shareInfo)
             } else {
                 delegate?.sauceClipManager?(self, didReceiveOnShareMessage: nil)
+            }
+            
+        case MessageHandlerName.onError.rawValue:
+            if let jsonString = message.body as? String,
+               let jsonData = jsonString.data(using: .utf8) {
+                do {
+                    if let messageBody = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: String],
+                       let errorType = messageBody["errorType"],
+                       let errorDetails = messageBody["errorDetails"] {
+                        delegate?.sauceClipManager?(self, didReceiveErrorMessage: errorType, errorDetails: errorDetails)
+                    }
+                } catch {
+                  //  print("JSON parsing error: \(error)")
+                }
             }
         default:
             break
