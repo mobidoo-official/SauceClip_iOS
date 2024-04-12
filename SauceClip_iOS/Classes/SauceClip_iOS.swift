@@ -89,10 +89,6 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
         let configuration = WKWebViewConfiguration()
         configuration.websiteDataStore = WKWebsiteDataStore.default()
         configuration.allowsInlineMediaPlayback = true
-        
-        if #available(iOS 10.0, *) {
-            configuration.mediaTypesRequiringUserActionForPlayback = []
-        }
         configuration.userContentController = contentController
         configuration.allowsPictureInPictureMediaPlayback = true
         if #available(iOS 14.0, *) {
@@ -100,6 +96,7 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
         } else {
             configuration.preferences.javaScriptEnabled = true
         }
+        
         let newWebView = WKWebView(frame: .zero, configuration: configuration)
         newWebView.navigationDelegate = self
         self.view.addSubview(newWebView)
@@ -180,8 +177,6 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
                let jsonData = jsonString.data(using: .utf8),
                let productInfo = try? decoder.decode(SauceProductInfo.self, from: jsonData) {
                 openURLInNewWebView(productInfo.linkUrl)
-                print("keaont0000")
-                print(productInfo.linkUrl)
                 delegate?.sauceClipManager?(self, didReceiveMoveProductMessage: productInfo)
             } else {
                 delegate?.sauceClipManager?(self, didReceiveMoveProductMessage: nil)

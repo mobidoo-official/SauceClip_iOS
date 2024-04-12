@@ -4,14 +4,16 @@ public class SauceClipLib {
     
     var partnerId: String?
     var clipId: String?
+    var curationId: String?
     var target = ""
     var isProductViewShow = true
     
     public weak var viewController: SauceClipViewController?
     
-    public func setInit(partnerID: String, clipID: String) {
+    public func setInit(partnerID: String, clipID: String, curationID: String? =  nil) {
         self.partnerId = partnerID
         self.clipId = clipID
+        self.curationId = curationID
     }
     
     public func setStageMode(on: Bool = false) {
@@ -24,18 +26,24 @@ public class SauceClipLib {
         isProductViewShow = on
     }
     
-    
-    
     public func load() {
-        if let partnerId = partnerId, let clipId = clipId {
-            let urlString = "https://\(target).player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
-            DispatchQueue.main.async {
-                print(urlString)
-                self.viewController?.isProductViewShow = self.isProductViewShow
-                self.viewController?.loadURL(urlString)
-            }
-        } else {
-            print("clipId, partnerId is required")
+        guard let partnerId = partnerId, let clipId = clipId else {
+            print("clipId and partnerId are required")
+            return
+        }
+        
+        // Start constructing the base URL string without curationId.
+        var urlString = "https://\(target).player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
+        
+        // Add curationId to the URL string only if it's not nil.
+        if let curationId = curationId {
+            urlString += "&curationId=\(curationId)"
+        }
+        
+        DispatchQueue.main.async {
+            print(urlString)
+            self.viewController?.isProductViewShow = self.isProductViewShow
+            self.viewController?.loadURL(urlString)
         }
     }
 }
