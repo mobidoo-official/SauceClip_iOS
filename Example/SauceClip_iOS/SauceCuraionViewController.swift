@@ -7,14 +7,13 @@ class SauceCuraionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        let sauceCurationView = SauceCurationLib(frame: .zero)
+        let sauceCurationView = SauceCurationLib()
         sauceCurationView.delegate = self
         let config = SauceCurationLib.SauceCurationConfig(
             isBroadCastEnabled: handlerStates[.moveBroadcast] ?? false,
             delegate: self
         )
         sauceCurationView.configure(with: config)
-        
         sauceCurationView.setInit(partnerID: "8", curationID: "99")
         sauceCurationView.setStageMode(on: true)
         
@@ -33,7 +32,13 @@ class SauceCuraionViewController: UIViewController {
 
 extension SauceCuraionViewController: SauceCurationDelegate {
     func sauceCurationManager(_ manager: SauceCurationLib, didReceiveBroadCastMessage broadCastInfo: SauceBroadcastInfo?) {
-        print(broadCastInfo?.clipId)
+     
+        let viewController = SampleClipVC()
+        viewController.modalPresentationStyle = .fullScreen
+        viewController.partnerId = broadCastInfo?.partnerId
+        viewController.clipId = broadCastInfo?.clipId
+        viewController.curationId = broadCastInfo?.curationId
+        present(viewController, animated: true)
     }
 }
 

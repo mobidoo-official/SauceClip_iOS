@@ -36,8 +36,8 @@ public class SauceClipLib {
         var urlString = "https://\(target).player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
         
         // Add curationId to the URL string only if it's not nil.
-        if let curationId = curationId {
-            urlString += "&curationId=\(curationId)"
+        if let curationid = curationId {
+            urlString += "&curationId=\(curationid)"
         }
         
         DispatchQueue.main.async {

@@ -2,31 +2,39 @@ import UIKit
 import WebKit
 import SauceClip_iOS
 
-class SauceViewController: SauceClipViewController {
-    var handlerStates: [MessageHandlerName: Bool] = [:]
+class SampleClipVC: SauceClipViewController {
+   
+    var partnerId: String?
+    var clipId: Int?
+    var curationId: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let config = SauceClipConfig(
-            isEnterEnabled: handlerStates[.enter] ?? false,
-            isExitEnabled: handlerStates[.exit] ?? false,
-            isMoveProductEnabled: handlerStates[.moveProduct] ?? false,
-            isMoveCartEnabled: handlerStates[.moveCart] ?? false,
-            isOnShareEnabled: handlerStates[.onShare] ?? false,
+            isEnterEnabled: true,
+            isExitEnabled: true,
+            isMoveProductEnabled: true,
+            isMoveCartEnabled: true,
+            isOnShareEnabled: true,
             delegate: self
         )
         configure(with: config)
         
+        guard let partnerId = partnerId, let clipId = clipId, let curationId = curationId else {
+            return
+        }
+        
         let sauceClipLib = SauceClipLib()
         sauceClipLib.viewController = self
-        sauceClipLib.setInit(partnerID: "8", clipID: "99")
+        sauceClipLib.setInit(partnerID: partnerId, clipID: "\(clipId)", curationID: "\(curationId)")
         sauceClipLib.setProductVC(on: true)
         sauceClipLib.setStageMode(on: true)
         sauceClipLib.load()
     }
 }
 
-extension SauceViewController: SauceClipDelegate {
+extension SampleClipVC: SauceClipDelegate {
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveEnterMessage message: WKScriptMessage) {
         print("enter")
     }
