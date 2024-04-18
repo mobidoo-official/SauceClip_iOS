@@ -17,6 +17,7 @@ class SauceCuraionViewController: UIViewController {
         sauceCurationView.setInit(partnerID: "파트너 아이디", curationID: "큐레이션 아이디")
         sauceCurationView.setStageMode(on: true)
         sauceCurationView.setPvVisibility(false)
+        sauceCurationView.setPreviewAutoPlay(true)
         sauceCurationView.setHorizontalPadding(10)
         
         self.view.addSubview(sauceCurationView)
