@@ -155,7 +155,6 @@ window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left
                           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                           <script src="https://stage.showcase.sauceclip.com/static/js/SauceClipCollectionLib.js"></script>
                         </head>
-                        <iframe>
                         <body>
                           <div id="sauce_clip_curation"></div>
                           <script>
@@ -169,7 +168,6 @@ window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left
                             })
                           </script>
                         </body>
-                        </iframe>
                         <style>
                           html, body {
                             padding: 0;
@@ -190,7 +188,6 @@ window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left
                 </head>
                 <body>
                   <div id="sauce_clip_curation"></div>
-                
                   <script>
                     window.addEventListener('load', () => {
                       const partnerId = '\(partnerId)'
