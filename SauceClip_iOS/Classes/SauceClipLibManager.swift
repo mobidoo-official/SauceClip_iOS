@@ -33,7 +33,7 @@ public class SauceClipLib {
         
         // Start constructing the base URL string without curationId.
         var urlString = "https://\(target).player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
-    
+        
         // Add curationId to the URL string only if it's not nil.
         if let curationid = curationId {
             urlString += "&curationId=\(curationid)"
@@ -47,43 +47,47 @@ public class SauceClipLib {
 }
 
 public class SauceCurationLib: WKWebView {
-    required init?(coder: NSCoder) {
-        let configuration = WKWebViewConfiguration()
-        super.init(frame: .zero, configuration: configuration)
-        configureWebView()
-    }
-    
-    override init(frame: CGRect, configuration: WKWebViewConfiguration) {
-        super.init(frame: frame, configuration: configuration)
-        configureWebView()
-    }
-    
     private var partnerId: String?
     private var curationId: String?
     private var target = ""
     
-    private var paddingSize = 0
-    private var isHidden_PV = true
+    private var paddingOption = ""
     private var pvOption = ""
+    private var previewAutoPlayOption = ""
     
     public var messageHandlerNames: [MessageHandlerName] = []
     
     public weak var delegate: SauceCurationDelegate?
     
     var contentController = WKUserContentController()
+    required init?(coder: NSCoder) {
+        let configuration = WKWebViewConfiguration()
+        super.init(frame: .zero, configuration: configuration)
+    }
+    
+    override init(frame: CGRect, configuration: WKWebViewConfiguration) {
+        let configuration = WKWebViewConfiguration()
+        configuration.allowsInlineMediaPlayback = true  // Inline media playback allows.
+        if #available(iOS 10.0, *) {
+            configuration.mediaTypesRequiringUserActionForPlayback = []  // No user interaction required for playback.
+        }
+        if #available(iOS 14.0, *) {
+            configuration.defaultWebpagePreferences.allowsContentJavaScript = true
+        } else {
+            configuration.preferences.javaScriptEnabled = true
+        }
+        
+        super.init(frame: frame, configuration: configuration)
+        self.configureWebView()
+    }
     
     private func configureWebView() {
-        self.configuration.websiteDataStore = WKWebsiteDataStore.default()
-        self.configuration.allowsInlineMediaPlayback = true
-        
-        if #available(iOS 10.0, *) {
-            self.configuration.mediaTypesRequiringUserActionForPlayback = []
-        }
-        self.configuration.allowsPictureInPictureMediaPlayback = true
-        if #available(iOS 14.0, *) {
-            self.configuration.defaultWebpagePreferences.allowsContentJavaScript = true
+        self.navigationDelegate = self
+        self.uiDelegate = self
+        if #available(iOS 16.4, *) {
+            self.isInspectable = true
         } else {
-            self.configuration.preferences.javaScriptEnabled = true
+            // Fallback on earlier versions
         }
     }
     
@@ -117,7 +121,17 @@ public class SauceCurationLib: WKWebView {
     }
     
     public func setHorizontalPadding(_ size: Int) {
-        paddingSize = size
+        paddingOption = """
+window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left": "\(size)px", "padding-right": "\(size)px"}')
+"""
+    }
+    
+    public func setPreviewAutoPlay(_ on: Bool) {
+        if on {
+            previewAutoPlayOption = "window.SauceClipCollectionLib.setCurationClipPreviewAutoplay(true)"
+        } else {
+            previewAutoPlayOption = "window.SauceClipCollectionLib.setCurationClipPreviewAutoplay(false)"
+        }
     }
     
     public func setStageMode(on: Bool) {
@@ -133,7 +147,6 @@ public class SauceCurationLib: WKWebView {
     public func load() {
         if let partnerId = partnerId, let curationId = curationId {
             var htmlString = String()
-            
             if target == "stage" {
                 htmlString = """
                         <!DOCTYPE html>
@@ -142,18 +155,21 @@ public class SauceCurationLib: WKWebView {
                           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
                           <script src="https://stage.showcase.sauceclip.com/static/js/SauceClipCollectionLib.js"></script>
                         </head>
+                        <iframe>
                         <body>
                           <div id="sauce_clip_curation"></div>
                           <script>
                             window.addEventListener('load', () => {
                               const partnerId = '\(partnerId)'
                               window.SauceClipCollectionLib.setInit({ partnerId })
-                              \(pvOption)
+                             \(pvOption)
+                             \(paddingOption)
+                             \(previewAutoPlayOption)
                               window.SauceClipCollectionLib.loadCuration({ curationId: '\(curationId)', elementId: 'sauce_clip_curation' })
-                              window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left": "\(paddingSize)px", "padding-right": "\(paddingSize)px"}')
                             })
                           </script>
                         </body>
+                        </iframe>
                         <style>
                           html, body {
                             padding: 0;
@@ -174,13 +190,15 @@ public class SauceCurationLib: WKWebView {
                 </head>
                 <body>
                   <div id="sauce_clip_curation"></div>
+                
                   <script>
                     window.addEventListener('load', () => {
                       const partnerId = '\(partnerId)'
                       window.SauceClipCollectionLib.setInit({ partnerId })
                       \(pvOption)
+                      \(paddingOption)
+                      \(previewAutoPlayOption)
                       window.SauceClipCollectionLib.loadCuration({ curationId: '\(curationId)', elementId: 'sauce_clip_curation' })
-                      window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left": "\(paddingSize)px", "padding-right": "\(paddingSize)px"}')
                     })
                   </script>
                 </body>
@@ -196,6 +214,7 @@ public class SauceCurationLib: WKWebView {
                 """
             }
             self.loadHTMLString(htmlString, baseURL: nil)
+            
         } else {
             //print("clipId, partnerId is required")
         }
@@ -223,4 +242,14 @@ extension SauceCurationLib: WKScriptMessageHandler {
             }
         }
     }
+}
+
+// MARK: - WKNavigationDelegate
+extension SauceCurationLib: WKNavigationDelegate {
+    // Handle navigation delegate methods if needed
+}
+
+// MARK: - SauceCurationLib
+extension SauceCurationLib: WKUIDelegate {
+    // Handle UI delegate methods if needed
 }
