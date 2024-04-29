@@ -23,7 +23,7 @@ public enum MessageHandlerName: String {
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveProductMessage productInfo: SauceProductInfo?)
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage cartInfo: SauceCartInfo?)
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveOnShareMessage shareInfo: SauceShareInfo?)
-    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveErrorMessage errorType: String, errorDetails: String)
+    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveErrorMessage errorType: String?, errorDetails: String?, errorCode: String?)
 }
 
 protocol SauceClipManager: AnyObject {
@@ -210,13 +210,15 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
             if let jsonString = message.body as? String,
                let jsonData = jsonString.data(using: .utf8) {
                 do {
-                    if let messageBody = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: String],
-                       let errorType = messageBody["errorType"],
-                       let errorDetails = messageBody["errorDetails"] {
-                        delegate?.sauceClipManager?(self, didReceiveErrorMessage: errorType, errorDetails: errorDetails)
+                    if let messageBody = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: String]{
+                        let errorType: String? = messageBody["errorType"]
+                        let errorCode: String? = messageBody["errorCode"]
+                        let errorDetails: String? = messageBody["errorDetails"]
+                        
+                        delegate?.sauceClipManager?(self, didReceiveErrorMessage: errorType, errorDetails: errorDetails, errorCode: errorCode)
                     }
                 } catch {
-                  //  print("JSON parsing error: \(error)")
+                    //  print("JSON parsing error: \(error)")
                 }
             }
         default:
