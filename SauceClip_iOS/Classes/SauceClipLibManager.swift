@@ -221,6 +221,7 @@ window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left
 }
 @objc public protocol SauceCurationDelegate: AnyObject {
     @objc optional func sauceCurationManager(_ manager: SauceCurationLib, didReceiveBroadCastMessage broadCastInfo: SauceBroadcastInfo?)
+    @objc optional func sauceCurationManager(_ manager: SauceCurationLib, didReceiveErrorMessage sauceError: SauceError?)
 }
 
 extension SauceCurationLib: WKScriptMessageHandler {
@@ -241,8 +242,8 @@ extension SauceCurationLib: WKScriptMessageHandler {
                 delegate?.sauceCurationManager?(self, didReceiveBroadCastMessage: broadCastInfo)
             }
         case MessageHandlerName.onError.rawValue:
-            if let broadCastInfo = try? decoder.decode(SauceBroadcastInfo.self, from: jsonData) {
-                delegate?.sauceCurationManager?(self, didReceiveBroadCastMessage: broadCastInfo)
+            if let sauceError = try? decoder.decode(SauceError.self, from: jsonData) {
+                delegate?.sauceCurationManager?(self, didReceiveErrorMessage: sauceError)
             }
         default:
             break
