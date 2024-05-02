@@ -2,7 +2,7 @@ import UIKit
 import WebKit
 import SauceClip_iOS
 
-class SauceCuraionViewController: UIViewController {
+class SauceCurationViewController: UIViewController {
     var handlerStates: [MessageHandlerName: Bool] = [:]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -14,8 +14,8 @@ class SauceCuraionViewController: UIViewController {
             delegate: self
         )
         sauceCurationView.configure(with: config)
-        sauceCurationView.setInit(partnerID: "파트너 아이디", curationID: "큐레이션 아이디")
-        sauceCurationView.setStageMode(on: true)
+        sauceCurationView.setInit(partnerID: Config.partnerID, curationID: Config.curationID)
+        sauceCurationView.setStageMode(on: Config.stage)
         sauceCurationView.setPvVisibility(false)
         sauceCurationView.setPreviewAutoPlay(true)
         sauceCurationView.setHorizontalPadding(10)
@@ -33,9 +33,8 @@ class SauceCuraionViewController: UIViewController {
     }
 }
 
-extension SauceCuraionViewController: SauceCurationDelegate {
+extension SauceCurationViewController: SauceCurationDelegate {
     func sauceCurationManager(_ manager: SauceCurationLib, didReceiveBroadCastMessage broadCastInfo: SauceBroadcastInfo?) {
-     
         let viewController = SampleClipVC()
         viewController.modalPresentationStyle = .fullScreen
         viewController.partnerId = broadCastInfo?.partnerId
@@ -43,5 +42,10 @@ extension SauceCuraionViewController: SauceCurationDelegate {
         viewController.curationId = broadCastInfo?.curationId
         present(viewController, animated: true)
     }
+    
+    func sauceCurationManager(_ manager: SauceCurationLib, didReceiveErrorMessage sauceError: SauceError?) {
+        print(sauceError?.errorCode)
+    }
 }
+
 

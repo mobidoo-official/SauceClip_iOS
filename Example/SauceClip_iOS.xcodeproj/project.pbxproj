@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		48632C502BC2595B005E8294 /* SauceCuraionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48632C4F2BC2595B005E8294 /* SauceCuraionViewController.swift */; };
+		48632C502BC2595B005E8294 /* SauceCurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48632C4F2BC2595B005E8294 /* SauceCurationViewController.swift */; };
 		4EC7315CB5466BA98881625D /* Pods_SauceClip_iOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4A01BF119C2AB597A6F6322 /* Pods_SauceClip_iOS_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -18,6 +18,7 @@
 		A9B9C8219C51B583A77FB163 /* Pods_SauceClip_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E4E23E073A5FA7A27A0B99 /* Pods_SauceClip_iOS_Example.framework */; };
 		F97B240B2BC9054300D6C5DA /* SampleClipVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97B240A2BC9054300D6C5DA /* SampleClipVC.swift */; };
 		F97FD4AB2BA7D53500CF70DB /* SauceClipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD4AA2BA7D53500CF70DB /* SauceClipViewController.swift */; };
+		F9D9D75D2BE374990049C7DB /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D9D75C2BE374990049C7DB /* ConfigViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +33,7 @@
 
 /* Begin PBXFileReference section */
 		33E4E23E073A5FA7A27A0B99 /* Pods_SauceClip_iOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SauceClip_iOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		48632C4F2BC2595B005E8294 /* SauceCuraionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SauceCuraionViewController.swift; sourceTree = "<group>"; };
+		48632C4F2BC2595B005E8294 /* SauceCurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SauceCurationViewController.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* SauceClip_iOS_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SauceClip_iOS_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +53,7 @@
 		F6A7A20959E979DB55BB57A6 /* Pods-SauceClip_iOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SauceClip_iOS_Example.release.xcconfig"; path = "Target Support Files/Pods-SauceClip_iOS_Example/Pods-SauceClip_iOS_Example.release.xcconfig"; sourceTree = "<group>"; };
 		F97B240A2BC9054300D6C5DA /* SampleClipVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleClipVC.swift; sourceTree = "<group>"; };
 		F97FD4AA2BA7D53500CF70DB /* SauceClipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SauceClipViewController.swift; sourceTree = "<group>"; };
+		F9D9D75C2BE374990049C7DB /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		FBBD852A85B6D8ECBE98544B /* Pods-SauceClip_iOS_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SauceClip_iOS_Example.debug.xcconfig"; path = "Target Support Files/Pods-SauceClip_iOS_Example/Pods-SauceClip_iOS_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,9 +113,10 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				F9D9D75C2BE374990049C7DB /* ConfigViewController.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				F97FD4AA2BA7D53500CF70DB /* SauceClipViewController.swift */,
-				48632C4F2BC2595B005E8294 /* SauceCuraionViewController.swift */,
+				48632C4F2BC2595B005E8294 /* SauceCurationViewController.swift */,
 				F97B240A2BC9054300D6C5DA /* SampleClipVC.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -342,8 +345,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48632C502BC2595B005E8294 /* SauceCuraionViewController.swift in Sources */,
+				48632C502BC2595B005E8294 /* SauceCurationViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				F9D9D75D2BE374990049C7DB /* ConfigViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				F97FD4AB2BA7D53500CF70DB /* SauceClipViewController.swift in Sources */,
 				F97B240B2BC9054300D6C5DA /* SampleClipVC.swift in Sources */,

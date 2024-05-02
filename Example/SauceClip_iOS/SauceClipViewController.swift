@@ -16,12 +16,12 @@ class SauceViewController: SauceClipViewController {
             delegate: self
         )
         configure(with: config)
-        
         let sauceClipLib = SauceClipLib()
         sauceClipLib.viewController = self
-        sauceClipLib.setInit(partnerID: "파트너 아이디", clipID: "클립 아이디", curationID: "큐레이션 아이디")
+        sauceClipLib.setInit(partnerID: Config.partnerID, clipID:
+                                Config.clipID, curationID: Config.curationID )
         sauceClipLib.setProductVC(on: true)
-        sauceClipLib.setStageMode(on: true)
+        sauceClipLib.setStageMode(on: Config.stage)
         sauceClipLib.load()
     }
 }
@@ -52,9 +52,7 @@ extension SauceViewController: SauceClipDelegate {
         print(productInfo?.clipIdx)
     }
     
-    func sauceClipManager(_ manager: SauceClipViewController, didReceiveErrorMessage errorType: String, errorDetails: String) {
-        // 여기에서 에러 메시지에 대한 커스텀 처리를 구현합니다.
-        print("에러 타입: \(errorType), 에러 상세: \(errorDetails)")
+    func sauceClipManager(_ manager: SauceClipViewController, didReceiveErrorMessage sauceError: SauceError?) {
+        print(sauceError?.errorDetails)
     }
-    
 }
