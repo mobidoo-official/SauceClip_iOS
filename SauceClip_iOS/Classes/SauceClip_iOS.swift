@@ -9,9 +9,7 @@ public enum MessageHandlerName: String {
     case moveProduct = "sauceclipMoveProduct"
     case moveCart = "sauceclipMoveCart"
     case onShare = "sauceclipOnShare"
-    
     case moveBroadcast = "sauceclipMoveBroadcast"
-    
     case onError = "sauceclipPlayerError"
     case onCollectionError = "sauceclipCollectionError"
     
@@ -24,7 +22,7 @@ public enum MessageHandlerName: String {
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveProductMessage productInfo: SauceProductInfo?)
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage cartInfo: SauceCartInfo?)
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveOnShareMessage shareInfo: SauceShareInfo?)
-    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveErrorMessage errorType: String?, errorDetails: String?, errorCode: String?)
+    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveErrorMessage sauceError: SauceError?)
 }
 
 protocol SauceClipManager: AnyObject {
@@ -208,20 +206,14 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
             }
             
         case MessageHandlerName.onError.rawValue:
-            print("error \(message.body)")
-            if let jsonString = message.body as? String,
-               let jsonData = jsonString.data(using: .utf8) {
-                do {
-                    if let messageBody = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: String]{
-                        let errorType: String? = messageBody["errorType"]
-                        let errorCode: String? = messageBody["errorCode"]
-                        let errorDetails: String? = messageBody["errorDetails"]
-                        delegate?.sauceClipManager?(self, didReceiveErrorMessage: errorType, errorDetails: errorDetails, errorCode: errorCode)
-                    }
-                } catch {
-                    //  print("JSON parsing error: \(error)")
-                }
+            if let jsonString = message.body as? String, !jsonString.isEmpty,
+               let jsonData = jsonString.data(using: .utf8),
+               let sauceError = try? decoder.decode(SauceError.self, from: jsonData) {
+                delegate?.sauceClipManager?(self, didReceiveErrorMessage: sauceError)
+            } else {
+                delegate?.sauceClipManager?(self, didReceiveErrorMessage: nil)
             }
+            
         default:
             break
         }

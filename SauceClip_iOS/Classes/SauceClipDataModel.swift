@@ -68,3 +68,14 @@ import Foundation
     public let partnerId: String
     public let shortUrl: String?
 }
+
+/// - Parameters:
+///   - clipId: 클립의 고유 식별자입니다.
+///   - curationId: 큐레이션의 고유 식별자입니다.
+///   - partnerId: 파트너의 고유 식별자입니다.
+///   - shortUrl: 짧은 URL입니다. 이 값은 null일 수 있습니다.
+@objcMembers public class SauceError: NSObject, Codable {
+    public let errorType: String
+    public let errorDetails: String
+    public let errorCode: String
+}

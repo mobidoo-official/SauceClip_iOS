@@ -240,8 +240,10 @@ extension SauceCurationLib: WKScriptMessageHandler {
             if let broadCastInfo = try? decoder.decode(SauceBroadcastInfo.self, from: jsonData) {
                 delegate?.sauceCurationManager?(self, didReceiveBroadCastMessage: broadCastInfo)
             }
-        case MessageHandlerName.onCollectionError.rawValue:
-            print("error \(message.body)")
+        case MessageHandlerName.onError.rawValue:
+            if let broadCastInfo = try? decoder.decode(SauceBroadcastInfo.self, from: jsonData) {
+                delegate?.sauceCurationManager?(self, didReceiveBroadCastMessage: broadCastInfo)
+            }
         default:
             break
         }
