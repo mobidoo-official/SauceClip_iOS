@@ -107,6 +107,7 @@ public class SauceCurationLib: WKWebView {
             self.configuration.userContentController.add(self, name: "sauceclipMoveBroadcast")
         }
         
+        self.configuration.userContentController.add(self, name: "sauceclipCollectionError")        
     }
     
     public func setInit(partnerID: String, curationID: String) {
@@ -234,10 +235,15 @@ extension SauceCurationLib: WKScriptMessageHandler {
         
         let decoder = JSONDecoder()
         
-        if message.name == MessageHandlerName.moveBroadcast.rawValue {
+        switch message.name {
+        case MessageHandlerName.moveBroadcast.rawValue:
             if let broadCastInfo = try? decoder.decode(SauceBroadcastInfo.self, from: jsonData) {
                 delegate?.sauceCurationManager?(self, didReceiveBroadCastMessage: broadCastInfo)
             }
+        case MessageHandlerName.onCollectionError.rawValue:
+            print("error \(message.body)")
+        default:
+            break
         }
     }
 }

@@ -12,7 +12,8 @@ public enum MessageHandlerName: String {
     
     case moveBroadcast = "sauceclipMoveBroadcast"
     
-    case onError = "sauceclipError"
+    case onError = "sauceclipPlayerError"
+    case onCollectionError = "sauceclipCollectionError"
     
 }
 
@@ -144,7 +145,7 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
         if #available(iOS 10.0, *) {
             configuration.mediaTypesRequiringUserActionForPlayback = []
         }
-        contentController.add(self, name: "sauceclipError")
+        contentController.add(self, name: "sauceclipPlayerError")
         
         configuration.userContentController = contentController
         configuration.allowsPictureInPictureMediaPlayback = true
@@ -207,6 +208,7 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
             }
             
         case MessageHandlerName.onError.rawValue:
+            print("error \(message.body)")
             if let jsonString = message.body as? String,
                let jsonData = jsonString.data(using: .utf8) {
                 do {
@@ -214,7 +216,6 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
                         let errorType: String? = messageBody["errorType"]
                         let errorCode: String? = messageBody["errorCode"]
                         let errorDetails: String? = messageBody["errorDetails"]
-                        
                         delegate?.sauceClipManager?(self, didReceiveErrorMessage: errorType, errorDetails: errorDetails, errorCode: errorCode)
                     }
                 } catch {
