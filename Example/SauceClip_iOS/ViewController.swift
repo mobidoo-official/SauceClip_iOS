@@ -115,12 +115,10 @@ class ViewController: UIViewController {
         
         if sender == clipOpenClipViewButton {
             let viewController = SauceViewController()
-            viewController.modalPresentationStyle = .fullScreen
             viewController.handlerStates = handlerStates
             present(viewController, animated: true)// ClipViewController는 예시입니다. 실제 클래스에 맞게 수정해주세요.
         } else {
-            let viewController = SauceCuraionViewController()
-            viewController.modalPresentationStyle = .fullScreen
+            let viewController = SauceCurationViewController()
             viewController.handlerStates = handlerStates
             present(viewController, animated: true)// CurationViewController는 예시입니다. 실제 클래스에 맞게 수정해주세요.
         }
