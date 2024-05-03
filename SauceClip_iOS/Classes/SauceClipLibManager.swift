@@ -5,7 +5,7 @@ public class SauceClipLib {
     var partnerId: String?
     var clipId: String?
     var curationId: String?
-    var target = ""
+    var target = false
     var isProductViewShow = true
     
     public weak var viewController: SauceClipViewController?
@@ -17,9 +17,7 @@ public class SauceClipLib {
     }
     
     public func setStageMode(on: Bool = false) {
-        if on {
-            target = "stage"
-        }
+        target = on
     }
     
     public func setProductVC(on: Bool = true) {
@@ -33,8 +31,8 @@ public class SauceClipLib {
         
         // Start constructing the base URL string without curationId.
         var urlString = String()
-        if target == "stage" {
-            urlString = "https://\(target).player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
+        if target {
+            urlString = "https://stage.player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
         } else {
             urlString = "https://player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
         }
