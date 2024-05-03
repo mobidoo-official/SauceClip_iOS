@@ -1,7 +1,5 @@
 import Foundation
 
-/// SauceClip 애플리케이션의 장바구니 정보를 나타내는 데이터 구조체입니다.
-///
 /// - Parameters:
 ///   - linkUrl: 제품에 접근할 수 있는 URL입니다.
 ///   - clipIdx: 제품과 연관된 클립의 고유 식별자입니다.
@@ -67,4 +65,15 @@ import Foundation
     public let curationId: Int
     public let partnerId: String
     public let shortUrl: String?
+}
+
+/// - Parameters:
+///   - errorType: 에러 타입식 별자입니다.
+///   - errorDetails: 에러 상세 내용입니다.
+///   - errorCode: 에러 코드 식별자입니다.
+///
+@objcMembers public class SauceError: NSObject, Codable {
+    public let errorType: String
+    public let errorDetails: String
+    public let errorCode: String
 }

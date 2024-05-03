@@ -5,7 +5,7 @@ public class SauceClipLib {
     var partnerId: String?
     var clipId: String?
     var curationId: String?
-    var target = ""
+    var target = false
     var isProductViewShow = true
     
     public weak var viewController: SauceClipViewController?
@@ -17,9 +17,7 @@ public class SauceClipLib {
     }
     
     public func setStageMode(on: Bool = false) {
-        if on {
-            target = "stage"
-        }
+        target = on
     }
     
     public func setProductVC(on: Bool = true) {
@@ -32,8 +30,14 @@ public class SauceClipLib {
         }
         
         // Start constructing the base URL string without curationId.
-        var urlString = "https://\(target).player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
+        var urlString = String()
+        if target {
+            urlString = "https://stage.player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
+        } else {
+            urlString = "https://player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
+        }
         
+    
         // Add curationId to the URL string only if it's not nil.
         if let curationid = curationId {
             urlString += "&curationId=\(curationid)"
@@ -49,7 +53,7 @@ public class SauceClipLib {
 public class SauceCurationLib: WKWebView {
     private var partnerId: String?
     private var curationId: String?
-    private var target = ""
+    private var target  = false
     
     private var paddingOption = ""
     private var pvOption = ""
@@ -93,6 +97,7 @@ public class SauceCurationLib: WKWebView {
     
     public struct SauceCurationConfig {
         public let isBroadCastEnabled: Bool
+        
         public weak var delegate: SauceCurationDelegate? // Delegate 추가
         public init(isBroadCastEnabled: Bool? = false,
                     delegate: SauceCurationDelegate?) {
@@ -106,7 +111,7 @@ public class SauceCurationLib: WKWebView {
         if config.isBroadCastEnabled {
             self.configuration.userContentController.add(self, name: "sauceclipMoveBroadcast")
         }
-        
+        self.configuration.userContentController.add(self, name: "sauceclipCollectionError")
     }
     
     public func setInit(partnerID: String, curationID: String) {
@@ -135,11 +140,7 @@ window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left
     }
     
     public func setStageMode(on: Bool) {
-        if on {
-            target = "stage"
-        } else {
-            target = ""
-        }
+        target = on
     }
     
     
@@ -147,7 +148,7 @@ window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left
     public func load() {
         if let partnerId = partnerId, let curationId = curationId {
             var htmlString = String()
-            if target == "stage" {
+            if target {
                 htmlString = """
                         <!DOCTYPE html>
                         <html lang="en">
@@ -219,24 +220,50 @@ window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left
 }
 @objc public protocol SauceCurationDelegate: AnyObject {
     @objc optional func sauceCurationManager(_ manager: SauceCurationLib, didReceiveBroadCastMessage broadCastInfo: SauceBroadcastInfo?)
+    @objc optional func sauceCurationManager(_ manager: SauceCurationLib, didReceiveErrorMessage sauceError: SauceError?)
 }
 
 extension SauceCurationLib: WKScriptMessageHandler {
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         guard let jsonString = message.body as? String else {
-            delegate?.sauceCurationManager?(self, didReceiveBroadCastMessage: nil)
+            switch message.name {
+            case MessageHandlerName.moveBroadcast.rawValue:
+                delegate?.sauceCurationManager?(self, didReceiveBroadCastMessage: nil)
+            case MessageHandlerName.onCollectionError.rawValue:
+                delegate?.sauceCurationManager?(self, didReceiveErrorMessage: nil)
+            default:
+                break
+            }
             return
         }
         guard let jsonData = jsonString.data(using: .utf8) else {
+            switch message.name {
+            case MessageHandlerName.moveBroadcast.rawValue:
+                delegate?.sauceCurationManager?(self, didReceiveBroadCastMessage: nil)
+            case MessageHandlerName.onCollectionError.rawValue:
+                delegate?.sauceCurationManager?(self, didReceiveErrorMessage: nil)
+            default:
+                break
+            }
             return
         }
         
         let decoder = JSONDecoder()
-        
-        if message.name == MessageHandlerName.moveBroadcast.rawValue {
+        switch message.name {
+        case MessageHandlerName.moveBroadcast.rawValue:
+            print(message.body)
+            print(jsonData)
             if let broadCastInfo = try? decoder.decode(SauceBroadcastInfo.self, from: jsonData) {
                 delegate?.sauceCurationManager?(self, didReceiveBroadCastMessage: broadCastInfo)
             }
+            
+        case MessageHandlerName.onCollectionError.rawValue:
+            if let sauceError = try? decoder.decode(SauceError.self, from: jsonData) {
+                delegate?.sauceCurationManager?(self, didReceiveErrorMessage: sauceError)
+            }
+            
+        default:
+            break
         }
     }
 }

@@ -9,10 +9,9 @@ public enum MessageHandlerName: String {
     case moveProduct = "sauceclipMoveProduct"
     case moveCart = "sauceclipMoveCart"
     case onShare = "sauceclipOnShare"
-    
     case moveBroadcast = "sauceclipMoveBroadcast"
-    
-    case onError = "sauceclipError"
+    case onError = "sauceclipPlayerError"
+    case onCollectionError = "sauceclipCollectionError"
     
 }
 
@@ -23,7 +22,7 @@ public enum MessageHandlerName: String {
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveProductMessage productInfo: SauceProductInfo?)
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage cartInfo: SauceCartInfo?)
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveOnShareMessage shareInfo: SauceShareInfo?)
-    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveErrorMessage errorType: String, errorDetails: String)
+    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveErrorMessage sauceError: SauceError?)
 }
 
 protocol SauceClipManager: AnyObject {
@@ -144,7 +143,7 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
         if #available(iOS 10.0, *) {
             configuration.mediaTypesRequiringUserActionForPlayback = []
         }
-        contentController.add(self, name: "sauceclipError")
+        contentController.add(self, name: "sauceclipPlayerError")
         
         configuration.userContentController = contentController
         configuration.allowsPictureInPictureMediaPlayback = true
@@ -207,18 +206,14 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
             }
             
         case MessageHandlerName.onError.rawValue:
-            if let jsonString = message.body as? String,
-               let jsonData = jsonString.data(using: .utf8) {
-                do {
-                    if let messageBody = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: String],
-                       let errorType = messageBody["errorType"],
-                       let errorDetails = messageBody["errorDetails"] {
-                        delegate?.sauceClipManager?(self, didReceiveErrorMessage: errorType, errorDetails: errorDetails)
-                    }
-                } catch {
-                  //  print("JSON parsing error: \(error)")
-                }
+            if let jsonString = message.body as? String, !jsonString.isEmpty,
+               let jsonData = jsonString.data(using: .utf8),
+               let sauceError = try? decoder.decode(SauceError.self, from: jsonData) {
+                delegate?.sauceClipManager?(self, didReceiveErrorMessage: sauceError)
+            } else {
+                delegate?.sauceClipManager?(self, didReceiveErrorMessage: nil)
             }
+            
         default:
             break
         }
