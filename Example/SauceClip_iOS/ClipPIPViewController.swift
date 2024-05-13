@@ -51,7 +51,6 @@ extension ClipPIPViewController: SauceClipDelegate {
     
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveOnShareMessage shareInfo: SauceShareInfo?) {
         print(shareInfo?.clipId)
-        startPictureInPicture()
     }
     
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage cartInfo: SauceCartInfo?) {
