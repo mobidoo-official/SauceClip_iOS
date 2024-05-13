@@ -37,6 +37,7 @@ public struct SauceClipConfig {
     public let isMoveProductEnabled: Bool
     public let isMoveCartEnabled: Bool
     public let isOnShareEnabled: Bool
+    public let pipSize: CGSize?
     public weak var delegate: SauceClipDelegate? // Delegate 추가
     public init(isEnterEnabled: Bool? = false,
                 isExitEnabled: Bool? = false,
@@ -44,6 +45,7 @@ public struct SauceClipConfig {
                 isMoveProductEnabled: Bool? = false,
                 isMoveCartEnabled: Bool? = false,
                 isOnShareEnabled: Bool? = false,
+                pipSize: CGSize? = nil,
                 delegate: SauceClipDelegate?) {
         self.isEnterEnabled = isEnterEnabled ?? false
         self.isExitEnabled = isExitEnabled ?? false
@@ -51,6 +53,7 @@ public struct SauceClipConfig {
         self.isMoveProductEnabled = isMoveProductEnabled ?? false
         self.isMoveCartEnabled = isMoveCartEnabled ?? false
         self.isOnShareEnabled = isOnShareEnabled ?? false
+        self.pipSize = pipSize
         self.delegate = delegate
     }
 }
@@ -67,6 +70,8 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
     private var leftButton: UIButton!
     private var rightButton: UIButton!
     
+    public var pipSize: CGSize = CGSize(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.height / 3)
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -76,6 +81,9 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
         setupWebViewLayout()
         setupButtons()
         self.delegate = config.delegate
+        if let size = config.pipSize {
+            pipSize = size
+        }
         configureMessageHandlers(with: config)
     }
     
@@ -294,6 +302,10 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
             break
         }
     }
+}
+
+extension SauceClipViewController: PIPUsable {
+    public var initialState: PIPState { return .full }
 }
 
 // MARK: - WKNavigationDelegate

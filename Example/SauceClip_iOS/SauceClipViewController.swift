@@ -2,7 +2,7 @@ import UIKit
 import WebKit
 import SauceClip_iOS
 
-class SauceViewController: SauceClipViewController, PIPUsable {
+class SauceViewController: SauceClipViewController {
     var handlerStates: [MessageHandlerName: Bool] = [:]
     override func viewDidLoad() {
         super.viewDidLoad()

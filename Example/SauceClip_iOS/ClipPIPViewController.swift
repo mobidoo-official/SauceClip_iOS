@@ -17,6 +17,7 @@ class ClipPIPViewController: SauceClipViewController {
             isMoveProductEnabled: true,
             isMoveCartEnabled: true,
             isOnShareEnabled: true,
+            pipSize: CGSize(width: 100, height: 200),
             delegate: self
         )
         configure(with: config)
@@ -61,8 +62,4 @@ extension ClipPIPViewController: SauceClipDelegate {
         print(productInfo?.clipIdx)
     }
     
-}
-
-extension ClipPIPViewController: PIPUsable {
-    public var initialState: PIPState { return .full }
 }
