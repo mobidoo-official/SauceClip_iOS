@@ -23,10 +23,7 @@ class SauceCurationViewController: UIViewController {
         self.view.addSubview(sauceCurationView)
         sauceCurationView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            sauceCurationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            sauceCurationView.heightAnchor.constraint(equalToConstant: 350),
-            sauceCurationView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            sauceCurationView.widthAnchor.constraint(equalToConstant: 300)
+            sauceCurationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         
         sauceCurationView.load()
@@ -35,12 +32,23 @@ class SauceCurationViewController: UIViewController {
 
 extension SauceCurationViewController: SauceCurationDelegate {
     func sauceCurationManager(_ manager: SauceCurationLib, didReceiveBroadCastMessage broadCastInfo: SauceBroadcastInfo?) {
-        let viewController = SampleClipVC()
+        // 일반 VC
+//        let viewController = ClipViewController()
+//        viewController.modalPresentationStyle = .fullScreen
+//        viewController.partnerId = broadCastInfo?.partnerId
+//        viewController.clipId = broadCastInfo?.clipId
+//        viewController.curationId = broadCastInfo?.curationId
+//        present(viewController, animated: true)
+        
+        
+        // PIP 구현시
+        let viewController = ClipPIPViewController()
         viewController.modalPresentationStyle = .fullScreen
         viewController.partnerId = broadCastInfo?.partnerId
         viewController.clipId = broadCastInfo?.clipId
         viewController.curationId = broadCastInfo?.curationId
-        present(viewController, animated: true)
+        PIPKit.show(with: viewController)
+ 
     }
     
     func sauceCurationManager(_ manager: SauceCurationLib, didReceiveErrorMessage sauceError: SauceError?) {

@@ -11,8 +11,8 @@ public enum MessageHandlerName: String {
     case onShare = "sauceclipOnShare"
     case moveBroadcast = "sauceclipMoveBroadcast"
     case onError = "sauceclipPlayerError"
+    case sendDOMRect = "sauceclipSendDOMRect"
     case onCollectionError = "sauceclipCollectionError"
-    
 }
 
 @objc public protocol SauceClipDelegate: AnyObject {
@@ -64,6 +64,9 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
     public var url: String?
     public var isProductViewShow: Bool?
     
+    private var leftButton: UIButton!
+    private var rightButton: UIButton!
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -71,6 +74,7 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
     public func configure(with config: SauceClipConfig) {
         configureWebView()
         setupWebViewLayout()
+        setupButtons()
         self.delegate = config.delegate
         configureMessageHandlers(with: config)
     }
@@ -116,6 +120,56 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
         newWebView.load(request)
     }
     
+    private func setupButtons() {
+        leftButton = UIButton(type: .custom)
+        rightButton = UIButton(type: .custom)
+        
+        guard let bundleURL = Bundle(for: SauceClipViewController.self).url(forResource: "assets", withExtension: "bundle"),
+              let bundle = Bundle(url: bundleURL) else {
+            return
+        }
+        
+        let closeImage = UIImage(named: "CloseButton", in: bundle, compatibleWith: nil)
+        let pipImage = UIImage(named: "PIPButton", in: bundle, compatibleWith: nil)
+        
+        leftButton.setImage(closeImage, for: .normal)
+        rightButton.setImage(pipImage, for: .normal)
+        
+        leftButton.addTarget(self, action: #selector(leftButtonTapped), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(rightButtonTapped), for: .touchUpInside)
+        
+        leftButton.isHidden = true
+        rightButton.isHidden = true
+        
+        view.addSubview(leftButton)
+        view.addSubview(rightButton)
+        
+        leftButton.translatesAutoresizingMaskIntoConstraints = false
+        rightButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            leftButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            leftButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            rightButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            rightButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
+        ])
+    }
+    
+    @objc open func leftButtonTapped() {
+        PIPKit.dismiss(animated: true)
+    }
+    
+    @objc open func rightButtonTapped() {
+        let name = "dispatchEvent(sauceclipPIP(false))"
+        webView.evaluateJavaScript(name) { (Result, Error) in
+            if let error = Error {
+                print("evaluateJavaScript Error : \(error)")
+            } else {
+                self.stopPictureInPicture()
+            }
+        }
+    }
+    
     private func configureMessageHandlers(with config: SauceClipConfig) {
         var handlers = [MessageHandlerName]()
         if config.isEnterEnabled { handlers.append(.enter) }
@@ -133,6 +187,28 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
         messageHandlerNames.forEach { name in
             contentController.add(self, name: name.rawValue)
         }
+    }
+    
+    public func startPictureInPicture() {
+        rightButton.isHidden = false
+        leftButton.isHidden = false
+        webView.isUserInteractionEnabled = false
+        webView.evaluateJavaScript("dispatchEvent(sauceclipPIP(true))") { (result, error) in
+            if let error = error {
+                print("JavaScript 실행 오류: \(error.localizedDescription)")
+            } else {
+                print("JavaScript 실행 완료")
+            }
+        }
+        PIPKit.startPIPMode()
+        
+    }
+    
+    public func stopPictureInPicture() {
+        rightButton.isHidden = true
+        leftButton.isHidden = true
+        webView.isUserInteractionEnabled = true
+        PIPKit.stopPIPMode()
     }
     
     public func configureWebView() {

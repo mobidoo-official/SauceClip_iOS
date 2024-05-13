@@ -31,6 +31,10 @@ Pod::Spec.new do |s|
   
   s.source_files = 'SauceClip_iOS/Classes/**/*.{swift}'
   
+  s.resource_bundles = {
+      'assets' => ['SauceClip_iOS/Assets/*.xcassets']
+  }
+  
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'

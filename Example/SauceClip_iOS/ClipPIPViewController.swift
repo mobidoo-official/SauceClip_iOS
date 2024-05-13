@@ -2,7 +2,7 @@ import UIKit
 import WebKit
 import SauceClip_iOS
 
-class SampleClipVC: SauceClipViewController {
+class ClipPIPViewController: SauceClipViewController {
    
     var partnerId: String?
     var clipId: Int?
@@ -34,7 +34,7 @@ class SampleClipVC: SauceClipViewController {
     }
 }
 
-extension SampleClipVC: SauceClipDelegate {
+extension ClipPIPViewController: SauceClipDelegate {
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveEnterMessage message: WKScriptMessage) {
         print("enter")
     }
@@ -50,6 +50,7 @@ extension SampleClipVC: SauceClipDelegate {
     
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveOnShareMessage shareInfo: SauceShareInfo?) {
         print(shareInfo?.clipId)
+        startPictureInPicture()
     }
     
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage cartInfo: SauceCartInfo?) {
@@ -60,4 +61,8 @@ extension SampleClipVC: SauceClipDelegate {
         print(productInfo?.clipIdx)
     }
     
+}
+
+extension ClipPIPViewController: PIPUsable {
+    public var initialState: PIPState { return .full }
 }

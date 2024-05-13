@@ -1,22 +1,29 @@
 {
   "name": "SauceClip_iOS",
-  "version": "0.1.0",
-  "summary": "A short description of SauceClip_iOS.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/banwith7/SauceClip_iOS",
+  "version": "1.0.1-hotfix-5",
+  "summary": "SauceClip_iOS SDK",
+  "homepage": "https://github.com/mobidoo-official/SauceClip_iOS.git",
+  "description": "https://github.com/mobidoo-official/SauceClip_iOS.git",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "banwith7": "banwith7@gmail.com"
+    "keaton": "keaton@mobidoo.co.kr"
   },
   "source": {
-    "git": "https://github.com/banwith7/SauceClip_iOS.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/mobidoo-official/SauceClip_iOS.git",
+    "tag": "1.0.1-hotfix-5"
   },
   "platforms": {
-    "ios": "10.0"
+    "ios": "12.0"
   },
-  "source_files": "SauceClip_iOS/Classes/**/*"
+  "swift_versions": "5.0",
+  "source_files": "SauceClip_iOS/Classes/**/*.{swift}",
+  "resource_bundles": {
+    "assets": [
+      "SauceClip_iOS/Assets/*.xcassets"
+    ]
+  },
+  "swift_version": "5.0"
 }

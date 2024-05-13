@@ -7,73 +7,107 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06482EF07D00BC21722BF8583056D760 /* PIPKitEventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F8827112D5ECF1CFCA3F708A99B1E0 /* PIPKitEventDispatcher.swift */; };
+		0D138CD8AAF45BB752D45CADCED366BE /* AVPIPKitVideoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9FD021460D110E36D1B55E49853C5 /* AVPIPKitVideoProvider.swift */; };
+		1085E00C7FF273010C783CCC2592D745 /* SauceClip_iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CC43DFACF550070887B151ED0D87E872 /* SauceClip_iOS-dummy.m */; };
 		1387ABF86BE09173AFAE677B1D65A396 /* Pods-SauceClip_iOS_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 376F22911BF0F66AD41E2ED12C0FB77E /* Pods-SauceClip_iOS_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14C0A4B650BCC8A7523DBEDD7131CE79 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		4836B4F52BC2D524006A1FB5 /* SauceClipDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4836B4F42BC2D524006A1FB5 /* SauceClipDataModel.swift */; };
-		756DDA7F8DE8E9E82447CB3C663C23B3 /* SauceClip_iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1781EF34DD73F104E5A534F767034A29 /* SauceClip_iOS-dummy.m */; };
+		28C701BFF347897E4A838AD2207C03A0 /* AVPIPKitUsable+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF44A35301114ECB18A530086E7EB27 /* AVPIPKitUsable+UIKit.swift */; };
+		4A4501EDF4A51AC6CB52C6B21E3D3DDC /* AVPIPKitVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FCEEEF5C350F2C2B2445C917C7E90E /* AVPIPKitVideoController.swift */; };
+		4B51D71903B24D7030521F8859C196F1 /* PIPKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A21A3A607A69E3A8C316B97F052954F /* PIPKit.swift */; };
+		6231BC8539620291032A5D2BD249691F /* UIViewController+Associated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5146AC7F3346D95A2067D348D5E523F5 /* UIViewController+Associated.swift */; };
 		85D012753FDE5BF7A1D484C9DDD3C85D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		B65F9ADDFD5D32DE01532D7199326381 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		8E6E056AF7EA15FA884493D7DD85514C /* PIPUsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD0F09EDD1CF571D6E0AC7C43A12257 /* PIPUsable.swift */; };
+		91CBD28872075925591DE544FC9F6015 /* UIWindow+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0503847B66DA61ADB716F41D646EEA18 /* UIWindow+Extension.swift */; };
+		9714DE56F17ED31B9C3936C8A10BF0AF /* AVPIPKitUsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADACBE31B6A8D905EB7D8B04ECA32A8C /* AVPIPKitUsable.swift */; };
+		9D1D26180ED68298158587A63FD4265F /* AVPIPKitRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA45557A9FA8F0ADD0E0D5BF10FBEE8B /* AVPIPKitRenderer.swift */; };
 		B93D081D3578FCF25F44B70224445D24 /* Pods-SauceClip_iOS_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A6A3A9B9DCFAC3A1C2E7376599D582 /* Pods-SauceClip_iOS_Tests-dummy.m */; };
+		C170BB2FA22153139F9AFD92D91F9988 /* SauceClip_iOS-assets in Resources */ = {isa = PBXBuildFile; fileRef = 855D27E9F9579B0F9252823D324F3525 /* SauceClip_iOS-assets */; };
 		C8705FFD7F95DFB2511FAA75FB82DF84 /* Pods-SauceClip_iOS_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F413A9CF304D498B906344E1040FA8F /* Pods-SauceClip_iOS_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C9931B23C831EB0703014551D228FC4F /* SauceClip_iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2ACFCBAF7107A1FCD6F5D117C852399E /* SauceClip_iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E2EA10AB4BE3B80D872F36B00CC0C30E /* SauceClip_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605FA6941C03B0C23BDB0B1B38F4A87A /* SauceClip_iOS.swift */; };
+		CFBBE0A93854545C819FC659B4D5F448 /* SauceClipDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3823ACD97E131311C29D9255DF48806C /* SauceClipDataModel.swift */; };
+		DA19789AEE3FA6C8F7EB08BCD0777247 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		E50EDE1CFFEC697D2DBB95A47BD27975 /* SauceClipLibManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC357B93F32B1B354979B1CF8A82ACF /* SauceClipLibManager.swift */; };
+		E65FB048D06B08DF5674B1422778C5D6 /* UIView+Associated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86F334D663FE88EB4C5ECE4287B778F /* UIView+Associated.swift */; };
 		E955E28ABCED81825B6A0EA64F334B0A /* Pods-SauceClip_iOS_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D485E1195FB6A654E8984CF1ECEEC216 /* Pods-SauceClip_iOS_Example-dummy.m */; };
-		F9C7DA512BBE375E0067771D /* SauceClipLibManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C7DA502BBE375E0067771D /* SauceClipLibManager.swift */; };
+		EA0108DF7C6F07D0D52E7F1659695E66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E55C264AF37003914093C44711DE0F2 /* Assets.xcassets */; };
+		F72BA9F015344A962AC4FE5A3F67ADCB /* SauceClip_iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FF5EBACE55147ECE42A1F1318F76801 /* SauceClip_iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F9CB34142BEC5EC6001404CF /* SauceClip_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C050D17520BECBE53C6CA5B5A4BBEFE /* SauceClip_iOS.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		12F93F84B800935AAFA32A5E47A41510 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2CBCCC2E08284033AC8636D03A29156B;
-			remoteInfo = SauceClip_iOS;
-		};
-		8C0545870F8312B4B225C2A432E89CD9 /* PBXContainerItemProxy */ = {
+		3B2C7CEF51D846C88580C89EC15A2625 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D51262B07EA11DF7513BBBF694E3B90;
 			remoteInfo = "Pods-SauceClip_iOS_Example";
 		};
+		AE27ACDCA1C926D76A72D592E1B7789E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F56FBF9A8E879250B1D31CF7339D71D;
+			remoteInfo = "SauceClip_iOS-assets";
+		};
+		C7E9099BB18FCE620C036325C9E3B071 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CBCCC2E08284033AC8636D03A29156B;
+			remoteInfo = SauceClip_iOS;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0503847B66DA61ADB716F41D646EEA18 /* UIWindow+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extension.swift"; sourceTree = "<group>"; };
+		0A21A3A607A69E3A8C316B97F052954F /* PIPKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PIPKit.swift; sourceTree = "<group>"; };
 		0F413A9CF304D498B906344E1040FA8F /* Pods-SauceClip_iOS_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SauceClip_iOS_Tests-umbrella.h"; sourceTree = "<group>"; };
-		1781EF34DD73F104E5A534F767034A29 /* SauceClip_iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SauceClip_iOS-dummy.m"; sourceTree = "<group>"; };
 		18F4B6E8C5F2CB2E7BEBCB56D4476872 /* Pods-SauceClip_iOS_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SauceClip_iOS_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		19DC4CCAD291457B770A1667AEFBEE1E /* SauceClip_iOS.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = SauceClip_iOS.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		1FC357B93F32B1B354979B1CF8A82ACF /* SauceClipLibManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SauceClipLibManager.swift; path = SauceClip_iOS/Classes/SauceClipLibManager.swift; sourceTree = "<group>"; };
 		2A5858060550DCC0DC3DB66ED06FE6D1 /* Pods-SauceClip_iOS_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SauceClip_iOS_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		2ACFCBAF7107A1FCD6F5D117C852399E /* SauceClip_iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SauceClip_iOS-umbrella.h"; sourceTree = "<group>"; };
+		2F1933D4AEA9C637321C3AF5CCCAC8E7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		325B595F65DD54C50ECDD4C3BE1CC0E7 /* SauceClip_iOS.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = SauceClip_iOS.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		376F22911BF0F66AD41E2ED12C0FB77E /* Pods-SauceClip_iOS_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SauceClip_iOS_Example-umbrella.h"; sourceTree = "<group>"; };
-		3968FE227321D0F8C9E98E7E81C266E0 /* SauceClip_iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SauceClip_iOS-prefix.pch"; sourceTree = "<group>"; };
-		4836B4F42BC2D524006A1FB5 /* SauceClipDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SauceClipDataModel.swift; path = SauceClip_iOS/Classes/SauceClipDataModel.swift; sourceTree = "<group>"; };
-		4A4EAA61E08B79FE6CB9FA25B9604C9E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		3823ACD97E131311C29D9255DF48806C /* SauceClipDataModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SauceClipDataModel.swift; path = SauceClip_iOS/Classes/SauceClipDataModel.swift; sourceTree = "<group>"; };
+		3C050D17520BECBE53C6CA5B5A4BBEFE /* SauceClip_iOS.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SauceClip_iOS.swift; path = SauceClip_iOS/Classes/SauceClip_iOS.swift; sourceTree = "<group>"; };
+		407423540A95559BA89B5074C68E4CE4 /* SauceClip_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SauceClip_iOS.debug.xcconfig; sourceTree = "<group>"; };
 		4D8FC375945B2FE2F8E66A7C3291D914 /* Pods-SauceClip_iOS_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SauceClip_iOS_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		4E84021FDB4B7DA70AFF7550328D1E2E /* SauceClip_iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SauceClip_iOS.modulemap; sourceTree = "<group>"; };
-		605FA6941C03B0C23BDB0B1B38F4A87A /* SauceClip_iOS.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SauceClip_iOS.swift; path = SauceClip_iOS/Classes/SauceClip_iOS.swift; sourceTree = "<group>"; };
+		5146AC7F3346D95A2067D348D5E523F5 /* UIViewController+Associated.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIViewController+Associated.swift"; sourceTree = "<group>"; };
+		52AAD3AE931C82F35D52CA46FAE20927 /* SauceClip_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SauceClip_iOS.release.xcconfig; sourceTree = "<group>"; };
+		5C33A2B6E91AD20FEA0D5653E726B834 /* SauceClip_iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SauceClip_iOS.modulemap; sourceTree = "<group>"; };
 		6226A0864C807DB09C3048F267DCB3A4 /* Pods-SauceClip_iOS_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SauceClip_iOS_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		79A494B2D787B6D526B929AEAFC0DD12 /* SauceClip_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SauceClip_iOS.release.xcconfig; sourceTree = "<group>"; };
-		7EA55D423BEB9C469140DA8CC79C1A13 /* SauceClip_iOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SauceClip_iOS-Info.plist"; sourceTree = "<group>"; };
-		893B55C1B72D508BD6E72043648F4B7D /* SauceClip_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SauceClip_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AB9FD021460D110E36D1B55E49853C5 /* AVPIPKitVideoProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AVPIPKitVideoProvider.swift; sourceTree = "<group>"; };
+		7E55C264AF37003914093C44711DE0F2 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = SauceClip_iOS/Assets/Assets.xcassets; sourceTree = "<group>"; };
+		855D27E9F9579B0F9252823D324F3525 /* SauceClip_iOS-assets */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "SauceClip_iOS-assets"; path = assets.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		893B55C1B72D508BD6E72043648F4B7D /* SauceClip_iOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SauceClip_iOS; path = SauceClip_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8AF44A35301114ECB18A530086E7EB27 /* AVPIPKitUsable+UIKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AVPIPKitUsable+UIKit.swift"; sourceTree = "<group>"; };
 		91A6A3A9B9DCFAC3A1C2E7376599D582 /* Pods-SauceClip_iOS_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SauceClip_iOS_Tests-dummy.m"; sourceTree = "<group>"; };
-		94E044DE960B3D4A16F69869EF2656ED /* Pods_SauceClip_iOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SauceClip_iOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94E044DE960B3D4A16F69869EF2656ED /* Pods-SauceClip_iOS_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SauceClip_iOS_Example"; path = Pods_SauceClip_iOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99D94313819AE4A507036D75788B3D10 /* Pods-SauceClip_iOS_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SauceClip_iOS_Example-Info.plist"; sourceTree = "<group>"; };
 		9C5B4453EB576183C585C6CDB1D60AEF /* Pods-SauceClip_iOS_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SauceClip_iOS_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9FF5EBACE55147ECE42A1F1318F76801 /* SauceClip_iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SauceClip_iOS-umbrella.h"; sourceTree = "<group>"; };
 		A26B384AE0D6DC5FCEE31C4B313EFE71 /* Pods-SauceClip_iOS_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SauceClip_iOS_Example.modulemap"; sourceTree = "<group>"; };
 		A545CD04770CA0E2195B187B021BE913 /* Pods-SauceClip_iOS_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SauceClip_iOS_Tests-Info.plist"; sourceTree = "<group>"; };
-		A8F2D6A065B08FF7F0F8536DC89DD049 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A60A40825DC3276A0C29B30E3BFA70F4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		ADACBE31B6A8D905EB7D8B04ECA32A8C /* AVPIPKitUsable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AVPIPKitUsable.swift; sourceTree = "<group>"; };
+		BA45557A9FA8F0ADD0E0D5BF10FBEE8B /* AVPIPKitRenderer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AVPIPKitRenderer.swift; sourceTree = "<group>"; };
 		BE7B75E6C19D9B93587D8B2C53B7F42A /* Pods-SauceClip_iOS_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SauceClip_iOS_Tests.modulemap"; sourceTree = "<group>"; };
+		BFC60B3F936F3EC273F11D15645B5E47 /* ResourceBundle-assets-SauceClip_iOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-assets-SauceClip_iOS-Info.plist"; sourceTree = "<group>"; };
+		C8FCEEEF5C350F2C2B2445C917C7E90E /* AVPIPKitVideoController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AVPIPKitVideoController.swift; sourceTree = "<group>"; };
+		CC43DFACF550070887B151ED0D87E872 /* SauceClip_iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SauceClip_iOS-dummy.m"; sourceTree = "<group>"; };
 		CF58FFAA49EA7BEABA7CB53AD6C2B4AB /* Pods-SauceClip_iOS_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SauceClip_iOS_Example-frameworks.sh"; sourceTree = "<group>"; };
 		D485E1195FB6A654E8984CF1ECEEC216 /* Pods-SauceClip_iOS_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SauceClip_iOS_Example-dummy.m"; sourceTree = "<group>"; };
+		D86F334D663FE88EB4C5ECE4287B778F /* UIView+Associated.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+Associated.swift"; sourceTree = "<group>"; };
 		E04C50E62A746948D78C03706531470A /* Pods-SauceClip_iOS_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SauceClip_iOS_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		E1CA01BF1BEFAE3B6000B406D408F2A8 /* Pods-SauceClip_iOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SauceClip_iOS_Example.release.xcconfig"; sourceTree = "<group>"; };
+		E6F8827112D5ECF1CFCA3F708A99B1E0 /* PIPKitEventDispatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PIPKitEventDispatcher.swift; sourceTree = "<group>"; };
 		EA60B7AA033908DB8FEC822C0285C063 /* Pods-SauceClip_iOS_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SauceClip_iOS_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		F4D8BCE4926EB145092AFFEB4CB01F2E /* SauceClip_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SauceClip_iOS.debug.xcconfig; sourceTree = "<group>"; };
-		F9C7DA502BBE375E0067771D /* SauceClipLibManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SauceClipLibManager.swift; path = SauceClip_iOS/Classes/SauceClipLibManager.swift; sourceTree = "<group>"; };
-		FED527C9BFE9532DD616C62F16DEA194 /* Pods_SauceClip_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SauceClip_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBD0F09EDD1CF571D6E0AC7C43A12257 /* PIPUsable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PIPUsable.swift; sourceTree = "<group>"; };
+		F1C914DA8DEFB7920FECD621C0162773 /* SauceClip_iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SauceClip_iOS-prefix.pch"; sourceTree = "<group>"; };
+		FD84D3BD5C17CF75FE61DD97060E550E /* SauceClip_iOS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SauceClip_iOS-Info.plist"; sourceTree = "<group>"; };
+		FED527C9BFE9532DD616C62F16DEA194 /* Pods-SauceClip_iOS_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-SauceClip_iOS_Tests"; path = Pods_SauceClip_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +119,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1A4299B1D3040D0F1F9368BED0EDF1AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		703D363E31B4C5ECFEEC40505BB4F9B5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -93,17 +134,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C7BB40092E53208B9281F8EC227E3E05 /* Frameworks */ = {
+		B8C9347A411294E264A41443176A8F3D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B65F9ADDFD5D32DE01532D7199326381 /* Foundation.framework in Frameworks */,
+				DA19789AEE3FA6C8F7EB08BCD0777247 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0156D755D37AA8DF5795926E63B642BD /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FED94064ED29031E2EF5FCC4C465F478 /* SauceClip_iOS */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		071084F165097511C30EEB32E8C52ACE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D86F334D663FE88EB4C5ECE4287B778F /* UIView+Associated.swift */,
+				5146AC7F3346D95A2067D348D5E523F5 /* UIViewController+Associated.swift */,
+				0503847B66DA61ADB716F41D646EEA18 /* UIWindow+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		101DE4284737FB4C7DF45E06C15DE3EC /* Pods-SauceClip_iOS_Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,12 +179,61 @@
 			path = "Target Support Files/Pods-SauceClip_iOS_Tests";
 			sourceTree = "<group>";
 		};
+		29E6AB143C74E5677AFC3B8356D780D1 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BFC60B3F936F3EC273F11D15645B5E47 /* ResourceBundle-assets-SauceClip_iOS-Info.plist */,
+				5C33A2B6E91AD20FEA0D5653E726B834 /* SauceClip_iOS.modulemap */,
+				CC43DFACF550070887B151ED0D87E872 /* SauceClip_iOS-dummy.m */,
+				FD84D3BD5C17CF75FE61DD97060E550E /* SauceClip_iOS-Info.plist */,
+				F1C914DA8DEFB7920FECD621C0162773 /* SauceClip_iOS-prefix.pch */,
+				9FF5EBACE55147ECE42A1F1318F76801 /* SauceClip_iOS-umbrella.h */,
+				407423540A95559BA89B5074C68E4CE4 /* SauceClip_iOS.debug.xcconfig */,
+				52AAD3AE931C82F35D52CA46FAE20927 /* SauceClip_iOS.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/SauceClip_iOS";
+			sourceTree = "<group>";
+		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		61925978D2D023972CCD17F7F11FAC73 /* AVPIPKit */ = {
+			isa = PBXGroup;
+			children = (
+				BA45557A9FA8F0ADD0E0D5BF10FBEE8B /* AVPIPKitRenderer.swift */,
+				ADACBE31B6A8D905EB7D8B04ECA32A8C /* AVPIPKitUsable.swift */,
+				8AF44A35301114ECB18A530086E7EB27 /* AVPIPKitUsable+UIKit.swift */,
+				C8FCEEEF5C350F2C2B2445C917C7E90E /* AVPIPKitVideoController.swift */,
+				7AB9FD021460D110E36D1B55E49853C5 /* AVPIPKitVideoProvider.swift */,
+			);
+			path = AVPIPKit;
+			sourceTree = "<group>";
+		};
+		632707AFB5B217CFBA2F004A14D5D459 /* PIP */ = {
+			isa = PBXGroup;
+			children = (
+				61925978D2D023972CCD17F7F11FAC73 /* AVPIPKit */,
+				071084F165097511C30EEB32E8C52ACE /* Extension */,
+				FC27B2A82CBE7BF546A6045CEFB28A90 /* PIPKit */,
+			);
+			name = PIP;
+			path = SauceClip_iOS/Classes/PIP;
+			sourceTree = "<group>";
+		};
+		71BFF50360F01DAE1134DD664461FA45 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				2F1933D4AEA9C637321C3AF5CCCAC8E7 /* LICENSE */,
+				A60A40825DC3276A0C29B30E3BFA70F4 /* README.md */,
+				325B595F65DD54C50ECDD4C3BE1CC0E7 /* SauceClip_iOS.podspec */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		73C09084521891E3B4F80305EC1A4EB0 /* Targets Support Files */ = {
@@ -135,21 +243,6 @@
 				101DE4284737FB4C7DF45E06C15DE3EC /* Pods-SauceClip_iOS_Tests */,
 			);
 			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		78CE032B07A44F21D2704BBE13526AE8 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				4E84021FDB4B7DA70AFF7550328D1E2E /* SauceClip_iOS.modulemap */,
-				1781EF34DD73F104E5A534F767034A29 /* SauceClip_iOS-dummy.m */,
-				7EA55D423BEB9C469140DA8CC79C1A13 /* SauceClip_iOS-Info.plist */,
-				3968FE227321D0F8C9E98E7E81C266E0 /* SauceClip_iOS-prefix.pch */,
-				2ACFCBAF7107A1FCD6F5D117C852399E /* SauceClip_iOS-umbrella.h */,
-				F4D8BCE4926EB145092AFFEB4CB01F2E /* SauceClip_iOS.debug.xcconfig */,
-				79A494B2D787B6D526B929AEAFC0DD12 /* SauceClip_iOS.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/SauceClip_iOS";
 			sourceTree = "<group>";
 		};
 		7A8903056C93AE07A8D17747E0C625BA /* Pods-SauceClip_iOS_Example */ = {
@@ -169,54 +262,13 @@
 			path = "Target Support Files/Pods-SauceClip_iOS_Example";
 			sourceTree = "<group>";
 		};
-		7CBA02D3B5785256D2DCB2C2B90F7602 /* SauceClip_iOS */ = {
-			isa = PBXGroup;
-			children = (
-				4836B4F42BC2D524006A1FB5 /* SauceClipDataModel.swift */,
-				F9C7DA502BBE375E0067771D /* SauceClipLibManager.swift */,
-				605FA6941C03B0C23BDB0B1B38F4A87A /* SauceClip_iOS.swift */,
-				8001F3C851B7610B59CD77A35272D6C6 /* Pod */,
-				78CE032B07A44F21D2704BBE13526AE8 /* Support Files */,
-			);
-			name = SauceClip_iOS;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		8001F3C851B7610B59CD77A35272D6C6 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				4A4EAA61E08B79FE6CB9FA25B9604C9E /* LICENSE */,
-				A8F2D6A065B08FF7F0F8536DC89DD049 /* README.md */,
-				19DC4CCAD291457B770A1667AEFBEE1E /* SauceClip_iOS.podspec */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		80509B4C9290E8E83E150F27658C4DD7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				94E044DE960B3D4A16F69869EF2656ED /* Pods_SauceClip_iOS_Example.framework */,
-				FED527C9BFE9532DD616C62F16DEA194 /* Pods_SauceClip_iOS_Tests.framework */,
-				893B55C1B72D508BD6E72043648F4B7D /* SauceClip_iOS.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		CE26DEAAA8DE2357CF55C4E09A3B1DC5 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				7CBA02D3B5785256D2DCB2C2B90F7602 /* SauceClip_iOS */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				CE26DEAAA8DE2357CF55C4E09A3B1DC5 /* Development Pods */,
+				0156D755D37AA8DF5795926E63B642BD /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				80509B4C9290E8E83E150F27658C4DD7 /* Products */,
+				DC8B5A08F9C4B2BF45686C6923DE1BB2 /* Products */,
 				73C09084521891E3B4F80305EC1A4EB0 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -227,6 +279,42 @@
 				578452D2E740E91742655AC8F1636D1F /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC8B5A08F9C4B2BF45686C6923DE1BB2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				94E044DE960B3D4A16F69869EF2656ED /* Pods-SauceClip_iOS_Example */,
+				FED527C9BFE9532DD616C62F16DEA194 /* Pods-SauceClip_iOS_Tests */,
+				893B55C1B72D508BD6E72043648F4B7D /* SauceClip_iOS */,
+				855D27E9F9579B0F9252823D324F3525 /* SauceClip_iOS-assets */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FC27B2A82CBE7BF546A6045CEFB28A90 /* PIPKit */ = {
+			isa = PBXGroup;
+			children = (
+				0A21A3A607A69E3A8C316B97F052954F /* PIPKit.swift */,
+				E6F8827112D5ECF1CFCA3F708A99B1E0 /* PIPKitEventDispatcher.swift */,
+				EBD0F09EDD1CF571D6E0AC7C43A12257 /* PIPUsable.swift */,
+			);
+			path = PIPKit;
+			sourceTree = "<group>";
+		};
+		FED94064ED29031E2EF5FCC4C465F478 /* SauceClip_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				7E55C264AF37003914093C44711DE0F2 /* Assets.xcassets */,
+				3C050D17520BECBE53C6CA5B5A4BBEFE /* SauceClip_iOS.swift */,
+				3823ACD97E131311C29D9255DF48806C /* SauceClipDataModel.swift */,
+				1FC357B93F32B1B354979B1CF8A82ACF /* SauceClipLibManager.swift */,
+				632707AFB5B217CFBA2F004A14D5D459 /* PIP */,
+				71BFF50360F01DAE1134DD664461FA45 /* Pod */,
+				29E6AB143C74E5677AFC3B8356D780D1 /* Support Files */,
+			);
+			name = SauceClip_iOS;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,19 +328,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4C98F6A0BB02FDF185CAA48068A5DBE2 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C9931B23C831EB0703014551D228FC4F /* SauceClip_iOS-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C1391098ECF06D57A1FDC4EFEA106047 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C8705FFD7F95DFB2511FAA75FB82DF84 /* Pods-SauceClip_iOS_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F39EDBD260D4921C488D3ACDB3A34F84 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F72BA9F015344A962AC4FE5A3F67ADCB /* SauceClip_iOS-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,29 +359,30 @@
 			buildRules = (
 			);
 			dependencies = (
-				8F88A932E093C2D4D7E09268F7F5E0D4 /* PBXTargetDependency */,
+				322F47C7427C06EB77451DA4715F061E /* PBXTargetDependency */,
 			);
 			name = "Pods-SauceClip_iOS_Tests";
 			productName = Pods_SauceClip_iOS_Tests;
-			productReference = FED527C9BFE9532DD616C62F16DEA194 /* Pods_SauceClip_iOS_Tests.framework */;
+			productReference = FED527C9BFE9532DD616C62F16DEA194 /* Pods-SauceClip_iOS_Tests */;
 			productType = "com.apple.product-type.framework";
 		};
 		2CBCCC2E08284033AC8636D03A29156B /* SauceClip_iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B272A8D0BA60A8E978696078B4A640C8 /* Build configuration list for PBXNativeTarget "SauceClip_iOS" */;
+			buildConfigurationList = 27074AF71801A84ED7AE58A76B167ECC /* Build configuration list for PBXNativeTarget "SauceClip_iOS" */;
 			buildPhases = (
-				4C98F6A0BB02FDF185CAA48068A5DBE2 /* Headers */,
-				A194EAA19E7F99F496F4167086DB888B /* Sources */,
-				C7BB40092E53208B9281F8EC227E3E05 /* Frameworks */,
-				DDB109B6651CF83B30A81451FAC1A4A3 /* Resources */,
+				F39EDBD260D4921C488D3ACDB3A34F84 /* Headers */,
+				1E76C7E160D78AF8D2D81FAE21A9BC88 /* Sources */,
+				B8C9347A411294E264A41443176A8F3D /* Frameworks */,
+				D0FC3AFE9A3588A4D384EB1748B4CA06 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A655AFE05F7746D2F2FA5E6101130E19 /* PBXTargetDependency */,
 			);
 			name = SauceClip_iOS;
 			productName = SauceClip_iOS;
-			productReference = 893B55C1B72D508BD6E72043648F4B7D /* SauceClip_iOS.framework */;
+			productReference = 893B55C1B72D508BD6E72043648F4B7D /* SauceClip_iOS */;
 			productType = "com.apple.product-type.framework";
 		};
 		2D51262B07EA11DF7513BBBF694E3B90 /* Pods-SauceClip_iOS_Example */ = {
@@ -308,12 +397,29 @@
 			buildRules = (
 			);
 			dependencies = (
-				7B099C1100678465B4A5023AD0A94D74 /* PBXTargetDependency */,
+				3B9F67B57BDEE4E1BCBD5F07893AE561 /* PBXTargetDependency */,
 			);
 			name = "Pods-SauceClip_iOS_Example";
 			productName = Pods_SauceClip_iOS_Example;
-			productReference = 94E044DE960B3D4A16F69869EF2656ED /* Pods_SauceClip_iOS_Example.framework */;
+			productReference = 94E044DE960B3D4A16F69869EF2656ED /* Pods-SauceClip_iOS_Example */;
 			productType = "com.apple.product-type.framework";
+		};
+		4F56FBF9A8E879250B1D31CF7339D71D /* SauceClip_iOS-assets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 39C4D774C45248786EAC45DB125AD756 /* Build configuration list for PBXNativeTarget "SauceClip_iOS-assets" */;
+			buildPhases = (
+				3FC91655E793DE4F355E5D83C665E4F3 /* Sources */,
+				1A4299B1D3040D0F1F9368BED0EDF1AB /* Frameworks */,
+				07CFC00F7EBD7A8575E1A7C919AF5C4E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SauceClip_iOS-assets";
+			productName = assets;
+			productReference = 855D27E9F9579B0F9252823D324F3525 /* SauceClip_iOS-assets */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -333,13 +439,14 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 80509B4C9290E8E83E150F27658C4DD7 /* Products */;
+			productRefGroup = DC8B5A08F9C4B2BF45686C6923DE1BB2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				2D51262B07EA11DF7513BBBF694E3B90 /* Pods-SauceClip_iOS_Example */,
 				0E94D99C53E72CCF0D8EE891182868F4 /* Pods-SauceClip_iOS_Tests */,
 				2CBCCC2E08284033AC8636D03A29156B /* SauceClip_iOS */,
+				4F56FBF9A8E879250B1D31CF7339D71D /* SauceClip_iOS-assets */,
 			);
 		};
 /* End PBXProject section */
@@ -352,6 +459,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		07CFC00F7EBD7A8575E1A7C919AF5C4E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA0108DF7C6F07D0D52E7F1659695E66 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		267F5CF528BFA48AC40D96B9505912E6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -359,16 +474,46 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DDB109B6651CF83B30A81451FAC1A4A3 /* Resources */ = {
+		D0FC3AFE9A3588A4D384EB1748B4CA06 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C170BB2FA22153139F9AFD92D91F9988 /* SauceClip_iOS-assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1E76C7E160D78AF8D2D81FAE21A9BC88 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D1D26180ED68298158587A63FD4265F /* AVPIPKitRenderer.swift in Sources */,
+				9714DE56F17ED31B9C3936C8A10BF0AF /* AVPIPKitUsable.swift in Sources */,
+				28C701BFF347897E4A838AD2207C03A0 /* AVPIPKitUsable+UIKit.swift in Sources */,
+				4A4501EDF4A51AC6CB52C6B21E3D3DDC /* AVPIPKitVideoController.swift in Sources */,
+				0D138CD8AAF45BB752D45CADCED366BE /* AVPIPKitVideoProvider.swift in Sources */,
+				4B51D71903B24D7030521F8859C196F1 /* PIPKit.swift in Sources */,
+				06482EF07D00BC21722BF8583056D760 /* PIPKitEventDispatcher.swift in Sources */,
+				8E6E056AF7EA15FA884493D7DD85514C /* PIPUsable.swift in Sources */,
+				1085E00C7FF273010C783CCC2592D745 /* SauceClip_iOS-dummy.m in Sources */,
+				CFBBE0A93854545C819FC659B4D5F448 /* SauceClipDataModel.swift in Sources */,
+				E50EDE1CFFEC697D2DBB95A47BD27975 /* SauceClipLibManager.swift in Sources */,
+				E65FB048D06B08DF5674B1422778C5D6 /* UIView+Associated.swift in Sources */,
+				6231BC8539620291032A5D2BD249691F /* UIViewController+Associated.swift in Sources */,
+				F9CB34142BEC5EC6001404CF /* SauceClip_iOS.swift in Sources */,
+				91CBD28872075925591DE544FC9F6015 /* UIWindow+Extension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FC91655E793DE4F355E5D83C665E4F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		45E2B66AE8C2998305E2FAD97427C8DB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -385,35 +530,61 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A194EAA19E7F99F496F4167086DB888B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E2EA10AB4BE3B80D872F36B00CC0C30E /* SauceClip_iOS.swift in Sources */,
-				756DDA7F8DE8E9E82447CB3C663C23B3 /* SauceClip_iOS-dummy.m in Sources */,
-				F9C7DA512BBE375E0067771D /* SauceClipLibManager.swift in Sources */,
-				4836B4F52BC2D524006A1FB5 /* SauceClipDataModel.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7B099C1100678465B4A5023AD0A94D74 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SauceClip_iOS;
-			target = 2CBCCC2E08284033AC8636D03A29156B /* SauceClip_iOS */;
-			targetProxy = 12F93F84B800935AAFA32A5E47A41510 /* PBXContainerItemProxy */;
-		};
-		8F88A932E093C2D4D7E09268F7F5E0D4 /* PBXTargetDependency */ = {
+		322F47C7427C06EB77451DA4715F061E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-SauceClip_iOS_Example";
 			target = 2D51262B07EA11DF7513BBBF694E3B90 /* Pods-SauceClip_iOS_Example */;
-			targetProxy = 8C0545870F8312B4B225C2A432E89CD9 /* PBXContainerItemProxy */;
+			targetProxy = 3B2C7CEF51D846C88580C89EC15A2625 /* PBXContainerItemProxy */;
+		};
+		3B9F67B57BDEE4E1BCBD5F07893AE561 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SauceClip_iOS;
+			target = 2CBCCC2E08284033AC8636D03A29156B /* SauceClip_iOS */;
+			targetProxy = C7E9099BB18FCE620C036325C9E3B071 /* PBXContainerItemProxy */;
+		};
+		A655AFE05F7746D2F2FA5E6101130E19 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SauceClip_iOS-assets";
+			target = 4F56FBF9A8E879250B1D31CF7339D71D /* SauceClip_iOS-assets */;
+			targetProxy = AE27ACDCA1C926D76A72D592E1B7789E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		15CD76DDD8CB7F56ABAE5D1E50284A8A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 407423540A95559BA89B5074C68E4CE4 /* SauceClip_iOS.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SauceClip_iOS/SauceClip_iOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SauceClip_iOS/SauceClip_iOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SauceClip_iOS/SauceClip_iOS.modulemap";
+				PRODUCT_MODULE_NAME = SauceClip_iOS;
+				PRODUCT_NAME = SauceClip_iOS;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		3D95660AE6C5116DE1A52645952E04DD /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EA60B7AA033908DB8FEC822C0285C063 /* Pods-SauceClip_iOS_Tests.release.xcconfig */;
@@ -430,7 +601,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-SauceClip_iOS_Tests/Pods-SauceClip_iOS_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-SauceClip_iOS_Tests/Pods-SauceClip_iOS_Tests.modulemap";
@@ -445,6 +616,55 @@
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3F69E20404EC9C38F9197E04A079B0AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52AAD3AE931C82F35D52CA46FAE20927 /* SauceClip_iOS.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SauceClip_iOS/SauceClip_iOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SauceClip_iOS/SauceClip_iOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SauceClip_iOS/SauceClip_iOS.modulemap";
+				PRODUCT_MODULE_NAME = SauceClip_iOS;
+				PRODUCT_NAME = SauceClip_iOS;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4D0556C9C31F61089104EB6D8ECB4EC9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52AAD3AE931C82F35D52CA46FAE20927 /* SauceClip_iOS.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/SauceClip_iOS";
+				IBSC_MODULE = SauceClip_iOS;
+				INFOPLIST_FILE = "Target Support Files/SauceClip_iOS/ResourceBundle-assets-SauceClip_iOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_NAME = assets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -464,7 +684,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-SauceClip_iOS_Tests/Pods-SauceClip_iOS_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-SauceClip_iOS_Tests/Pods-SauceClip_iOS_Tests.modulemap";
@@ -497,7 +717,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-SauceClip_iOS_Example/Pods-SauceClip_iOS_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-SauceClip_iOS_Example/Pods-SauceClip_iOS_Example.modulemap";
@@ -508,37 +728,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		62D7B7F38D4A52BB01BB1A943E08D908 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F4D8BCE4926EB145092AFFEB4CB01F2E /* SauceClip_iOS.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SauceClip_iOS/SauceClip_iOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SauceClip_iOS/SauceClip_iOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SauceClip_iOS/SauceClip_iOS.modulemap";
-				PRODUCT_MODULE_NAME = SauceClip_iOS;
-				PRODUCT_NAME = SauceClip_iOS;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -606,38 +795,6 @@
 			};
 			name = Release;
 		};
-		8E878DF848F17882A02317C4BFD79BDB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79A494B2D787B6D526B929AEAFC0DD12 /* SauceClip_iOS.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SauceClip_iOS/SauceClip_iOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SauceClip_iOS/SauceClip_iOS-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SauceClip_iOS/SauceClip_iOS.modulemap";
-				PRODUCT_MODULE_NAME = SauceClip_iOS;
-				PRODUCT_NAME = SauceClip_iOS;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		AA9E37574911089D0ED6D06873AD0A8B /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E1CA01BF1BEFAE3B6000B406D408F2A8 /* Pods-SauceClip_iOS_Example.release.xcconfig */;
@@ -654,7 +811,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-SauceClip_iOS_Example/Pods-SauceClip_iOS_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-SauceClip_iOS_Example/Pods-SauceClip_iOS_Example.modulemap";
@@ -738,23 +895,49 @@
 			};
 			name = Debug;
 		};
+		FD807821CC1FB94042DD3C3729D0E9FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 407423540A95559BA89B5074C68E4CE4 /* SauceClip_iOS.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/SauceClip_iOS";
+				IBSC_MODULE = SauceClip_iOS;
+				INFOPLIST_FILE = "Target Support Files/SauceClip_iOS/ResourceBundle-assets-SauceClip_iOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_NAME = assets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		27074AF71801A84ED7AE58A76B167ECC /* Build configuration list for PBXNativeTarget "SauceClip_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15CD76DDD8CB7F56ABAE5D1E50284A8A /* Debug */,
+				3F69E20404EC9C38F9197E04A079B0AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		39C4D774C45248786EAC45DB125AD756 /* Build configuration list for PBXNativeTarget "SauceClip_iOS-assets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FD807821CC1FB94042DD3C3729D0E9FD /* Debug */,
+				4D0556C9C31F61089104EB6D8ECB4EC9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D299434AB35E7FD6F7921C8EF24742FF /* Debug */,
 				7EE7A78859F657F6BEFC651185B43192 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B272A8D0BA60A8E978696078B4A640C8 /* Build configuration list for PBXNativeTarget "SauceClip_iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				62D7B7F38D4A52BB01BB1A943E08D908 /* Debug */,
-				8E878DF848F17882A02317C4BFD79BDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

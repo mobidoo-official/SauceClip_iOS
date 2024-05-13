@@ -1,5 +1,5 @@
 PODS:
-  - SauceClip_iOS (0.1.0)
+  - SauceClip_iOS (1.0.1-hotfix-5)
 
 DEPENDENCIES:
   - SauceClip_iOS (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SauceClip_iOS: af5c6ff644f539eac4b56f59240206cc8007dd6a
+  SauceClip_iOS: a399acfce9cf0e29a07185c843d55265bcfeb643
 
 PODFILE CHECKSUM: e174199d48e5be4de09fa6dbf3d12a891550ddbb
 
