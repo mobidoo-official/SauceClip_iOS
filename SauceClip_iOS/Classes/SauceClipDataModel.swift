@@ -85,12 +85,12 @@ import Foundation
 }
 
 @objcMembers public class DomRect: NSObject, Codable {
-    public let x: Int
-    public let y: Int
-    public let width: Int
-    public let height: Int
-    public let top: Int
-    public let right: Int
-    public let bottom: Int
-    public let left: Int
+    public let x: Float
+    public let y: Float
+    public let width: Float
+    public let height: Float
+    public let top: Float
+    public let right: Float
+    public let bottom: Float
+    public let left: Float
 }

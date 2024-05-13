@@ -257,14 +257,9 @@ extension SauceCurationLib: WKScriptMessageHandler {
         }
         
         let decoder = JSONDecoder()
-        
-        print(message.name)
-        print(message.body)
-        
+
         switch message.name {
         case MessageHandlerName.moveBroadcast.rawValue:
-            print(message.body)
-            print(jsonData)
             if let broadCastInfo = try? decoder.decode(SauceBroadcastInfo.self, from: jsonData) {
                 delegate?.sauceCurationManager?(self, didReceiveBroadCastMessage: broadCastInfo)
             }
@@ -272,6 +267,23 @@ extension SauceCurationLib: WKScriptMessageHandler {
         case MessageHandlerName.onCollectionError.rawValue:
             if let sauceError = try? decoder.decode(SauceError.self, from: jsonData) {
                 delegate?.sauceCurationManager?(self, didReceiveErrorMessage: sauceError)
+            }
+            
+        case MessageHandlerName.sendDOMRect.rawValue:
+            if let size = try? decoder.decode(DomSize.self, from: jsonData) {
+                self.translatesAutoresizingMaskIntoConstraints = false
+                
+                if let existingHeightConstraint = self.constraints.first(where: { $0.firstAttribute == .height }) {
+                    existingHeightConstraint.constant = CGFloat(size.domRect.height)
+                } else {
+                    let heightConstraint = self.heightAnchor.constraint(equalToConstant: CGFloat(size.domRect.height))
+                    heightConstraint.isActive = true
+                }
+                
+                NSLayoutConstraint.activate([
+                    self.leadingAnchor.constraint(equalTo: self.superview!.leadingAnchor),
+                    self.trailingAnchor.constraint(equalTo: self.superview!.trailingAnchor)
+                ])
             }
             
         default:
