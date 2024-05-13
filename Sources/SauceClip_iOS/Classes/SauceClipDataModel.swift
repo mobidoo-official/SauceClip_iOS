@@ -77,3 +77,20 @@ import Foundation
     public let errorDetails: String
     public let errorCode: String
 }
+
+
+@objcMembers public class DomSize: NSObject, Codable {
+    public let domRect: DomRect
+    public let elementId: String
+}
+
+@objcMembers public class DomRect: NSObject, Codable {
+    public let x: Int
+    public let y: Int
+    public let width: Int
+    public let height: Int
+    public let top: Int
+    public let right: Int
+    public let bottom: Int
+    public let left: Int
+}

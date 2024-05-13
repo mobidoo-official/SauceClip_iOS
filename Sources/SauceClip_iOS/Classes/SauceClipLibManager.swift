@@ -37,7 +37,7 @@ public class SauceClipLib {
             urlString = "https://player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
         }
         
-    
+        
         // Add curationId to the URL string only if it's not nil.
         if let curationid = curationId {
             urlString += "&curationId=\(curationid)"
@@ -109,9 +109,10 @@ public class SauceCurationLib: WKWebView {
     public func configure(with config: SauceCurationConfig) {
         self.delegate = config.delegate
         if config.isBroadCastEnabled {
-            self.configuration.userContentController.add(self, name: "sauceclipMoveBroadcast")
+            self.configuration.userContentController.add(self, name: MessageHandlerName.moveBroadcast.rawValue)
         }
-        self.configuration.userContentController.add(self, name: "sauceclipCollectionError")
+        self.configuration.userContentController.add(self, name: MessageHandlerName.onError.rawValue)
+        self.configuration.userContentController.add(self, name: MessageHandlerName.sendDOMRect.rawValue)
     }
     
     public func setInit(partnerID: String, curationID: String) {
@@ -143,7 +144,14 @@ window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left
         target = on
     }
     
-    
+    private func updateWebViewHeight(height: CGFloat) {
+        var frame = self.frame
+        frame.size.height = height
+        self.frame = frame
+        
+        //           // Optionally, if you want to adjust the content size of the UIScrollView directly:
+        //           self.scrollView.contentSize = CGSize(width: self.scrollView.contentSize.width, height: height)
+    }
     
     public func load() {
         if let partnerId = partnerId, let curationId = curationId {
@@ -249,6 +257,10 @@ extension SauceCurationLib: WKScriptMessageHandler {
         }
         
         let decoder = JSONDecoder()
+        
+        print(message.name)
+        print(message.body)
+        
         switch message.name {
         case MessageHandlerName.moveBroadcast.rawValue:
             print(message.body)
