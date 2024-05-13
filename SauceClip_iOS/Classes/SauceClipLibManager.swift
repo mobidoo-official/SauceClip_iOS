@@ -274,16 +274,6 @@ extension SauceCurationLib: WKScriptMessageHandler {
                 delegate?.sauceCurationManager?(self, didReceiveErrorMessage: sauceError)
             }
             
-        case MessageHandlerName.sendDOMRect.rawValue:
-            if let size = try? decoder.decode(DomSize.self, from: jsonData) {
-                self.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-                    self.heightAnchor.constraint(equalToConstant: CGFloat(size.domRect.height)),
-                    self.leadingAnchor.constraint(equalTo: self.superview!.leadingAnchor),
-                    self.trailingAnchor.constraint(equalTo: self.superview!.trailingAnchor)
-                ])
-            }
-            
         default:
             break
         }
