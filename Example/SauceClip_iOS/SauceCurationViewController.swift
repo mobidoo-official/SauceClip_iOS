@@ -4,9 +4,30 @@ import SauceClip_iOS
 
 class SauceCurationViewController: UIViewController {
     var handlerStates: [MessageHandlerName: Bool] = [:]
+    private var scrollView: UIScrollView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+
+        // UIScrollView 초기화 및 설정
+        scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(scrollView)
+        NSLayoutConstraint.activate([
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+
+        // 상단 뷰 생성 및 설정
+        let topView = UIView()
+        topView.backgroundColor = .gray  // 색상은 예시입니다. 적절히 조정 가능
+        topView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(topView)
+
+        // SauceCurationView 초기화 및 설정
         let sauceCurationView = SauceCurationLib()
         sauceCurationView.delegate = self
         let config = SauceCurationLib.SauceCurationConfig(
@@ -19,11 +40,36 @@ class SauceCurationViewController: UIViewController {
         sauceCurationView.setPvVisibility(false)
         sauceCurationView.setPreviewAutoPlay(true)
         sauceCurationView.setHorizontalPadding(10)
-        
-        self.view.addSubview(sauceCurationView)
+
+        scrollView.addSubview(sauceCurationView)
         sauceCurationView.translatesAutoresizingMaskIntoConstraints = false
+        sauceCurationView.scrollView.isScrollEnabled = false
+        // 하단 뷰 생성 및 설정
+        let bottomView = UIView()
+        bottomView.backgroundColor = .gray  // 색상은 예시입니다. 적절히 조정 가능
+        bottomView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(bottomView)
+
+        // 제약조건 설정
         NSLayoutConstraint.activate([
-            sauceCurationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+            // 상단 뷰 제약조건
+            topView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            topView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            topView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            topView.heightAnchor.constraint(equalToConstant: 100),
+
+            // SauceCurationView 제약조건
+            sauceCurationView.topAnchor.constraint(equalTo: topView.bottomAnchor),
+            sauceCurationView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            sauceCurationView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            sauceCurationView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+
+            // 하단 뷰 제약조건
+            bottomView.topAnchor.constraint(equalTo: sauceCurationView.bottomAnchor),
+            bottomView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            bottomView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            bottomView.heightAnchor.constraint(equalToConstant: 100),
+            bottomView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
         
         sauceCurationView.load()
@@ -32,28 +78,12 @@ class SauceCurationViewController: UIViewController {
 
 extension SauceCurationViewController: SauceCurationDelegate {
     func sauceCurationManager(_ manager: SauceCurationLib, didReceiveBroadCastMessage broadCastInfo: SauceBroadcastInfo?) {
-        // 일반 VC
-//        let viewController = ClipViewController()
-//        viewController.modalPresentationStyle = .fullScreen
-//        viewController.partnerId = broadCastInfo?.partnerId
-//        viewController.clipId = broadCastInfo?.clipId
-//        viewController.curationId = broadCastInfo?.curationId
-//        present(viewController, animated: true)
-        
-        
-        // PIP 구현시
         let viewController = ClipPIPViewController()
         viewController.modalPresentationStyle = .fullScreen
         viewController.partnerId = broadCastInfo?.partnerId
         viewController.clipId = broadCastInfo?.clipId
         viewController.curationId = broadCastInfo?.curationId
         PIPKit.show(with: viewController)
- 
     }
     
-    func sauceCurationManager(_ manager: SauceCurationLib, didReceiveErrorMessage sauceError: SauceError?) {
-        print(sauceError?.errorCode)
-    }
 }
-
-
