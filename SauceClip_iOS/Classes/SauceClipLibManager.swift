@@ -111,7 +111,7 @@ public class SauceCurationLib: WKWebView {
         if config.isBroadCastEnabled {
             self.configuration.userContentController.add(self, name: MessageHandlerName.moveBroadcast.rawValue)
         }
-        self.configuration.userContentController.add(self, name: MessageHandlerName.onError.rawValue)
+        self.configuration.userContentController.add(self, name: MessageHandlerName.onCollectionError.rawValue)
         self.configuration.userContentController.add(self, name: MessageHandlerName.sendDOMRect.rawValue)
     }
     
@@ -233,44 +233,30 @@ window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left
 
 extension SauceCurationLib: WKScriptMessageHandler {
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        guard let jsonString = message.body as? String else {
-            switch message.name {
-            case MessageHandlerName.moveBroadcast.rawValue:
-                delegate?.sauceCurationManager?(self, didReceiveBroadCastMessage: nil)
-            case MessageHandlerName.onCollectionError.rawValue:
-                delegate?.sauceCurationManager?(self, didReceiveErrorMessage: nil)
-            default:
-                break
-            }
-            return
-        }
-        guard let jsonData = jsonString.data(using: .utf8) else {
-            switch message.name {
-            case MessageHandlerName.moveBroadcast.rawValue:
-                delegate?.sauceCurationManager?(self, didReceiveBroadCastMessage: nil)
-            case MessageHandlerName.onCollectionError.rawValue:
-                delegate?.sauceCurationManager?(self, didReceiveErrorMessage: nil)
-            default:
-                break
-            }
-            return
-        }
-        
         let decoder = JSONDecoder()
-
         switch message.name {
         case MessageHandlerName.moveBroadcast.rawValue:
-            if let broadCastInfo = try? decoder.decode(SauceBroadcastInfo.self, from: jsonData) {
+            if let jsonString = message.body as? String, !jsonString.isEmpty,
+               let jsonData = jsonString.data(using: .utf8),
+               let broadCastInfo = try? decoder.decode(SauceBroadcastInfo.self, from: jsonData) {
                 delegate?.sauceCurationManager?(self, didReceiveBroadCastMessage: broadCastInfo)
+            } else {
+                delegate?.sauceCurationManager?(self, didReceiveBroadCastMessage: nil)
             }
             
         case MessageHandlerName.onCollectionError.rawValue:
-            if let sauceError = try? decoder.decode(SauceError.self, from: jsonData) {
+            if let jsonString = message.body as? String, !jsonString.isEmpty,
+               let jsonData = jsonString.data(using: .utf8),
+               let sauceError = try? decoder.decode(SauceError.self, from: jsonData) {
                 delegate?.sauceCurationManager?(self, didReceiveErrorMessage: sauceError)
+            } else {
+                delegate?.sauceCurationManager?(self, didReceiveErrorMessage: nil)
             }
             
         case MessageHandlerName.sendDOMRect.rawValue:
-            if let size = try? decoder.decode(DomSize.self, from: jsonData) {
+            if let jsonString = message.body as? String, !jsonString.isEmpty,
+               let jsonData = jsonString.data(using: .utf8),
+               let size = try? decoder.decode(DomSize.self, from: jsonData) {
                 self.translatesAutoresizingMaskIntoConstraints = false
                 
                 if let existingHeightConstraint = self.constraints.first(where: { $0.firstAttribute == .height }) {

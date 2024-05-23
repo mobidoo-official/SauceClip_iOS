@@ -5,11 +5,11 @@ import SauceClip_iOS
 class SauceCurationViewController: UIViewController {
     var handlerStates: [MessageHandlerName: Bool] = [:]
     private var scrollView: UIScrollView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-
+        
         // UIScrollView 초기화 및 설정
         scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -20,13 +20,13 @@ class SauceCurationViewController: UIViewController {
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-
+        
         // 상단 뷰 생성 및 설정
         let topView = UIView()
         topView.backgroundColor = .gray  // 색상은 예시입니다. 적절히 조정 가능
         topView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(topView)
-
+        
         // SauceCurationView 초기화 및 설정
         let sauceCurationView = SauceCurationLib()
         sauceCurationView.delegate = self
@@ -40,7 +40,7 @@ class SauceCurationViewController: UIViewController {
         sauceCurationView.setPvVisibility(false)
         sauceCurationView.setPreviewAutoPlay(true)
         sauceCurationView.setHorizontalPadding(10)
-
+        
         scrollView.addSubview(sauceCurationView)
         sauceCurationView.translatesAutoresizingMaskIntoConstraints = false
         sauceCurationView.scrollView.isScrollEnabled = false
@@ -49,7 +49,7 @@ class SauceCurationViewController: UIViewController {
         bottomView.backgroundColor = .gray  // 색상은 예시입니다. 적절히 조정 가능
         bottomView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(bottomView)
-
+        
         // 제약조건 설정
         NSLayoutConstraint.activate([
             // 상단 뷰 제약조건
@@ -57,13 +57,13 @@ class SauceCurationViewController: UIViewController {
             topView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             topView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             topView.heightAnchor.constraint(equalToConstant: 100),
-
+            
             // SauceCurationView 제약조건
             sauceCurationView.topAnchor.constraint(equalTo: topView.bottomAnchor),
             sauceCurationView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             sauceCurationView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             sauceCurationView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-
+            
             // 하단 뷰 제약조건
             bottomView.topAnchor.constraint(equalTo: sauceCurationView.bottomAnchor),
             bottomView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -84,6 +84,14 @@ extension SauceCurationViewController: SauceCurationDelegate {
         viewController.clipId = broadCastInfo?.clipId
         viewController.curationId = broadCastInfo?.curationId
         PIPKit.show(with: viewController)
+    }
+    
+    func sauceCurationManager(_ manager: SauceCurationLib, didReceiveErrorMessage sauceError: SauceError?) {
+        guard let error = sauceError else { return }
+        let alertController = UIAlertController(title:"\(error.errorType)", message: "\(error.errorDetails)", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
     
 }
