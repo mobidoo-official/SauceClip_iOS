@@ -10,66 +10,23 @@ class SauceCurationViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
-        // UIScrollView 초기화 및 설정
-        scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(scrollView)
-        NSLayoutConstraint.activate([
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
-        
-        // 상단 뷰 생성 및 설정
-        let topView = UIView()
-        topView.backgroundColor = .gray  // 색상은 예시입니다. 적절히 조정 가능
-        topView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(topView)
-        
-        // SauceCurationView 초기화 및 설정
         let sauceCurationView = SauceCurationLib()
         sauceCurationView.delegate = self
+        
         let config = SauceCurationLib.SauceCurationConfig(
-            isBroadCastEnabled: handlerStates[.moveBroadcast] ?? false,
+            isBroadCastEnabled: true,
             delegate: self
         )
         sauceCurationView.configure(with: config)
-        sauceCurationView.setInit(partnerID: Config.partnerID, curationID: Config.curationID)
-        sauceCurationView.setStageMode(on: Config.stage)
-        sauceCurationView.setPvVisibility(false)
-        sauceCurationView.setPreviewAutoPlay(true)
-        sauceCurationView.setHorizontalPadding(10)
         
-        scrollView.addSubview(sauceCurationView)
+        sauceCurationView.setInit(partnerID: "파트너 아이디", curationID: "큐레이션 아이디")
+        sauceCurationView.setStageMode(on: true) // 스테이지 환경 사용 default: false
+        sauceCurationView.setPvVisibility(true) //  전시 클립 영상 내 조회 수 노출 여부 default: true
+        sauceCurationView.setHorizontalPadding(10) // 클립 좌우 여백  default: 0
+        self.view.addSubview(sauceCurationView)
         sauceCurationView.translatesAutoresizingMaskIntoConstraints = false
-        sauceCurationView.scrollView.isScrollEnabled = false
-        // 하단 뷰 생성 및 설정
-        let bottomView = UIView()
-        bottomView.backgroundColor = .gray  // 색상은 예시입니다. 적절히 조정 가능
-        bottomView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(bottomView)
-        
-        // 제약조건 설정
         NSLayoutConstraint.activate([
-            // 상단 뷰 제약조건
-            topView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            topView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            topView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            topView.heightAnchor.constraint(equalToConstant: 100),
-            
-            // SauceCurationView 제약조건
-            sauceCurationView.topAnchor.constraint(equalTo: topView.bottomAnchor),
-            sauceCurationView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            sauceCurationView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            sauceCurationView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            
-            // 하단 뷰 제약조건
-            bottomView.topAnchor.constraint(equalTo: sauceCurationView.bottomAnchor),
-            bottomView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            bottomView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            bottomView.heightAnchor.constraint(equalToConstant: 100),
-            bottomView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            sauceCurationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
         ])
         
         sauceCurationView.load()
@@ -88,12 +45,12 @@ extension SauceCurationViewController: SauceCurationDelegate {
         
         // PIP 를 지원 안할 경우
         /*
-        let viewController = ClipViewController()
-        viewController.modalPresentationStyle = .fullScreen
-        viewController.partnerId = broadCastInfo?.partnerId
-        viewController.clipId = broadCastInfo?.clipId
-        viewController.curationId = broadCastInfo?.curationId
-        self.present(viewController, animated: true)
+         let viewController = ClipViewController()
+         viewController.modalPresentationStyle = .fullScreen
+         viewController.partnerId = broadCastInfo?.partnerId
+         viewController.clipId = broadCastInfo?.clipId
+         viewController.curationId = broadCastInfo?.curationId
+         self.present(viewController, animated: true)
          */
     }
     
