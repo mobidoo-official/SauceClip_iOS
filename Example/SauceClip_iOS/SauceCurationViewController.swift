@@ -18,8 +18,7 @@ class SauceCurationViewController: UIViewController {
             delegate: self
         )
         sauceCurationView.configure(with: config)
-        
-        sauceCurationView.setInit(partnerID: "파트너 아이디", curationID: "큐레이션 아이디")
+        sauceCurationView.setInit(partnerID: Config.partnerID, curationID: Config.curationID)
         sauceCurationView.setStageMode(on: true) // 스테이지 환경 사용 default: false
         sauceCurationView.setPvVisibility(true) //  전시 클립 영상 내 조회 수 노출 여부 default: true
         sauceCurationView.setHorizontalPadding(10) // 클립 좌우 여백  default: 0
