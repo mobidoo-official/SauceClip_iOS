@@ -120,6 +120,7 @@ class ViewController: UIViewController {
             PIPKit.show(with: viewController)
         } else {
             let viewController = SauceCurationViewController()
+            viewController.modalPresentationStyle = .fullScreen
             viewController.handlerStates = handlerStates
             present(viewController, animated: true)// CurationViewController는 예시입니다. 실제 클래스에 맞게 수정해주세요.
         }

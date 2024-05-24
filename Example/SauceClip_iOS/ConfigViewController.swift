@@ -134,6 +134,7 @@ class ConfigViewController: UIViewController {
         }
         
         let vc = ViewController()
+        vc.modalPresentationStyle = .fullScreen
         Config.partnerID = partnerID
         Config.clipID = clipID
         Config.curationID = curationID

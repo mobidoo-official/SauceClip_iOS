@@ -61,4 +61,12 @@ extension ClipPIPViewController: SauceClipDelegate {
         print(productInfo?.clipIdx)
     }
     
+    func sauceClipManager(_ manager: SauceClipViewController, didReceiveErrorMessage sauceError: SauceError?) {
+        guard let error = sauceError else { return }
+        let alertController = UIAlertController(title:"\(error.errorType)", message: "\(error.errorDetails)", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
 }
