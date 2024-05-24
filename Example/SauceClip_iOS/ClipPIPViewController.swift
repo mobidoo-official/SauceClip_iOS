@@ -41,7 +41,7 @@ extension ClipPIPViewController: SauceClipDelegate {
     }
     
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveExitMessage message: WKScriptMessage) {
-        self.dismiss(animated: true)
+        PIPKit.dismiss(animated: true)
         print("exit")
     }
     

@@ -500,7 +500,7 @@
 			baseConfigurationReference = FBBD852A85B6D8ECBE98544B /* Pods-SauceClip_iOS_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = PQFD9V79PC;
 				INFOPLIST_FILE = SauceClip_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12;
@@ -519,7 +519,7 @@
 			baseConfigurationReference = F6A7A20959E979DB55BB57A6 /* Pods-SauceClip_iOS_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = PQFD9V79PC;
 				INFOPLIST_FILE = SauceClip_iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12;
