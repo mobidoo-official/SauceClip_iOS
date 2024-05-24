@@ -78,12 +78,23 @@ class SauceCurationViewController: UIViewController {
 
 extension SauceCurationViewController: SauceCurationDelegate {
     func sauceCurationManager(_ manager: SauceCurationLib, didReceiveBroadCastMessage broadCastInfo: SauceBroadcastInfo?) {
-        let viewController = ClipPIPViewController()
+        // PIP 를 지원할 경우
+        let pipViewController = ClipPIPViewController()
+        pipViewController.modalPresentationStyle = .fullScreen
+        pipViewController.partnerId = broadCastInfo?.partnerId
+        pipViewController.clipId = broadCastInfo?.clipId
+        pipViewController.curationId = broadCastInfo?.curationId
+        PIPKit.show(with: pipViewController)
+        
+        // PIP 를 지원 안할 경우
+        /*
+        let viewController = ClipViewController()
         viewController.modalPresentationStyle = .fullScreen
         viewController.partnerId = broadCastInfo?.partnerId
         viewController.clipId = broadCastInfo?.clipId
         viewController.curationId = broadCastInfo?.curationId
-        PIPKit.show(with: viewController)
+        self.present(viewController, animated: true)
+         */
     }
     
     func sauceCurationManager(_ manager: SauceCurationLib, didReceiveErrorMessage sauceError: SauceError?) {
@@ -93,5 +104,4 @@ extension SauceCurationViewController: SauceCurationDelegate {
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
-    
 }
