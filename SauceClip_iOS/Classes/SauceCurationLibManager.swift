@@ -1,9 +1,31 @@
 import WebKit
 
+public struct APIEnvironment {
+    public enum Environment: String {
+        case development = "Development"
+        case staging = "Staging"
+        case production = "Production"
+    }
+    // 개발 환경 관리
+    public static var buildEnvironment: Environment = .development
+
+    // 현재 환경에 맞는 API 호스트 URL을 반환하는 정적 프로퍼티
+    public static var current: String {
+        switch buildEnvironment {
+        case .development:
+            return "https://dev.showcase.sauceclip.com/static/js/SauceClipCollectionLib.js"
+        case .staging:
+            return "https://stage.showcase.sauceclip.com/static/js/SauceClipCollectionLib.js"
+        case .production:
+            return "https://showcase.sauceclip.com/static/js/SauceClipCollectionLib.js"
+        }
+    }
+}
+
 public class SauceCurationLib: WKWebView {
     private var partnerId: String?
     private var curationId: String?
-    private var target  = false
+    private var target: APIEnvironment.Environment = .staging
     
     private var paddingOption = ""
     private var pvOption = ""
@@ -91,7 +113,7 @@ window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left
     }
     
     public func setStageMode(on: Bool) {
-        target = on
+        target = APIEnvironment.buildEnvironment
     }
     
     private func updateWebViewHeight(height: CGFloat) {
@@ -106,7 +128,39 @@ window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left
     public func load() {
         if let partnerId = partnerId, let curationId = curationId {
             var htmlString = String()
-            if target {
+            switch target {
+            case .development:
+                htmlString = """
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+                  <script src="https://dev.showcase.sauceclip.com/static/js/SauceClipCollectionLib.js"></script>
+                </head>
+                <body>
+                  <div id="sauce_clip_curation"></div>
+                  <script>
+                    window.addEventListener('load', () => {
+                      const partnerId = '\(partnerId)'
+                      window.SauceClipCollectionLib.setInit({ partnerId })
+                      \(pvOption)
+                      \(paddingOption)
+                      \(previewAutoPlayOption)
+                      window.SauceClipCollectionLib.loadCuration({ curationId: '\(curationId)', elementId: 'sauce_clip_curation' })
+                    })
+                  </script>
+                </body>
+                <style>
+                  html, body {
+                    padding: 0;
+                    margin: 0;
+                    height: fit-content;
+                    overflow-x: hidden;
+                  }
+                </style>
+                </html>
+                """
+            case .staging:
                 htmlString = """
                         <!DOCTYPE html>
                         <html lang="en">
@@ -137,7 +191,7 @@ window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left
                         </style>
                         </html>
                         """
-            } else {
+            case .production:
                 htmlString = """
                 <!DOCTYPE html>
                 <html lang="en">
@@ -169,6 +223,7 @@ window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left
                 </html>
                 """
             }
+            
             self.loadHTMLString(htmlString, baseURL: nil)
             
         } else {

@@ -1,10 +1,10 @@
 import UIKit
+import SauceClip_iOS
 
 struct Config {
     static var partnerID = ""
     static var clipID = ""
     static var curationID = ""
-    static var stage = false
 }
 
 class ConfigViewController: UIViewController {
@@ -13,7 +13,7 @@ class ConfigViewController: UIViewController {
     var partnerIDTextField: UITextField!
     var clipIDTextField: UITextField!
     var curationIDTextField: UITextField!
-    var checkBox: UISwitch!
+    var stageSegmentedControl: UISegmentedControl!
     var nextButton: UIButton!
     
     override func viewDidLoad() {
@@ -66,9 +66,10 @@ class ConfigViewController: UIViewController {
         curationIDTextField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(curationIDTextField)
         
-        checkBox = UISwitch()
-        checkBox.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(checkBox)
+        stageSegmentedControl = UISegmentedControl(items: ["Dev", "Stage", "Prod"])
+        stageSegmentedControl.selectedSegmentIndex = 0
+        stageSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stageSegmentedControl)
         
         let stageLabel = UILabel()
         stageLabel.text = "Stage"
@@ -109,13 +110,14 @@ class ConfigViewController: UIViewController {
             curationIDTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             curationIDTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            checkBox.topAnchor.constraint(equalTo: curationIDTextField.bottomAnchor, constant: 20),
-            checkBox.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            stageSegmentedControl.topAnchor.constraint(equalTo: curationIDTextField.bottomAnchor, constant: 20),
+            stageSegmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            stageSegmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            stageLabel.centerYAnchor.constraint(equalTo: checkBox.centerYAnchor),
-            stageLabel.leadingAnchor.constraint(equalTo: checkBox.trailingAnchor, constant: 8),
+            stageLabel.topAnchor.constraint(equalTo: stageSegmentedControl.bottomAnchor, constant: 20),
+            stageLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
-            nextButton.topAnchor.constraint(equalTo: checkBox.bottomAnchor, constant: 20),
+            nextButton.topAnchor.constraint(equalTo: stageLabel.bottomAnchor, constant: 20),
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
@@ -138,7 +140,8 @@ class ConfigViewController: UIViewController {
         Config.partnerID = partnerID
         Config.clipID = clipID
         Config.curationID = curationID
-        Config.stage = checkBox.isOn
+        let selectedIndex = stageSegmentedControl.selectedSegmentIndex
+        APIEnvironment.buildEnvironment = selectedIndex == 0 ? .development : selectedIndex == 1 ? .staging : .production
         self.present(vc, animated: true)
         print("Next button tapped!")
     }

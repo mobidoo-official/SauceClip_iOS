@@ -21,7 +21,7 @@ class SauceViewController: SauceClipViewController {
         sauceClipLib.setInit(partnerID: Config.partnerID, clipID:
                                 Config.clipID, curationID: Config.curationID )
         sauceClipLib.setProductVC(on: true)
-        sauceClipLib.setStageMode(on: Config.stage)
+        sauceClipLib.setStageMode(on: true)
         sauceClipLib.load()
     }
 }

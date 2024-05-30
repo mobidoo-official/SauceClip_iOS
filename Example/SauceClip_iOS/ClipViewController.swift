@@ -7,6 +7,7 @@ class ClipViewController: SauceClipViewController {
     var partnerId: String?
     var clipId: Int?
     var curationId: Int?
+    var target : APIEnvironment.Environment?
     
     override func viewDidLoad() {
         super.viewDidLoad()

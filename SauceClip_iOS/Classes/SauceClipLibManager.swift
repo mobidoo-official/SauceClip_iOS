@@ -310,7 +310,7 @@ public class SauceClipLib {
     var partnerId: String?
     var clipId: String?
     var curationId: String?
-    var target = false
+    var target: APIEnvironment.Environment = .development
     var isProductViewShow = true
     
     public weak var viewController: SauceClipViewController?
@@ -322,7 +322,7 @@ public class SauceClipLib {
     }
     
     public func setStageMode(on: Bool = false) {
-        target = on
+        target = APIEnvironment.buildEnvironment
     }
     
     public func setProductVC(on: Bool = true) {
@@ -336,12 +336,15 @@ public class SauceClipLib {
         
         // Start constructing the base URL string without curationId.
         var urlString = String()
-        if target {
+        
+        switch target {
+        case .development:
+            urlString = "https://dev.player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
+        case .staging:
             urlString = "https://stage.player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
-        } else {
+        case .production:
             urlString = "https://player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
         }
-        
         
         // Add curationId to the URL string only if it's not nil.
         if let curationid = curationId {
