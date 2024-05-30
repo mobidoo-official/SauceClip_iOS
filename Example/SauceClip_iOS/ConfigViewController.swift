@@ -71,12 +71,6 @@ class ConfigViewController: UIViewController {
         stageSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stageSegmentedControl)
         
-        let stageLabel = UILabel()
-        stageLabel.text = "Stage"
-        stageLabel.font = UIFont.systemFont(ofSize: 16)
-        stageLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stageLabel)
-        
         nextButton = UIButton()
         nextButton.setTitle("Next", for: .normal)
         nextButton.setTitleColor(.systemBlue, for: .normal)
@@ -114,10 +108,7 @@ class ConfigViewController: UIViewController {
             stageSegmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             stageSegmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            stageLabel.topAnchor.constraint(equalTo: stageSegmentedControl.bottomAnchor, constant: 20),
-            stageLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            
-            nextButton.topAnchor.constraint(equalTo: stageLabel.bottomAnchor, constant: 20),
+            nextButton.topAnchor.constraint(equalTo: stageSegmentedControl.bottomAnchor, constant: 20),
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
