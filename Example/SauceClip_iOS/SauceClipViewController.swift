@@ -11,7 +11,8 @@ class SauceViewController: SauceClipViewController {
             isEnterEnabled: handlerStates[.enter] ?? false,
             isExitEnabled: handlerStates[.exit] ?? false,
             isMoveProductEnabled: handlerStates[.moveProduct] ?? false,
-            isMoveCartEnabled: handlerStates[.moveCart] ?? false,
+            isMoveCartEnabled: handlerStates[.moveCart] ?? false, 
+            isAddCartEnabled: handlerStates[.addCart] ?? false,
             isOnShareEnabled: handlerStates[.onShare] ?? false,
             delegate: self
         )
@@ -44,8 +45,8 @@ extension SauceViewController: SauceClipDelegate {
         print(shareInfo?.clipId)
     }
     
-    func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage cartInfo: SauceCartInfo?) {
-        print(cartInfo?.clipIdx)
+    func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage: WKScriptMessage?) {
+        // 장바구니 이동
     }
     
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveProductMessage productInfo: SauceProductInfo?) {
@@ -59,4 +60,10 @@ extension SauceViewController: SauceClipDelegate {
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
+    
+    func sauceClipManager(_ manager: SauceClipViewController, didReceiveAddCartMessage addCartInfo: SauceCartInfo?) {
+        print(addCartInfo?.clipIdx)
+        print(addCartInfo?.productCode)
+    }
+    
 }

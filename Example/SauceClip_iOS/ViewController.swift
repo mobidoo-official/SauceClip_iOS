@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     }
     
     private func setupContainers() {
-        setupContainer(clipContainer, withButton: clipOpenClipViewButton, buttonTitle: "Open ClipView", checkBoxes: &clipCheckBoxes, isTopContainer: true, messageHandlerNames: [.enter, .exit, .moveProduct, .moveCart, .onShare])
+        setupContainer(clipContainer, withButton: clipOpenClipViewButton, buttonTitle: "Open ClipView", checkBoxes: &clipCheckBoxes, isTopContainer: true, messageHandlerNames: [.enter, .exit, .moveProduct, .addCart, .moveCart, .onShare])
         setupContainer(curationContainer, withButton: curationOpenCurationViewButton, buttonTitle: "Open CurationView", checkBoxes: &curationCheckBoxes, isTopContainer: false, messageHandlerNames: [.moveBroadcast])
     }
     
@@ -116,13 +116,12 @@ class ViewController: UIViewController {
         if sender == clipOpenClipViewButton {
             let viewController = SauceViewController()
             viewController.handlerStates = handlerStates
-//            present(viewController, animated: true)// ClipViewController는 예시입니다. 실제 클래스에 맞게 수정해주세요.
             PIPKit.show(with: viewController)
         } else {
             let viewController = SauceCurationViewController()
             viewController.modalPresentationStyle = .fullScreen
             viewController.handlerStates = handlerStates
-            present(viewController, animated: true)// CurationViewController는 예시입니다. 실제 클래스에 맞게 수정해주세요.
+            present(viewController, animated: true)
         }
     }
     
@@ -132,6 +131,7 @@ class ViewController: UIViewController {
         .moveProduct: false,
         .onShare: false,
         .moveCart: false,
+        .addCart: false,
         .moveBroadcast: false
     ]
     

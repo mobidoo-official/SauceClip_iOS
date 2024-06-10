@@ -16,8 +16,9 @@ import Foundation
     public let price: String
     public let productImg: String
     public let productName: String
-    public let linkUrl: String?
     public let externalProductId: String?
+    public let productCode: String?
+    public let optionCode: String?
 }
 
 /// SauceClip 애플리케이션의 제품 정보를 나타내는 데이터 구조체입니다.

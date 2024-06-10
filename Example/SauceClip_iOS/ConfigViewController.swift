@@ -124,7 +124,7 @@ class ConfigViewController: UIViewController {
         // Validate text fields
         guard let partnerID = partnerIDTextField.text, !partnerID.isEmpty,
               let clipID = clipIDTextField.text, !clipID.isEmpty,
-              let curationID = curationIDTextField.text, !curationID.isEmpty else {
+              let curationID = curationIDTextField.text else {
             // Show alert if any of the text fields is empty
             let alertController = UIAlertController(title: "Error", message: "Please fill in all fields.", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)

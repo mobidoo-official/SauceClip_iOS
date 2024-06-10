@@ -8,6 +8,7 @@ public enum MessageHandlerName: String {
     case login = "sauceclipMoveLogin"
     case moveProduct = "sauceclipMoveProduct"
     case moveCart = "sauceclipMoveCart"
+    case addCart = "sauceclipAddCart"
     case onShare = "sauceclipOnShare"
     case moveBroadcast = "sauceclipMoveBroadcast"
     case onError = "sauceclipPlayerError"
@@ -20,7 +21,8 @@ public enum MessageHandlerName: String {
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveExitMessage message: WKScriptMessage)
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveLoginMessage message: WKScriptMessage)
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveProductMessage productInfo: SauceProductInfo?)
-    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage cartInfo: SauceCartInfo?)
+    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage: WKScriptMessage?)
+    @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveAddCartMessage cartInfo: SauceCartInfo?)
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveOnShareMessage shareInfo: SauceShareInfo?)
     @objc optional func sauceClipManager(_ manager: SauceClipViewController, didReceiveErrorMessage sauceError: SauceError?)
 }
@@ -36,6 +38,7 @@ public struct SauceClipConfig {
     public let isLoginEnabled: Bool
     public let isMoveProductEnabled: Bool
     public let isMoveCartEnabled: Bool
+    public let isAddCartEnabled: Bool
     public let isOnShareEnabled: Bool
     public let pipSize: CGSize?
     public weak var delegate: SauceClipDelegate? // Delegate 추가
@@ -44,6 +47,7 @@ public struct SauceClipConfig {
                 isLoginEnabled: Bool? = false,
                 isMoveProductEnabled: Bool? = false,
                 isMoveCartEnabled: Bool? = false,
+                isAddCartEnabled: Bool? = false,
                 isOnShareEnabled: Bool? = false,
                 pipSize: CGSize? = nil,
                 delegate: SauceClipDelegate?) {
@@ -52,6 +56,7 @@ public struct SauceClipConfig {
         self.isLoginEnabled = isLoginEnabled ?? false
         self.isMoveProductEnabled = isMoveProductEnabled ?? false
         self.isMoveCartEnabled = isMoveCartEnabled ?? false
+        self.isAddCartEnabled = isMoveCartEnabled ?? false
         self.isOnShareEnabled = isOnShareEnabled ?? false
         self.pipSize = pipSize
         self.delegate = delegate
@@ -184,6 +189,7 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
         if config.isExitEnabled { handlers.append(.exit) }
         if config.isLoginEnabled { handlers.append(.login) }
         if config.isMoveCartEnabled { handlers.append(.moveCart) }
+        if config.isAddCartEnabled { handlers.append(.addCart) }
         if config.isMoveProductEnabled { handlers.append(.moveProduct) }
         if config.isOnShareEnabled { handlers.append(.onShare) }
         self.messageHandlerNames = handlers
@@ -270,15 +276,16 @@ open class SauceClipViewController: UIViewController, WKScriptMessageHandler, Sa
             } else {
                 delegate?.sauceClipManager?(self, didReceiveMoveProductMessage: nil)
             }
-            
-        case MessageHandlerName.moveCart.rawValue:
+        case MessageHandlerName.addCart.rawValue:
             if let jsonString = message.body as? String, !jsonString.isEmpty,
                let jsonData = jsonString.data(using: .utf8),
                let cartInfo = try? decoder.decode(SauceCartInfo.self, from: jsonData) {
-                delegate?.sauceClipManager?(self, didReceiveMoveCartMessage: cartInfo)
+                delegate?.sauceClipManager?(self, didReceiveAddCartMessage: cartInfo)
             } else {
-                delegate?.sauceClipManager?(self, didReceiveMoveCartMessage: nil)
+                delegate?.sauceClipManager?(self, didReceiveAddCartMessage: nil)
             }
+        case MessageHandlerName.moveCart.rawValue:
+             delegate?.sauceClipManager?(self, didReceiveMoveCartMessage: nil)
             
         case MessageHandlerName.onShare.rawValue:
             if let jsonString = message.body as? String, !jsonString.isEmpty,
@@ -342,9 +349,8 @@ public class SauceClipLib {
             urlString = "https://player.sauceclip.com/player?partnerId=\(partnerId)&clipId=\(clipId)"
         }
         
-        
         // Add curationId to the URL string only if it's not nil.
-        if let curationid = curationId {
+        if let curationid = curationId, ((curationId?.isEmpty) == nil) {
             urlString += "&curationId=\(curationid)"
         }
         
