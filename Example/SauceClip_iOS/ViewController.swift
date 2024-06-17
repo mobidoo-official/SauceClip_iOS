@@ -114,7 +114,7 @@ class ViewController: UIViewController {
     @objc private func openWebViewController(_ sender: UIButton) {
         
         if sender == clipOpenClipViewButton {
-            let viewController = SauceViewController()
+            let viewController = sauceClipViewController()
             viewController.handlerStates = handlerStates
             PIPKit.show(with: viewController)
         } else {

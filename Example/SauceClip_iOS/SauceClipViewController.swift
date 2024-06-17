@@ -2,7 +2,7 @@ import UIKit
 import WebKit
 import SauceClip_iOS
 
-class SauceViewController: SauceClipViewController {
+class sauceClipViewController: SauceClipViewController {
     var handlerStates: [MessageHandlerName: Bool] = [:]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class SauceViewController: SauceClipViewController {
     }
 }
 
-extension SauceViewController: SauceClipDelegate {
+extension sauceClipViewController: SauceClipDelegate {
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveEnterMessage message: WKScriptMessage) {
         print("enter")
     }
@@ -54,11 +54,6 @@ extension SauceViewController: SauceClipDelegate {
     }
     
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveErrorMessage sauceError: SauceError?) {
-        guard let error = sauceError else { return }
-        let alertController = UIAlertController(title:"\(error.errorType)", message: "\(error.errorDetails)", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        present(alertController, animated: true, completion: nil)
     }
     
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveAddCartMessage addCartInfo: SauceCartInfo?) {

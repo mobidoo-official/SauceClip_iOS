@@ -16,6 +16,7 @@ class ClipPIPViewController: SauceClipViewController {
             isExitEnabled: true,
             isMoveProductEnabled: true,
             isMoveCartEnabled: true,
+            isAddCartEnabled: true, 
             isOnShareEnabled: true,
             pipSize: CGSize(width: 100, height: 200),
             delegate: self

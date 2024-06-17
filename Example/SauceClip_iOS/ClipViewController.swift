@@ -16,6 +16,7 @@ class ClipViewController: SauceClipViewController {
             isExitEnabled: true,
             isMoveProductEnabled: true,
             isMoveCartEnabled: true,
+            isAddCartEnabled: true,
             isOnShareEnabled: true,
             delegate: self
         )
