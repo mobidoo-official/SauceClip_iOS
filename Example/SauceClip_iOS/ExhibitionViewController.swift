@@ -1,28 +1,37 @@
 import UIKit
+
+//class ExhibitionViewController: UIViewController {
+//
+//    var partnerID: String?
+//    var curationID: String?
+//    var isStageMode: Bool = true
+//
+import UIKit
 import WebKit
 import SauceClip_iOS
 
-class SauceCurationViewController: UIViewController {
+class ClipCurationViewController: UIViewController {
     var handlerStates: [MessageHandlerName: Bool] = [:]
     private var scrollView: UIScrollView!
+    var partnerID: String?
+    var curationID: String?
+    var isStageMode: Bool = true
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.navigationItem.title = "SauceCuration"
         
         // 헤더 영역 생성
         let headerView = UIView()
-        headerView.backgroundColor = .lightGray
+        headerView.backgroundColor = .lightGray.withAlphaComponent(0.3)
         let titleLabel = UILabel()
-        titleLabel.text = "Sauce Curation"
+        titleLabel.text = "컨텐츠 A"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         titleLabel.textAlignment = .center
         
-        let closeButton = UIButton(type: .system)
-        closeButton.setTitle("Close", for: .normal)
-        closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
-        
-        let headerStackView = UIStackView(arrangedSubviews: [titleLabel, closeButton])
+        let headerStackView = UIStackView(arrangedSubviews: [titleLabel])
         headerStackView.axis = .horizontal
         headerStackView.distribution = .equalCentering
         headerStackView.alignment = .center
@@ -54,8 +63,8 @@ class SauceCurationViewController: UIViewController {
             delegate: self
         )
         sauceCurationView.configure(with: config)
-        sauceCurationView.setInit(partnerID: Config.partnerID, curationID: Config.curationID)
-        sauceCurationView.setStageMode(on: true) // 스테이지 환경 사용 default: false
+        sauceCurationView.setInit(partnerID: partnerID ?? "", curationID: curationID ?? "")
+        sauceCurationView.setStageMode(on: isStageMode) // 스테이지 환경 사용 default: false
         sauceCurationView.setPvVisibility(true) //  전시 클립 영상 내 조회 수 노출 여부 default: true
         sauceCurationView.setHorizontalPadding(10) // 클립 좌우 여백  default: 0
         
@@ -67,22 +76,21 @@ class SauceCurationViewController: UIViewController {
         
         sauceCurationView.load()
         
-        // 새로운 뷰 추가
         let additionalView = UIView()
-        additionalView.backgroundColor = .lightGray
+        additionalView.backgroundColor = .lightGray.withAlphaComponent(0.3)
         self.view.addSubview(additionalView)
         additionalView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             additionalView.topAnchor.constraint(equalTo: sauceCurationView.bottomAnchor, constant: 20),
             additionalView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             additionalView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            additionalView.heightAnchor.constraint(equalToConstant: 300)
+            additionalView.heightAnchor.constraint(equalToConstant: 150)
         ])
         
-        // "컨텐츠" 라벨 추가
         let contentLabel = UILabel()
-        contentLabel.text = "컨텐츠"
+        contentLabel.text = "컨텐츠 B"
         contentLabel.textAlignment = .center
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         additionalView.addSubview(contentLabel)
         contentLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -90,31 +98,17 @@ class SauceCurationViewController: UIViewController {
             contentLabel.centerYAnchor.constraint(equalTo: additionalView.centerYAnchor)
         ])
     }
-    
-    @objc private func closeButtonTapped() {
-        self.dismiss(animated: true, completion: nil)
-    }
 }
 
-extension SauceCurationViewController: SauceCurationDelegate {
+extension ClipCurationViewController: SauceCurationDelegate {
     func sauceCurationManager(_ manager: SauceCurationLib, didReceiveBroadCastMessage broadCastInfo: SauceBroadcastInfo?) {
-        // PIP 를 지원할 경우
-//        let pipViewController = ClipPIPViewController()
-//        pipViewController.modalPresentationStyle = .fullScreen
-//        pipViewController.partnerId = broadCastInfo?.partnerId
-//        pipViewController.clipId = broadCastInfo?.clipId
-//        pipViewController.curationId = broadCastInfo?.curationId
-//        PIPKit.show(with: pipViewController)
-//        
-        // PIP 를 지원 안할 경우
-        
-         let viewController = ClipViewController()
-         viewController.modalPresentationStyle = .fullScreen
-         viewController.partnerId = broadCastInfo?.partnerId
-         viewController.clipId = broadCastInfo?.clipId
-         viewController.curationId = broadCastInfo?.curationId
-         self.present(viewController, animated: true)
-         
+
+        let vc = ClipPlayerViewController()
+        vc.modalPresentationStyle = .fullScreen
+        vc.partnerID = broadCastInfo?.partnerId
+        vc.curationID = "\(broadCastInfo?.clipId)"
+        vc.isStageMode = isStageMode
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func sauceCurationManager(_ manager: SauceCurationLib, didReceiveErrorMessage sauceError: SauceError?) {

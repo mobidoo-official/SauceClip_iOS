@@ -1,41 +1,47 @@
+//import UIKit
+//
+//class ClipPlayerViewController: UIViewController {
+//    
+//
+    
 import UIKit
 import WebKit
 import SauceClip_iOS
 
-class ClipViewController: SauceClipViewController {
-   
-    var partnerId: String?
-    var clipId: Int?
-    var curationId: Int?
+class ClipPlayerViewController: SauceClipViewController {
+    var handlerStates: [MessageHandlerName: Bool] = [:]
+    
+    var partnerID: String?
+    var clipID: String?
+    var curationID: String?
+    var isStageMode: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("keaton1234")
+        print(isStageMode)
         
         let config = SauceClipConfig(
-            isEnterEnabled: true,
-            isExitEnabled: true,
-            isMoveProductEnabled: true,
-            isMoveCartEnabled: true,
-            isAddCartEnabled: true,
-            isOnShareEnabled: true,
+            isEnterEnabled: handlerStates[.enter] ?? false,
+            isExitEnabled: handlerStates[.exit] ?? false,
+            isMoveProductEnabled: handlerStates[.moveProduct] ?? false,
+            isMoveCartEnabled: handlerStates[.moveCart] ?? false,
+            isAddCartEnabled: handlerStates[.addCart] ?? false,
+            isOnShareEnabled: handlerStates[.onShare] ?? false,
             delegate: self
         )
         configure(with: config)
-        
-        guard let partnerId = partnerId, let clipId = clipId, let curationId = curationId else {
-            return
-        }
-        
         let sauceClipLib = SauceClipLib()
         sauceClipLib.viewController = self
-        sauceClipLib.setInit(partnerID: partnerId, clipID: "\(clipId)", curationID: "\(curationId)")
+        sauceClipLib.setInit(partnerID: partnerID ?? "", clipID:
+                                clipID ?? "" , curationID: "")
         sauceClipLib.setProductVC(on: true)
-        sauceClipLib.setStageMode(on: false)
+        sauceClipLib.setStageMode(on: isStageMode)
         sauceClipLib.load()
     }
 }
 
-extension ClipViewController: SauceClipDelegate {
+extension ClipPlayerViewController: SauceClipDelegate {
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveEnterMessage message: WKScriptMessage) {
         print("enter")
     }
@@ -53,8 +59,8 @@ extension ClipViewController: SauceClipDelegate {
         print(shareInfo?.clipId)
     }
     
-    func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage cartInfo: SauceCartInfo?) {
-        print(cartInfo?.clipIdx)
+    func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveCartMessage: WKScriptMessage?) {
+        // 장바구니 이동
     }
     
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveMoveProductMessage productInfo: SauceProductInfo?) {
@@ -62,8 +68,11 @@ extension ClipViewController: SauceClipDelegate {
     }
     
     func sauceClipManager(_ manager: SauceClipViewController, didReceiveErrorMessage sauceError: SauceError?) {
-        print("keaton1111")
-        print(sauceError)
+    }
+    
+    func sauceClipManager(_ manager: SauceClipViewController, didReceiveAddCartMessage addCartInfo: SauceCartInfo?) {
+        print(addCartInfo?.clipIdx)
+        print(addCartInfo?.productCode)
     }
     
 }

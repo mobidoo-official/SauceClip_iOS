@@ -16,6 +16,9 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		A9B9C8219C51B583A77FB163 /* Pods_SauceClip_iOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E4E23E073A5FA7A27A0B99 /* Pods_SauceClip_iOS_Example.framework */; };
+		F900F7062C2CFAF500043986 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F900F7052C2CFAF500043986 /* MainViewController.swift */; };
+		F900F7082C2CFB3F00043986 /* ClipPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F900F7072C2CFB3F00043986 /* ClipPlayerViewController.swift */; };
+		F900F70A2C2CFB5300043986 /* ExhibitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F900F7092C2CFB5300043986 /* ExhibitionViewController.swift */; };
 		F97B240B2BC9054300D6C5DA /* ClipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97B240A2BC9054300D6C5DA /* ClipViewController.swift */; };
 		F97FD4AB2BA7D53500CF70DB /* SauceClipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97FD4AA2BA7D53500CF70DB /* SauceClipViewController.swift */; };
 		F9CB340E2BEB6A16001404CF /* ClipPIPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9CB340D2BEB6A16001404CF /* ClipPIPViewController.swift */; };
@@ -52,6 +55,9 @@
 		BF1693C0F3ADA134FC81963F /* SauceClip_iOS.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SauceClip_iOS.podspec; path = ../SauceClip_iOS.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EDB3C06125DC6E17B7D14FAF /* Pods-SauceClip_iOS_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SauceClip_iOS_Tests.release.xcconfig"; path = "Target Support Files/Pods-SauceClip_iOS_Tests/Pods-SauceClip_iOS_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F6A7A20959E979DB55BB57A6 /* Pods-SauceClip_iOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SauceClip_iOS_Example.release.xcconfig"; path = "Target Support Files/Pods-SauceClip_iOS_Example/Pods-SauceClip_iOS_Example.release.xcconfig"; sourceTree = "<group>"; };
+		F900F7052C2CFAF500043986 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		F900F7072C2CFB3F00043986 /* ClipPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipPlayerViewController.swift; sourceTree = "<group>"; };
+		F900F7092C2CFB5300043986 /* ExhibitionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionViewController.swift; sourceTree = "<group>"; };
 		F97B240A2BC9054300D6C5DA /* ClipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipViewController.swift; sourceTree = "<group>"; };
 		F97FD4AA2BA7D53500CF70DB /* SauceClipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SauceClipViewController.swift; sourceTree = "<group>"; };
 		F9CB340D2BEB6A16001404CF /* ClipPIPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipPIPViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +131,9 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				F900F7052C2CFAF500043986 /* MainViewController.swift */,
+				F900F7072C2CFB3F00043986 /* ClipPlayerViewController.swift */,
+				F900F7092C2CFB5300043986 /* ExhibitionViewController.swift */,
 			);
 			name = "Example for SauceClip_iOS";
 			path = SauceClip_iOS;
@@ -351,10 +360,13 @@
 				F9CB340E2BEB6A16001404CF /* ClipPIPViewController.swift in Sources */,
 				48632C502BC2595B005E8294 /* SauceCurationViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				F900F70A2C2CFB5300043986 /* ExhibitionViewController.swift in Sources */,
 				F9D9D75D2BE374990049C7DB /* ConfigViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				F97FD4AB2BA7D53500CF70DB /* SauceClipViewController.swift in Sources */,
 				F97B240B2BC9054300D6C5DA /* ClipViewController.swift in Sources */,
+				F900F7082C2CFB3F00043986 /* ClipPlayerViewController.swift in Sources */,
+				F900F7062C2CFAF500043986 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -184,6 +184,10 @@ window.SauceClipCollectionLib.setCurationHorizontalContentsStyle('{"padding-left
 extension SauceCurationLib: WKScriptMessageHandler {
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         let decoder = JSONDecoder()
+        print("keaton0000")
+        print(message.name)
+        print(message.body)
+        
         switch message.name {
         case MessageHandlerName.moveBroadcast.rawValue:
             if let jsonString = message.body as? String, !jsonString.isEmpty,
